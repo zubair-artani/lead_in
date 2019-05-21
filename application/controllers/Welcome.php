@@ -2,24 +2,40 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	function __construct(){
+		parent::__construct();
+	}
 	public function index()
 	{
-		$this->load->view('Dashboard/index');
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			$this->load->view('Dashboard/index');
+		}
+	}
+
+	public function signup(){
+		$inputs = $this->input->post();
+		$this->load->model('adminmodel');
+		if($query = $this->adminmodel->login($inputs)){
+			$name = $query[0]->user_name;
+			$pic = $query[0]->user_picture;
+			$position = $query[0]->position;
+
+			$newdata = array( 
+			   'name'  => $name, 
+			   'pic'     => $pic, 
+			   'position'     => $position, 
+			);  
+			$this->session->set_userdata($newdata);
+			// print_r($this->session->userdata());
+			redirect('Welcome/index');
+			// print_r($query);
+		}
+	} 
+
+	public function logout(){
+		$this->session->unset_userdata('name');
+		redirect('Welcome/index');
 	}
 }
