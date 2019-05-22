@@ -1,0 +1,9 @@
+/* 
+Author: Abdul Qadir;
+*/
+
+.form-group input[type=file]{
+	position: inherit !important;
+	opacity: 1 !important;
+
+}

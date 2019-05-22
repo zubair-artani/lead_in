@@ -13,5 +13,15 @@ class adminmodel extends CI_Model {
 		}
 	}
 
+	function addEditor($inputs, $image_url){
+		$data = array(
+			'user_name' => $inputs['name'],
+			'user_email' => $inputs['email'],
+			'user_password' => $inputs['password'],
+			'user_role' => $inputs['role'],
+			'user_picture' => $image_url,
+		);
+		$insert_query = $this->db->insert('users', $data);
+	}
 }
 ?>
