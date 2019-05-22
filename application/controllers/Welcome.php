@@ -38,4 +38,8 @@ class Welcome extends CI_Controller {
 		$this->session->unset_userdata('name');
 		redirect('Welcome/index');
 	}
+
+	public function addEditor(){
+		$this->load->view('Dashboard/add-editor');
+	}
 }
