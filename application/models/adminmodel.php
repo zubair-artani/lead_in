@@ -20,8 +20,13 @@ class adminmodel extends CI_Model {
 			'user_password' => $inputs['password'],
 			'user_role' => $inputs['role'],
 			'user_picture' => $image_url,
+			'position' => $inputs['position'],
 		);
 		$insert_query = $this->db->insert('users', $data);
+		return true;
+	}
+	function viewEditor(){
+		return $this->db->get('users')->result();
 	}
 }
 ?>

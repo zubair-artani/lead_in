@@ -41,7 +41,7 @@ class Welcome extends CI_Controller {
 		redirect('Welcome/index');
 	}
 
-	public function addEditor(){
+	public function editor($param1){
 		if($this->input->post()){
 				$config['upload_path']          = './uploads/';
                 $config['allowed_types']        = 'gif|jpg|png';
@@ -57,14 +57,23 @@ class Welcome extends CI_Controller {
                     $data = array('upload_data' => $this->upload->data());
                     $image_url =  base_url('uploads/' . $this->upload->data('file_name'));
                     $inputs = $this->input->post();
-                	$this->adminmodel->addEditor($inputs, $image_url);
+                	if($this->adminmodel->addEditor($inputs, $image_url)){
+                		redirect('Welcome/index');
+                	} else {
+                		echo "ok";
+                	}
                     // $this->load->view('upload_success');
                 }
 		} else {
 			if(!$this->session->userdata('name')){
 				$this->load->view('Dashboard/signup');
 			} else {
-				$this->load->view('Dashboard/add-editor');
+				if($param1 == 'add'){
+					$this->load->view('Dashboard/add-editor', ['page_status'=> 'add']);
+				} else if($param1 == 'view') {
+					$query = $this->adminmodel->viewEditor();
+					$this->load->view('Dashboard/add-editor', ['page_status'=> 'view', 'data' => $query]);
+				}
 			}
 		}
 	}
