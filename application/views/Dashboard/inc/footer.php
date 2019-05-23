@@ -1,3 +1,15 @@
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2019 <a href="https://www.facebook.com/hamariacademy">Hamari Academy</a>.</strong> All rights
+    reserved.
+  </footer>
+
+</div>
+<!-- ./wrapper -->
+
 <!-- jQuery 3 -->
 <script src="<?php echo base_url(); ?>bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -41,5 +53,36 @@
 <script src="<?php echo base_url(); ?>dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
+<script>
+  var excrpt = document.getElementsByClassName('excerpt')[0].innerHTML;
+  if(excrpt.length > 15){
+    var slc = excrpt.slice(0, 15);
+    document.getElementsByClassName('excerpt')[0].innerHTML = slc + ' ... ';
+    
+
+    // var span = document.createElement("span");
+    // var node = document.createTextNode("Read More.");
+    // span.appendChild(node);
+
+    // var span2 = document.createElement("attr");
+    // // var attr = span.addAttribute('style', 'color:red;');
+    // var node2 = document.createTextNode(excrpt);
+    // span2.appendChild(node2);
+    
+    // var element = document.getElementsByClassName("excerpt")[0];
+    // element.appendChild(span);
+    // element.appendChild(span2);
+    
+    // $('.excerpt > span').attr('onclick', 'showmore(this)');
+    // $('.excerpt > attr').attr('style', 'display:none;');
+  } 
+
+  // function showmore(span){
+  	// var sdata = $(span).parent().find('attr').html();
+  	// $(span).parent().html(sdata);
+  	// alert(sdata);
+  	// $('.dropdown.tasks-menu').addClass('open');
+  // }
+</script>
 </body>
 </html>

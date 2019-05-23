@@ -1,22 +1,55 @@
-<?php include('inc/header.php'); ?>
-<?php include('inc/sidebar.php'); ?>  
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Add Editor
-        <small>Dashboard Controllers</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="<?php echo base_url('Welcome/index'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Editor</li>
-      </ol>
-    </section>
+<?php 
+	function showtask(){
+?>
+	<div class="row">
+      <div class="col-xs-12">
+		<div class="box">
+              <div class="box-header">
+                <h3 class="box-title"><a href="<?php echo base_url('Welcome/alltask/add') ?>" class="btn bg-navy">Add New</a></h3>
 
-    <!-- Main content -->
-    <section class="content">
-      
+                <div class="box-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
+
+                    <div class="input-group-btn">
+                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                  <tbody><tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Task</th>
+                  </tr>
+                  
+                  <tr>
+                    <td>219</td>
+                    <td>Thanh Nguyen</td>
+                    <td>11-7-2014</td>
+                    <td><span class="label label-warning">Pending</span></td>
+                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+		</div>
+	</div>
+<?php
+	}
+
+ ?>
+
+<?php 
+ 	function addtask(){
+?>		
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Add Editor</h3>
@@ -63,17 +96,13 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="reset" class="btn btn-default">Cancel</button>
-                <button class="btn btn-info pull-right">Sign in</button>
+                <a href="<?php echo base_url('Welcome/alltask/view'); ?>" class="btn btn-default">Cancel</a>
+                <button type="reset" class="btn bg-red pull-right">Reset</button>
+                <button class="btn bg-black pull-right">Send</button>
               </div>
               <!-- /.box-footer -->
             <?php echo form_close(); ?>
           </div>  <!-- /.row -->
-      <!-- Main row -->
-    
-      <!-- /.row (main row) -->
-
-    </section>
-    <!-- /.content -->
-  </div>
-<?php include('inc/footer.php'); ?>
+<?php 		
+ 	}
+?>

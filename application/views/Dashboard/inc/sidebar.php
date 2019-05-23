@@ -16,40 +16,13 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
-          <a href="#">
+          <a href="<?php echo base_url('Welcome/index'); ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
           </a>
         </li>
+        <?php 
+          if($this->session->userdata('role') == 'admin'){
+         ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i>
@@ -62,124 +35,187 @@
             <li><a href="<?php echo base_url('Welcome/addEditor') ?>"><i class="fa fa-circle-o"></i> Add Editor</a></li>
           </ul>
         </li>
+        <?php } ?>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Fee Structure</span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
+            <span>Details</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Enquiry Status</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Department</a></li>
+            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Class/Course</a></li>
+            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Marketing Source</a></li>
+            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Student Status</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Forms</span>
+            <i class="fa fa-edit"></i> <span>Batch</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Batch Code</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-table"></i> <span>Tables</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            <i class="fa fa-table"></i> <span>Class</span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-          </ul>
         </li>
         <li>
           <a href="pages/calendar.html">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
+            <i class="fa fa-calendar"></i> <span>Days</span>
+          </a>
+        </li>
+        <li>
+          <a href="pages/calendar.html">
+            <i class="fa fa-calendar"></i> <span>Staff</span>
+          </a>
+        </li>
+        <li>
+          <a href="pages/calendar.html">
+            <i class="fa fa-calendar"></i> <span>Expense Type</span>
           </a>
         </li>
         <li>
           <a href="pages/mailbox/mailbox.html">
-            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
+            <i class="fa fa-envelope"></i> <span>Education</span>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-folder"></i> <span>Examples</span>
+            <i class="fa fa-folder"></i> <span> Subject</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-folder"></i> <span> PIC Form</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Reports</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-share"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Per PIC Report</a></li>
             <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Level One
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                <li class="treeview">
-                  <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                  </ul>
-                </li>
-              </ul>
+              <a href="#"><i class="fa fa-circle-o"></i> DTD</a>
+              <a href="#"><i class="fa fa-circle-o"></i> Status</a>
+              <a href="#"><i class="fa fa-circle-o"></i> Department</a>
+              <a href="#"><i class="fa fa-circle-o"></i> Class/Course</a>
+              <a href="#"><i class="fa fa-circle-o"></i> Source</a>
             </li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul>
         </li>
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Students Form</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i> Register</a></li>
+            <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Admission</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Fees Slip</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Create Markesheet</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Create Performance</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Certification</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> PVC Card</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Report</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i> Registration DTD</a></li>
+            <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Admission DTD</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Fees DTD</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Batch Report -<br> Active Students</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Test Report Batch Wise</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Test Report Registeration <br> Number Wise</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Student Status Report</a></li>
+          </ul>
+        </li>
+        <li class="header">ADMINSTRATION</li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Message</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Complain Box</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Target</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Bank System</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Rep Report <br>Bank System</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Fees Structure</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Create Accounts</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Backups</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Parent Login</span></a>
+        </li>
+        <li class="header">ACCOUNTS</li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Expense</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Salary</span></a>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Capital</span></a>
+        </li>
+<li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Reports</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i> Students Fees Ledger/a></li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i> Fee Detail</a>
+              <a href="#"><i class="fa fa-circle-o"></i> Fee Detail by Batch Wise</a>
+              <a href="#"><i class="fa fa-circle-o"></i> Student's Due Date Wise</a>
+              <a href="#"><i class="fa fa-circle-o"></i> DTD Expense </a>
+              <a href="#"><i class="fa fa-circle-o"></i> DTD Capital</a>
+              <a href="#"><i class="fa fa-circle-o"></i> Salary DTD</a>
+              <a href="#"><i class="fa fa-circle-o"></i> DTD Adminstration <br>User Report</a>
+              <a href="#"><i class="fa fa-circle-o"></i> By Month Fees</a>
+              <a href="#"><i class="fa fa-circle-o"></i> Profil Loss Report </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

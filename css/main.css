@@ -7,3 +7,9 @@ Author: Abdul Qadir;
 	opacity: 1 !important;
 
 }
+.bg-black{
+	background-color: black;
+}
+.bg-black-hover:hover,.bg-black-hover:active,.bg-black-hover:focus{
+	background-color: black !important;
+}

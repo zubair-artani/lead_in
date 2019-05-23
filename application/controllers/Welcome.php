@@ -21,11 +21,13 @@ class Welcome extends CI_Controller {
 			$name = $query[0]->user_name;
 			$pic = $query[0]->user_picture;
 			$position = $query[0]->position;
+			$role = $query[0]->user_role;
 
 			$newdata = array( 
 			   'name'  => $name, 
 			   'pic'     => $pic, 
 			   'position'     => $position, 
+			   'role'     => $role, 
 			);  
 			$this->session->set_userdata($newdata);
 			// print_r($this->session->userdata());
@@ -66,7 +68,15 @@ class Welcome extends CI_Controller {
 			}
 		}
 	}
-	public function addEditor2(){
-			echo "ok";
+	public function alltask($param1){
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$this->load->view('dashboard/alltask', ['page_status' => 'view']);
+			} else if ($param1 == 'add'){
+				$this->load->view('dashboard/alltask', ['page_status' => 'add']);
+			}
+		}
 	}
 }
