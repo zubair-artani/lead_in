@@ -25,7 +25,7 @@
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo base_url('Welcome/editor/add') ?>" class="btn bg-navy">Add New Editor</a></h3>
+                <h3 class="box-title"><a href="<?php echo base_url('Welcome/editor/add') ?>" class="btn bg-black btn-flat">Add New Editor</a></h3>
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -61,8 +61,8 @@
                     <td><?php echo $data->time_end ?></td>
                     <td><?php echo $data->user_name ?></td>
                     <td><?php echo $data->user_password ?></td>
-                    <td><span class="label label-warning"><?php echo $data->position ?></span></td>
-                    <td><a onclick="deletefunc(<?php echo $data->user_id ?>)" class="label label-danger">Delete</a></td>
+                    <td><span class="btn bg-orange btn-flat"><?php echo $data->position ?></span></td>
+                    <td><a onclick="deletefunc(<?php echo $data->user_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php } ?>
                 </tbody>

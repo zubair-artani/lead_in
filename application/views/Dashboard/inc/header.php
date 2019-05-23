@@ -56,10 +56,31 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Tasks: style can be found in dropdown.less -->
+          <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-users"></i>
+              <span class="label bg-black">10</span>
+            <div class="ripple-container"></div></a>
+            <ul class="dropdown-menu">
+              <li class="header">3 users Online</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user text-red"></i> You changed your username
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+
           <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle bg-black bg-black-hover btn-flat" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-danger">9</span>
+            <a href="#" class="dropdown-toggle btn-flat" data-toggle="dropdown">
+              <i class="fa fa-comments"></i>
+              <span class="label bg-black">9</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>

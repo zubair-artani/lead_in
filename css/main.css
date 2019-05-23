@@ -10,6 +10,9 @@ Author: Abdul Qadir;
 .bg-black{
 	background-color: black;
 }
+.bg-red{
+    background-color: red;
+}
 .bg-black-hover:hover,.bg-black-hover:active,.bg-black-hover:focus{
 	background-color: black !important;
 }
@@ -59,4 +62,8 @@ Author: Zubair Artani;
 }
 .user-panel>.image>img {
     max-width: 80px !important;
+    height: 80px !important;
+}
+.table>tbody>tr>td{
+    vertical-align: middle;
 }
