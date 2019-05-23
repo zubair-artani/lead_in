@@ -67,3 +67,7 @@ Author: Zubair Artani;
 .table>tbody>tr>td{
     vertical-align: middle;
 }
+
+.btn{
+  padding: 6px 20px !important;
+}
