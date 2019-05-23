@@ -73,6 +73,12 @@ class Welcome extends CI_Controller {
 				} else if($param1 == 'view') {
 					$query = $this->adminmodel->viewEditor();
 					$this->load->view('Dashboard/add-editor', ['page_status'=> 'view', 'data' => $query]);
+				} else if ($param1 == 'delete'){
+					$id = $this->input->get('userid');
+					$query = $this->adminmodel->deleteEditor($id);
+					if($query){
+						echo "ok";
+					}
 				}
 			}
 		}

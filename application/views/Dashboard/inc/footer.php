@@ -84,5 +84,3 @@
   	// $('.dropdown.tasks-menu').addClass('open');
   // }
 </script>
-</body>
-</html>

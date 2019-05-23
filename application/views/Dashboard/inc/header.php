@@ -89,7 +89,7 @@
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
-              <li class="user-header">
+              <li class="user-header">  
     <img src="<?php echo $this->session->userdata('pic'); ?>" class="img-circle" alt="User Image">
 
                 <p>

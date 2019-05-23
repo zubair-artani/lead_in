@@ -28,5 +28,9 @@ class adminmodel extends CI_Model {
 	function viewEditor(){
 		return $this->db->get('users')->result();
 	}
+	function deleteEditor($id){
+		$this->db->delete('users', array('user_id' => $id));
+		return true;
+	}
 }
 ?>

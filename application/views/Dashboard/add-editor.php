@@ -42,20 +42,27 @@
                 <table class="table table-hover">
                   <tbody><tr>
                     <th>ID</th>
-                    <th>User</th>
                     <th>Time Starts</th>
                     <th>Time End</th>
+                    <th>User</th>
+                    <th>Password</th>
                     <th>Position</th>
                     <th>Delete</th>
                   </tr>
-                  <?php foreach($data as $data){ ?>
-                  <tr>
-                    <td><?php echo $data->user_id ?></td>
-                    <td><?php echo $data->user_name ?></td>
+                  <?php
+                    $inc = 0;
+                   foreach($data as $data){ 
+                      $inc++;
+                  ?>
+
+                  <tr id="d-<?php echo $data->user_id ?>">
+                    <td><?php echo $inc; ?></td>
                     <td><?php echo $data->time_start ?></td>
                     <td><?php echo $data->time_end ?></td>
+                    <td><?php echo $data->user_name ?></td>
+                    <td><?php echo $data->user_password ?></td>
                     <td><span class="label label-warning"><?php echo $data->position ?></span></td>
-                    <td><a href="">Delete </a></td>
+                    <td><a onclick="deletefunc(<?php echo $data->user_id ?>)" class="label label-danger">Delete</a></td>
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -72,3 +79,20 @@
     <!-- /.content -->
   </div>
 <?php include('inc/footer.php'); ?>
+
+<script>
+  function deletefunc(param1){
+    $.ajax({
+      url: "http://[::1]/lead_in/index.php/Welcome/editor/delete",
+      type: 'GET',
+      data: { userid: param1} ,
+       success: function(result){
+          if(result == "ok"){
+            $('#d-'+param1).hide('slow');
+          }
+       }
+    });
+  }
+</script>
+</body>
+</html>

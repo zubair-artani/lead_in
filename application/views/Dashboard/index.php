@@ -143,3 +143,6 @@
   </div>
   <!-- /.content-wrapper -->
 <?php include('inc/footer.php'); ?>
+
+</body>
+</html>

@@ -88,7 +88,6 @@
                 </div>
                 <div class="form-group is-empty">
                   <label for="picture" class="col-sm-2 control-label">Picture</label>
-
                   <div class="col-sm-10">
                     <input type="file" class="form-control" name="userfile" id="picture" required="">
                   </div>
@@ -172,9 +171,4 @@
           </div>
 <?php
 	}
-	function viewEditor(){
 ?>
-		
-<?php		
-	}
- ?>
