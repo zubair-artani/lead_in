@@ -2,13 +2,13 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
+      <div class="user-panel" style="text-align: center;">
+        <div class="image">
           <img src="<?php echo $this->session->userdata('pic'); ?>" class="img-circle" alt="User Image">
         </div>
-        <div class="pull-left info">
+        <div class="info">
           <p><?php echo $this->session->userdata('name'); ?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#" style="font-size: 13px;"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       

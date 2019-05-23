@@ -51,3 +51,12 @@ Author: Zubair Artani;
     font-weight: 600;
     color: #3e4f5e;
 }
+.main-sidebar .user-panel .info>p {
+    font-size: 20px;
+}
+.skin-red .user-panel>.info>a {
+    font-size: 13px;
+}
+.user-panel>.image>img {
+    max-width: 80px !important;
+}
