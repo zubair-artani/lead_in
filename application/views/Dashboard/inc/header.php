@@ -44,7 +44,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">L<b>I</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">LEAD<b>IN</b></span>
+      <span class="logo-lg">LEAD<b>INN</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -106,7 +106,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo $this->session->userdata('pic'); ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
+              <span class="hidden-xs" style="font-weight: bold;"><i class="fa fa-angle-down"></i></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
