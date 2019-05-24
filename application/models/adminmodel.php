@@ -14,12 +14,17 @@ class adminmodel extends CI_Model {
 	}
 
 	function addEditor($inputs, $image_url){
+		$timestart  = date("H:i", strtotime($inputs['timestart']));
+		$timeend  = date("H:i", strtotime($inputs['timeend']));
+
 		$data = array(
 			'user_name' => $inputs['name'],
 			'user_email' => $inputs['email'],
 			'user_password' => $inputs['password'],
 			'user_role' => $inputs['role'],
 			'user_picture' => $image_url,
+			'time_start' => $timestart,
+			'time_end' => $timeend,
 			'position' => $inputs['position'],
 		);
 		$insert_query = $this->db->insert('users', $data);

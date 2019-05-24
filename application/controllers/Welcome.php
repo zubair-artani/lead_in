@@ -49,8 +49,6 @@ class Welcome extends CI_Controller {
                 if ( ! $this->upload->do_upload('userfile'))
                 {
                 	echo "Sorry";
-                    // $error = array('error' => $this->upload->display_errors());
-                    // $this->load->view('upload_form', $error);
                 }
                 else
                 {
@@ -58,12 +56,12 @@ class Welcome extends CI_Controller {
                     $image_url =  base_url('uploads/' . $this->upload->data('file_name'));
                     $inputs = $this->input->post();
                 	if($this->adminmodel->addEditor($inputs, $image_url)){
-                		redirect('Welcome/index');
+                		redirect('Welcome/editor/view');
                 	} else {
                 		echo "ok";
                 	}
-                    // $this->load->view('upload_success');
                 }
+                    // 12-hour time to 24-hour time 
 		} else {
 			if(!$this->session->userdata('name')){
 				$this->load->view('Dashboard/signup');

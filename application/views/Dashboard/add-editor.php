@@ -20,61 +20,8 @@
       <?php if($page_status == 'add'){
            addEditor();
       } else if($page_status == 'view'){
-      ?>
-        <div class="row">
-      <div class="col-xs-12">
-    <div class="box">
-              <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo base_url('Welcome/editor/add') ?>" class="btn bg-black btn-flat">Add New Editor</a></h3>
-
-                <div class="box-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
-
-                    <div class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
-                  <tbody><tr>
-                    <th>ID</th>
-                    <th>Time Starts</th>
-                    <th>Time End</th>
-                    <th>User</th>
-                    <th>Password</th>
-                    <th>Position</th>
-                    <th>Delete</th>
-                  </tr>
-                  <?php
-                    $inc = 0;
-                   foreach($data as $data){ 
-                      $inc++;
-                  ?>
-
-                  <tr id="d-<?php echo $data->user_id ?>">
-                    <td><?php echo $inc; ?></td>
-                    <td><?php echo $data->time_start ?></td>
-                    <td><?php echo $data->time_end ?></td>
-                    <td><?php echo $data->user_name ?></td>
-                    <td><?php echo $data->user_password ?></td>
-                    <td><span class="btn bg-orange btn-flat"><?php echo $data->position ?></span></td>
-                    <td><a onclick="deletefunc(<?php echo $data->user_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
-                  </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-              </div>
-              <!-- /.box-body -->
-            </div>
-    </div>
-  </div>
-      <?php
-      } ?>      
-
+          showEditor($data);
+      } ?>
     </section>
     <!-- /.content -->
   </div>
