@@ -72,5 +72,36 @@ class adminmodel extends CI_Model {
 	}
 	// class procedure end
 
+	// department procedure start
+	function addDepartment($param1) {
+		$query = $this->db->insert('department', $param1); 
+		return true;
+	}
+	function viewDepartment() {
+		return $this->db->where("department_status !=", 'deleted')->get('department')->result();
+	}
+	function delDepartment($deleteid) {
+		return $this->db->set('department_status', 'deleted')
+				->where('department_id',$deleteid)
+				->update('department');
+	}
+	function viewTrash() {
+		return $this->db->where('department_status','deleted')->get('department')->result();
+	}
+	function removeDepartmentFromTrash($trashid) {
+		return $this->db->set('department_status', 'restored')
+				->where('department_id',$trashid)
+				->update('department');	
+	}
+	function editDepartment($id) {
+		return $this->db->where('department_id',$id)->get('department')->result();
+	}
+	function updateDepartment($inp) {
+		$name = $inp['department_name'];
+		$id = $inp['department_id'];
+		return $this->db->set('department_name', $name)
+				->where('department_id',$id)
+				->update('department');
+	}
 }
 ?>

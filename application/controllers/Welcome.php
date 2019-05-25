@@ -142,5 +142,55 @@ class Welcome extends CI_Controller {
 				$this->load->view('dashboard/classes', ['page_status' => 'edit','id'=>$id, 'query' =>$query]);
 			}
 		}
+	}
+	public function department($param1) {
+		if(!$this->session->userdata('name')) {
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$query = $this->adminmodel->viewDepartment();
+				$this->load->view('dashboard/department', ['page_status' => 'view', 'page_data' => $query]);
+
+			} else if ($param1 == 'add'){
+				if($input = $this->input->post()) {
+					if($this->adminmodel->addDepartment($input)) {
+						redirect('Welcome/department/view');
+					} else {
+						echo "not";
+					}
+				}
+			} else if($param1 == 'delete') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->delDepartment($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
+			 } else if($param1 == 'viewTrash'){
+				$page_data = $this->adminmodel->viewTrash();
+				$this->load->view('dashboard/department', ['page_status' => 'viewTrash','page_data'=>$page_data]);
+			} else if($param1 == 'restore') {
+				$trashid = $this->input->get('userid');
+				$query = $this->adminmodel->removeDepartmentFromTrash($trashid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'update') {
+				$input = $this->input->post();
+				$query = $this->adminmodel->updateDepartment($input);
+				if($query) {
+					redirect('Welcome/department/view');
+				} else {
+					echo "not";
+				}
+			} else {
+				$id = $param1;
+				$query = $this->adminmodel->editDepartment($id);
+				$this->load->view('dashboard/department', ['page_status' => 'edit','id'=>$id, 'query' =>$query]);
+			} 
+		}
 	} 
 }

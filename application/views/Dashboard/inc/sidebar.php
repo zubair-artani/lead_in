@@ -51,9 +51,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Enquiry Status</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Department</a></li>
+            <li><a href="<?php echo base_url('Welcome/department/view'); ?>"><i class="fa fa-circle-o"></i> Department</a></li>
             <li><a href="<?php echo base_url('Welcome/classes/view'); ?>"><i class="fa fa-circle-o"></i> Class/Course</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Marketing Source</a></li>
+            <li><a href="<?php echo base_url('Welcome/marketingSource/view'); ?>"><i class="fa fa-circle-o"></i> Marketing Source</a></li>
             <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Student Status</a></li>
           </ul>
         </li>
@@ -79,7 +79,7 @@
           </a>
         </li>
         <li>
-          <a href="pages/calendar.html">
+          <a href="<?php echo base_url('Welcome/staff'); ?>">
             <i class="fa fa-calendar"></i> <span>Staff</span>
           </a>
         </li>
