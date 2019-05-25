@@ -1,8 +1,4 @@
 <?php 
-  include('functions/class.php');
- ?>
-
-<?php 
 	function showtask(){
 ?>
 	<div class="row">
@@ -287,7 +283,6 @@
             </div>
     </div>
   </div>
-
 <?php
   }
 ?>

@@ -14,8 +14,7 @@
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
+        <li class="header">
           <a href="<?php echo base_url('Welcome/index'); ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
@@ -53,7 +52,7 @@
           <ul class="treeview-menu">
             <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Enquiry Status</a></li>
             <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Department</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Class/Course</a></li>
+            <li><a href="<?php echo base_url('Welcome/classes/view'); ?>"><i class="fa fa-circle-o"></i> Class/Course</a></li>
             <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Marketing Source</a></li>
             <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Student Status</a></li>
           </ul>

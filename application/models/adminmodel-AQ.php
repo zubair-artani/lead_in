@@ -37,40 +37,5 @@ class adminmodel extends CI_Model {
 		$this->db->delete('users', array('user_id' => $id));
 		return true;
 	}
-
-
-	// class procedure start
-	function viewClass() {
-		return $this->db->where("class_status !=", 'deleted')->get('class')->result();
-	}
-	function addClass($class) {
-		$query = $this->db->insert('class', $class); 
-		return true;
-	}
-	function delClass($deleteid) {
-		return $this->db->set('class_status', 'deleted')
-				->where('class_id',$deleteid)
-				->update('class');
-	}
-	function getTrash() {
-		return $this->db->where('class_status','deleted')->get('class')->result();
-	}
-	function removeFromTrash($trashid) {
-		return $this->db->set('class_status', 'restored')
-				->where('class_id',$trashid)
-				->update('class');	
-	}
-	function editclass($id) {
-		return $this->db->where('class_id',$id)->get('class')->result();
-	}
-	function updateClass($inp) {
-		$name = $inp['class_name'];
-		$id = $inp['class_id'];
-		return $this->db->set('class_name', $name)
-				->where('class_id',$id)
-				->update('class');
-	}
-	// class procedure end
-
 }
 ?>
