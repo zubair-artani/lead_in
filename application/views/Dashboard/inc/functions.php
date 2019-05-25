@@ -1,6 +1,8 @@
 <?php 
   include('functions/class.php');
   include('functions/department.php');
+  include('functions/faculty.php');
+
  ?>
 
 <?php 

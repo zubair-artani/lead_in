@@ -79,7 +79,7 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo base_url('Welcome/staff'); ?>">
+          <a href="<?php echo base_url('Welcome/faculty/view'); ?>">
             <i class="fa fa-calendar"></i> <span>Staff</span>
           </a>
         </li>

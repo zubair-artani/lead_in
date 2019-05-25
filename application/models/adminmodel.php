@@ -103,5 +103,45 @@ class adminmodel extends CI_Model {
 				->where('department_id',$id)
 				->update('department');
 	}
+	// department procedure end
+
+	// faculty procedure start
+	function addFaculty($inputs, $image_url){
+		$data = array(
+			'faculty_name' => $inputs['faculty_name'],
+			'faculty_signature' => $image_url,
+		);
+		$insert_query = $this->db->insert('faculty', $data);
+		return true;
+	}
+	function viewFaculty() {
+		return $this->db->where("faculty_status !=", 'deleted')->get('faculty')->result();
+	}
+	function delFaculty($deleteid) {
+		return $this->db->set('faculty_status', 'deleted')
+				->where('faculty_id',$deleteid)
+				->update('faculty');
+	}
+	function viewFacultyTrash() {
+		return $this->db->where('faculty_status','deleted')->get('faculty')->result();
+	}
+	function removeFacultyFromTrash($trashid) {
+		return $this->db->set('faculty_status', 'restored')
+				->where('faculty_id',$trashid)
+				->update('faculty');	
+	}
+	function editFaculty($id) {
+		return $this->db->where('faculty_id',$id)->get('faculty')->result();
+	}
+	function updateFaculty($inp) {
+		$name = $inp['faculty_name'];
+		$id = $inp['faculty_id'];
+		// echo $id;
+		return $this->db->set('faculty_name', $name)
+				->where('faculty_id',$id)
+				->update('faculty');
+	}
 }
+
+
 ?>
