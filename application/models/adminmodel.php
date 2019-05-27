@@ -141,6 +141,41 @@ class adminmodel extends CI_Model {
 				->where('faculty_id',$id)
 				->update('faculty');
 	}
+
+	function viewBatchCode(){
+		$query = $this->db->where("batch_status_2 !=", 'deleted')->get('batch_code')->result();
+		if($query == true){
+			return $query;
+		}
+	}
+
+	function delBatch($deleteid){
+		return $this->db->set('batch_status_2', 'deleted')
+				->where('batch_id',$deleteid)
+				->update('batch_code');		
+	}
+	function insertBatch($inputs){
+		// date convert
+		$startDate = date("Y-m-d", strtotime($inputs['startdate']));
+		$endDate = date("Y-m-d", strtotime($inputs['enddate']));
+		// time convert
+		$timestart  = date("H:i", strtotime($inputs['timestart']));
+		$timeend  = date("H:i", strtotime($inputs['timeend']));
+
+		$arr = [
+			'batch_code' => $inputs['batchCode'],
+			'batch_days' => $inputs['days'],
+			'class' => $inputs['class'],
+			'department' => $inputs['department'],
+			'teacher' => $inputs['faculty'],
+			'start_date' => $startDate,
+			'end_date' => $endDate,
+			'start_time' => $timestart,
+			'end_time' => $timeend,
+		];
+		$insert_query = $this->db->insert('batch_code', $arr);
+		return true;		
+	}
 }
 
 

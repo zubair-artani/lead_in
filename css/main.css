@@ -71,3 +71,17 @@ Author: Zubair Artani;
 .btn{
   padding: 6px 20px !important;
 }
+.box .box-body .input-group{
+    margin-top: 0;
+}
+.icon1{
+    position: absolute;
+    left: 26px;
+    top: 12px;
+}
+.pad-left{
+    padding-left: 25px;
+}
+.input-group-addon{
+    padding: 6px 8px !important;
+}

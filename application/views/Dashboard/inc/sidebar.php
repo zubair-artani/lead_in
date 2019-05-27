@@ -59,13 +59,13 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Batch</span>
+            <i class="fa fa-edit"></i> <span>Create Batch Code</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Batch Code</a></li>
+            <li><a href="<?php echo base_url('Welcome/batchCode/view'); ?>"><i class="fa fa-circle-o"></i> Batch Code</a></li>
           </ul>
         </li>
         <li class="treeview">
