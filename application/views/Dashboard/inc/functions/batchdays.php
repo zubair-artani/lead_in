@@ -1,16 +1,16 @@
 <?php 
-function showdepartment($page_status,$page_data) {
+function showBatchDays($page_status,$page_data) {
  ?>
  <div class="row">
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-           <?php echo form_open('Welcome/department/add', ['class'=>'form-horizontal']); ?>
+           <?php echo form_open('Welcome/batchdays/add', ['class'=>'form-horizontal']); ?>
               <div class="box-body">
                 <div class="form-group is-empty">
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="class" name="department_name" placeholder="Add Department" required="">
-                  </div>  
+                    <input type="text" class="form-control" id="class" name="batch_days" placeholder="Add batchdays" required="">
+                  </div>
                   <div class=" col-sm-4">
                     <button type="reset" class="btn bg-red pull-right">Reset</button>
                     <button class="btn bg-black pull-right">Add</button>
@@ -29,7 +29,7 @@ function showdepartment($page_status,$page_data) {
                     </div>
                   </div>
                 </div>
-                <a href="<?php echo base_url('Welcome/department/viewTrash'); ?>" class="btn bg-maroon btn-flat margin" >Trash <i class="fa fa-trash-o"></i></a>
+                <a href="<?php echo base_url('Welcome/batchdays/viewTrash'); ?>" class="btn bg-maroon btn-flat margin" >Trash <i class="fa fa-trash-o"></i></a>
               </div>
               <!-- /.box-header -->
               <div class="box-body table-responsive padding">
@@ -37,16 +37,16 @@ function showdepartment($page_status,$page_data) {
                   <tbody>
                   <tr>
                     <th width="10%">ID</th>
-                    <th width="60%">Department</th>
+                    <th width="30%">batchdays</th>
                     <th width="15%">Edit</th>
-                    <th width="15%">Delete</th>
+                    <th width="10%">Delete</th>
                   </tr>
                   <?php foreach($page_data as $result) { ?>
-                  <tr id="d-<?php echo $result->department_id; ?>">
-                  	<td><?php echo $result->department_id; ?></td>
-                  	<td><?php echo $result->department_name; ?></td>
-                  	<td><a href="<?php echo base_url('Welcome/department/'); echo $result->department_id; ?>" class="btn bg-blue btn-flat">Edit</a></td>
-                  	<td><a onclick="delDepartment(<?php echo $result->department_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
+                  <tr id="d-<?php echo $result->batchdays_id; ?>">
+                  	<td><?php echo $result->batchdays_id; ?></td>
+                    <td><?php echo $result->batch_days; ?></td>
+                  	<td><a href="<?php echo base_url('Welcome/batchdays/'); echo $result->batchdays_id; ?>" class="btn bg-blue btn-flat">Edit</a></td>
+                  	<td><a onclick="delbatchdays(<?php echo $result->batchdays_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -62,7 +62,7 @@ function showdepartment($page_status,$page_data) {
 }
 ?>
 <?php 
-function viewTrashDepartment($page_status,$page_data) {
+function viewTrashBatchDays($page_status,$page_data) {
  ?>
  <div class="row">
       <div class="col-xs-12">
@@ -77,7 +77,7 @@ function viewTrashDepartment($page_status,$page_data) {
                     </div>
                   </div>
                 </div>
-                <a href="<?php echo base_url('Welcome/department/view'); ?>" class="btn bg-maroon btn-flat margin" >View All Departments</a>
+                <a href="<?php echo base_url('Welcome/batchdays/view'); ?>" class="btn bg-maroon btn-flat margin" >View All Batch Days</a>
               </div>
               <!-- /.box-header -->
               <div class="box-body table-responsive padding">
@@ -85,16 +85,16 @@ function viewTrashDepartment($page_status,$page_data) {
                   <tbody>
                   <tr>
                     <th width="15%">ID</th>
-                    <th width="70%">DEPARTMENT</th>
-                    <th width="15%">RESTORE</th>
-                    <th width="15%">DELETE</th>
+                    <th width="30%">BATCH DAYS</th>
+                    <th width="10%">RESTORE</th>
+                    <th width="10%">DELETE</th>
                   </tr>
                   <?php foreach($page_data as $result) { ?>
-                  <tr id="d-<?php echo $result->department_id; ?>">
-                  	<td><?php echo $result->department_id; ?></td>
-                  	<td><?php echo $result->department_name; ?></td>
-                    <td><a onclick="restoreDepartment(<?php echo $result->department_id; ?>)" class="btn bg-green btn-flat">Restore</a></td>
-                  	<td><a onclick="removeDepartment(<?php echo $result->department_id; ?>)" class="btn bg-red btn-flat">DELETE</a></td>
+                  <tr id="d-<?php echo $result->batchdays_id; ?>">
+                    <td><?php echo $result->batchdays_id; ?></td>
+                    <td><?php echo $result->batch_days; ?></td>
+                    <td><a onclick="restorebatchdays(<?php echo $result->batchdays_id; ?>)" class="btn bg-green btn-flat">Restore</a></td>
+                    <td><a onclick="permandelbatchdays(<?php echo $result->batchdays_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -104,28 +104,28 @@ function viewTrashDepartment($page_status,$page_data) {
               <!-- /.box-body -->
             </div>
     </div>
-  	
+    
   </div>
 <?php  
 }
 ?>
 <?php 
-function editDepartment($page_status,$query) {
+function editBatchDays($page_status,$query) {
 ?>
 <br>
 <div class="row">
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-           <?php echo form_open('Welcome/department/update', ['class'=>'form-horizontal']); ?>
+           <?php echo form_open_multipart('Welcome/batchdays/update', ['class'=>'form-horizontal']); ?>
               <div class="box-body">
                 <div class="form-group is-empty">
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="class" name="department_name" required="" value="<?php echo $query[0]->department_name; ?>">
-                    <input type="hidden" class="form-control" id="class" name="department_id" required="" value="<?php echo $query[0]->department_id; ?>">
+                    <input type="text" class="form-control" id="class" name="batch_days" required="" value="<?php echo $query[0]->batch_days; ?>">
+                    <input type="hidden" class="form-control" id="class" name="batchdays_id" required="" value="<?php echo $query[0]->batchdays_id; ?>">
                   </div>  
                   <div class=" col-sm-4">
-                    <a href="<?php echo base_url('Welcome/department/view') ?>" class="btn bg-red pull-right">Cancel</a>
+                    <a href="<?php echo base_url('Welcome/batchdays/view') ?>" class="btn bg-red pull-right">Cancel</a>
                     <button class="btn bg-black pull-right">Update</button>
                   </div>
                 </div>

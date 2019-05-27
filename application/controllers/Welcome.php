@@ -117,6 +117,14 @@ class Welcome extends CI_Controller {
 				} else {
 					echo "not";
 				}
+			} else if($param1 == 'remove') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->removeClass($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
 			} else if($param1 == 'viewTrash'){
 				$page_data = $this->adminmodel->getTrash();
 				$this->load->view('dashboard/classes', ['page_status' => 'viewTrash','page_data'=>$page_data]);
@@ -162,6 +170,14 @@ class Welcome extends CI_Controller {
 			} else if($param1 == 'delete') {
 				$deleteid = $this->input->get('userid');
 				$query = $this->adminmodel->delDepartment($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
+			 } else if($param1 == 'remove') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->removeDepartment($deleteid);
 				if($query){
 					echo "ok";
 				} else {
@@ -230,6 +246,14 @@ class Welcome extends CI_Controller {
 				} else {
 					echo "not";
 				}
+			} else if($param1 == 'permanentdel') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->delParmanentFaculty($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
 			} else if($param1 == 'viewTrash'){
 				$page_data = $this->adminmodel->viewFacultyTrash();
 				$this->load->view('dashboard/faculty', ['page_status' => 'viewTrash','page_data'=>$page_data]);
@@ -257,6 +281,65 @@ class Welcome extends CI_Controller {
 		}
 	}
 
+	public function batchdays($param1) {
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$query = $this->adminmodel->viewBatchDays();
+				$this->load->view('dashboard/batchdays', ['page_status' => 'view','page_data'=>$query]);
+		 	} else if ($param1 == 'add'){
+				if($input = $this->input->post()) {
+	                    $inputs = $this->input->post();
+	                	if($this->adminmodel->addBatchDays($inputs)){
+	                		redirect('Welcome/batchdays/view');
+	                	} else {
+	                		echo "ok";
+	                	}
+	                }
+			} else if($param1 == 'delete') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->delBatchDays($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
+			} else if($param1 == 'viewTrash'){
+				$page_data = $this->adminmodel->viewBatchDaysTrash();
+				$this->load->view('dashboard/batchdays', ['page_status' => 'viewTrash','page_data'=>$page_data]);
+			} else if($param1 == 'permanentdel'){
+				$deleteid = $this->input->get('userid');
+				// print_r($deletedid);
+				$query = $this->adminmodel->permenenbatchdaysdel($deleteid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'restore') {
+				$trashid = $this->input->get('userid');
+				$query = $this->adminmodel->removeBatchDaysFromTrash($trashid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'update') {
+				$input = $this->input->post();
+				$query = $this->adminmodel->updateBatchDays($input);
+				if($query) {
+					redirect('Welcome/batchdays/view');
+				} else {
+					echo "not";
+				}
+			} else {
+				$id = $param1;
+				$query = $this->adminmodel->editBatchDays($id);
+				$this->load->view('dashboard/batchdays', ['page_status' => 'edit','id'=>$id, 'query' =>$query]);
+			} 
+		}
+	}
 
 	public function batchCode($param1){
 		if(!$this->session->userdata('name')){

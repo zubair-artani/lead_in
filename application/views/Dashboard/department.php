@@ -51,7 +51,20 @@
       });
     }
   }
-
+function removeDepartment(param1){
+    if(confirm('Are you sure you want to delete this Department Parmenently?')){
+      $.ajax({
+        url: "http://[::1]/lead_in/index.php/Welcome/department/remove",
+        type: 'GET',
+        data: { userid: param1} ,
+         success: function(result){
+            if(result == "ok"){
+              $('#d-'+ param1).hide('slow');
+            }
+         }
+      });
+    }
+  }
   function restoreDepartment(param1){
     $.ajax({
       url: "http://[::1]/lead_in/index.php/Welcome/department/restore",

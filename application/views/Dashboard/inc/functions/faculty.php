@@ -91,7 +91,8 @@ function viewTrashFaculty($page_status,$page_data) {
                   <tr>
                     <th width="15%">ID</th>
                     <th width="30%">FACULTY</th>
-                    <th width="35%">SIGNATURE</th>
+                    <th width="25%">SIGNATURE</th>
+                    <th width="10%">RESTORE</th>
                     <th width="10%">DELETE</th>
                   </tr>
                   <?php foreach($page_data as $result) { ?>
@@ -100,6 +101,7 @@ function viewTrashFaculty($page_status,$page_data) {
                     <td><?php echo $result->faculty_name; ?></td>
                     <td><img src="<?php echo $result->faculty_signature; ?>" style='width: 160px;height:160px;' alt=""></td>
                     <td><a onclick="restorefaculty(<?php echo $result->faculty_id; ?>)" class="btn bg-green btn-flat">Restore</a></td>
+                    <td><a onclick="permanentlydelfaculty(<?php echo $result->faculty_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php } ?>
                 </tbody>

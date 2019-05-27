@@ -17,7 +17,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('Welcome/index'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">All Department</li>
+        <li class="active">All Faculty</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -64,6 +64,21 @@
        }
     });
   }
+  function permanentlydelfaculty(param1){
+    if(confirm('Are you sure you want to delete this Faculty Parmenently?')){
+      $.ajax({
+        url: "http://[::1]/lead_in/index.php/Welcome/faculty/permanentdel",
+        type: 'GET',
+        data: { userid: param1} ,
+         success: function(result){
+            if(result == "ok"){
+              $('#d-'+ param1).hide('slow');
+            }
+         }
+      });
+    }
+  }
+  
 </script>
 </body>
 </html>

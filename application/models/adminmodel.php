@@ -60,6 +60,11 @@ class adminmodel extends CI_Model {
 				->where('class_id',$trashid)
 				->update('class');	
 	}
+
+	function removeClass($deleteid) {
+		return $this->db->where('class_id', $deleteid)
+						->delete('class');
+	}
 	function editclass($id) {
 		return $this->db->where('class_id',$id)->get('class')->result();
 	}
@@ -92,6 +97,10 @@ class adminmodel extends CI_Model {
 		return $this->db->set('department_status', 'restored')
 				->where('department_id',$trashid)
 				->update('department');	
+	}
+	function removeDepartment($deleteid) {
+		return $this->db->where('department_id', $deleteid)
+						->delete('department');
 	}
 	function editDepartment($id) {
 		return $this->db->where('department_id',$id)->get('department')->result();
@@ -133,6 +142,10 @@ class adminmodel extends CI_Model {
 	function editFaculty($id) {
 		return $this->db->where('faculty_id',$id)->get('faculty')->result();
 	}
+	function delParmanentFaculty($deleteid) {
+		return $this->db->where('faculty_id', $deleteid)
+						->delete('faculty');
+	}
 	function updateFaculty($inp) {
 		$name = $inp['faculty_name'];
 		$id = $inp['faculty_id'];
@@ -141,7 +154,9 @@ class adminmodel extends CI_Model {
 				->where('faculty_id',$id)
 				->update('faculty');
 	}
+	//faculty procedure end
 
+	//batch code procedure start
 	function viewBatchCode(){
 		$query = $this->db->where("batch_status_2 !=", 'deleted')->get('batch_code')->result();
 		if($query == true){
@@ -176,6 +191,44 @@ class adminmodel extends CI_Model {
 		$insert_query = $this->db->insert('batch_code', $arr);
 		return true;		
 	}
+	// batch code procedure end
+
+	// batch days procedure start
+	function addBatchDays($param1) {
+		$query = $this->db->insert('batchdays', $param1); 
+		return true;
+	}
+	function viewBatchDays() {
+		return $this->db->where("batchdays_status !=", 'deleted')->get('batchdays')->result();
+	}
+	function delBatchDays($deleteid) {
+		return $this->db->set('batchdays_status', 'deleted')
+				->where('batchdays_id',$deleteid)
+				->update('batchdays');
+	}
+	function viewBatchDaysTrash() {
+		return $this->db->where('batchdays_status','deleted')->get('batchdays')->result();
+	}
+	function removeBatchDaysFromTrash($trashid) {
+		return $this->db->set('batchdays_status', 'restored')
+				->where('batchdays_id',$trashid)
+				->update('batchdays');	
+	}
+	function permenenbatchdaysdel($deleteid) {
+		return $this->db->where('batchdays_id', $deleteid)
+						->delete('batchdays');
+	}
+	function editBatchDays($id) {
+		return $this->db->where('batchdays_id',$id)->get('batchdays')->result();
+	}
+	function updateBatchDays($inp) {
+		$name = $inp['batch_days'];
+		$id = $inp['batchdays_id'];
+		return $this->db->set('batch_days', $name)
+				->where('batchdays_id',$id)
+				->update('batchdays');
+	}
+	//batch days procedure end
 }
 
 

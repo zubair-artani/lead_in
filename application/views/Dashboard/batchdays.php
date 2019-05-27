@@ -7,28 +7,28 @@
     <section class="content-header">
       <h1>
         <?php if($page_status == 'view'){ ?>
-          All Classes
+          All Batch Days
         <?php } elseif($page_status == 'viewTrash'){ ?>
            View Trashes
          <?php } elseif($page_status == 'edit'){ ?>
-           Edit Class
+           Edit Batch Days
          <?php } ?>
         <!-- <small>Dashboard Controllers</small> -->
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('Welcome/index'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Classes</li>
+        <li class="active">All Batch Days</li>
       </ol>
     </section>
     <!-- Main content -->
     <section class="content">
       <?php 
       if($page_status == 'view') { 
-           showclass($page_status, $page_data);
+           showBatchDays($page_status,$page_data);
       } else if($page_status == 'viewTrash') {
-          viewTrash($page_status, $page_data);
+          viewTrashBatchDays($page_status,$page_data);
       } else if($page_status == 'edit'){
-        editClass($page_status,$query);
+        editBatchDays($page_status,$query);
       }
         ?>
 
@@ -37,24 +37,10 @@
   </div>
 <?php include('inc/footer.php'); ?>
 <script>
-  function delClass(param1){
-    if(confirm('Are you sure you want to delete this Class?')){
+  function delbatchdays(param1){
+    if(confirm('Are you sure you want to delete this Batch Days?')){
       $.ajax({
-        url: "http://[::1]/lead_in/index.php/Welcome/classes/delete",
-        type: 'GET',
-        data: { userid: param1} ,
-         success: function(result){
-            if(result == "ok"){
-              $('#d-'+ param1).hide('slow');
-            }
-         }
-      });
-    }
-  }
-function removeClass(param1){
-    if(confirm('Are you sure you want to delete this Class Parmenently?')){
-      $.ajax({
-        url: "http://[::1]/lead_in/index.php/Welcome/classes/remove",
+        url: "http://[::1]/lead_in/index.php/Welcome/batchdays/delete",
         type: 'GET',
         data: { userid: param1} ,
          success: function(result){
@@ -66,9 +52,9 @@ function removeClass(param1){
     }
   }
 
-  function restoreClass(param1){
+  function restorebatchdays(param1){
     $.ajax({
-      url: "http://[::1]/lead_in/index.php/Welcome/classes/restore",
+      url: "http://[::1]/lead_in/index.php/Welcome/batchdays/restore",
       type: 'GET',
       data: { userid: param1} ,
        success: function(result){
@@ -77,6 +63,20 @@ function removeClass(param1){
           }
        }
     });
+  }
+  function permandelbatchdays(param1){
+    if(confirm('Are you sure you want to delete this Batch Days Permanently?')){
+      $.ajax({
+        url: "http://[::1]/lead_in/index.php/Welcome/batchdays/permanentdel",
+        type: 'GET',
+        data: { userid: param1} ,
+         success: function(result){
+            if(result == "ok"){
+              $('#d-'+ param1).hide('slow');
+            }
+         }
+      });
+    }
   }
 </script>
 </body>

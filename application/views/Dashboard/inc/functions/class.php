@@ -87,8 +87,9 @@ function viewTrash($page_status, $page_data) {
                   <tbody>
                   <tr>
                     <th width="15%">ID</th>
-                    <th width="70%">Class</th>
-                    <th width="15%">Restore</th>
+                    <th width="60%">Class</th>
+                    <th width="25%">RESTORE</th>
+                    <th width="15%">DELETE</th>
                   </tr>
                   <?php 
                   foreach($page_data as $result) { 
@@ -97,6 +98,7 @@ function viewTrash($page_status, $page_data) {
                     <td width="15%"><?php echo $result->class_id; ?></td>
                     <td width="70%"><?php echo $result->class_name; ?></td>
                     <td width="15%"><a onclick="restoreClass(<?php echo $result->class_id; ?>)" class="btn bg-green btn-flat">Restore</a></td>
+                    <td width="15%"><a onclick="removeClass(<?php echo $result->class_id; ?>)" class="btn bg-red btn-flat">delete</a></td>
                   </tr>
                 <?php } ?>
                 </tbody>

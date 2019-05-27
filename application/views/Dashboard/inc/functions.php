@@ -2,6 +2,7 @@
   include('functions/class.php');
   include('functions/department.php');
   include('functions/faculty.php');
+  include('functions/batchdays.php');
 
  ?>
 

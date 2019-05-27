@@ -53,6 +53,7 @@
             <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Enquiry Status</a></li>
             <li><a href="<?php echo base_url('Welcome/department/view'); ?>"><i class="fa fa-circle-o"></i> Department</a></li>
             <li><a href="<?php echo base_url('Welcome/classes/view'); ?>"><i class="fa fa-circle-o"></i> Class/Course</a></li>
+            <li><a href="<?php echo base_url('Welcome/batchdays/view'); ?>"><i class="fa fa-circle-o"></i> Batch Days</a></li>
             <li><a href="<?php echo base_url('Welcome/marketingSource/view'); ?>"><i class="fa fa-circle-o"></i> Marketing Source</a></li>
             <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Student Status</a></li>
           </ul>
@@ -201,7 +202,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Students Fees Ledger/a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Students Fees Ledger</a></li>
             <li class="treeview">
               <a href="#"><i class="fa fa-circle-o"></i> Fee Detail</a>
               <a href="#"><i class="fa fa-circle-o"></i> Fee Detail by Batch Wise</a>
