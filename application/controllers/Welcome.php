@@ -381,4 +381,125 @@ class Welcome extends CI_Controller {
 			}
 		}	
 	}
+
+	public function source($param1) {
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$query = $this->adminmodel->viewsource();
+				$this->load->view('dashboard/source', ['page_status' => 'view','page_data'=>$query]);
+		 	} else if ($param1 == 'add'){
+				if($input = $this->input->post()) {
+	                    $inputs = $this->input->post();
+	                	if($this->adminmodel->addsource($inputs)){
+	                		redirect('Welcome/source/view');
+	                	} else {
+	                		echo "ok";
+	                	}
+	                }
+			} else if($param1 == 'delete') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->delsource($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
+			} else if($param1 == 'viewTrash'){
+				$page_data = $this->adminmodel->getsourcetrash();
+				$this->load->view('dashboard/source', ['page_status' => 'viewTrash','page_data'=>$page_data]);
+			} else if($param1 == 'remove'){
+				$deleteid = $this->input->get('userid');
+				// print_r($deletedid);
+				$query = $this->adminmodel->removesource($deleteid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'restore') {
+				$trashid = $this->input->get('userid');
+				$query = $this->adminmodel->removesourceFromTrash($trashid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'update') {
+				$input = $this->input->post();
+				$query = $this->adminmodel->updatesource($input);
+				if($query) {
+					redirect('Welcome/source/view');
+				} else {
+					echo "not";
+				}
+			} else {
+				$id = $param1;
+				$query = $this->adminmodel->editsource($id);
+				$this->load->view('dashboard/source', ['page_status' => 'edit','id'=>$id, 'query' =>$query]);
+			} 
+		}
+	}
+	// end source procedure
+	// start inquiy_status procedure
+	public function inquiry_status($param1) {
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$query = $this->adminmodel->viewinquirystatus();
+				$this->load->view('dashboard/inquiry_status', ['page_status' => 'view','page_data'=>$query]);
+		 	} else if ($param1 == 'add'){
+				if($input = $this->input->post()) {
+	                    $inputs = $this->input->post();
+	                	if($this->adminmodel->addinquirystatus($inputs)){
+	                		redirect('Welcome/inquiry_status/view');
+	                	} else {
+	                		echo "ok";
+	                	}
+	                }
+			} else if($param1 == 'delete') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->delinquirystatus($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
+			} else if($param1 == 'viewTrash'){
+				$page_data = $this->adminmodel->getinquirystatustrash();
+				$this->load->view('dashboard/inquiry_status', ['page_status' => 'viewTrash','page_data'=>$page_data]);
+			} else if($param1 == 'remove'){
+				$deleteid = $this->input->get('userid');
+				// print_r($deletedid);
+				$query = $this->adminmodel->removeinquirystatus($deleteid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'restore') {
+				$trashid = $this->input->get('userid');
+				$query = $this->adminmodel->removeinquirystatusFromTrash($trashid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'update') {
+				$input = $this->input->post();
+				$query = $this->adminmodel->updateinquirystatus($input);
+				if($query) {
+					redirect('Welcome/inquiry_status/view');
+				} else {
+					echo "not";
+				}
+			} else {
+				$id = $param1;
+				$query = $this->adminmodel->editinquirystatus($id);
+				$this->load->view('dashboard/inquiry_status', ['page_status' => 'edit','id'=>$id, 'query' =>$query]);
+			} 
+		}
+	}
 }

@@ -54,7 +54,8 @@
             <li><a href="<?php echo base_url('Welcome/department/view'); ?>"><i class="fa fa-circle-o"></i> Department</a></li>
             <li><a href="<?php echo base_url('Welcome/classes/view'); ?>"><i class="fa fa-circle-o"></i> Class/Course</a></li>
             <li><a href="<?php echo base_url('Welcome/batchdays/view'); ?>"><i class="fa fa-circle-o"></i> Batch Days</a></li>
-            <li><a href="<?php echo base_url('Welcome/marketingSource/view'); ?>"><i class="fa fa-circle-o"></i> Marketing Source</a></li>
+            <li><a href="<?php echo base_url('Welcome/source/view'); ?>"><i class="fa fa-circle-o"></i> Marketing Source</a></li>
+            <li><a href="<?php echo base_url('Welcome/inquiry_status/view'); ?>"><i class="fa fa-circle-o"></i> Inquiry Status</a></li>
             <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Student Status</a></li>
           </ul>
         </li>

@@ -229,6 +229,83 @@ class adminmodel extends CI_Model {
 				->update('batchdays');
 	}
 	//batch days procedure end
+
+	// source procedure start
+	function viewsource() {
+		return $this->db->where("source_status !=", 'deleted')->get('marketing_source')->result();
+	}
+	function addsource($source) {
+		$query = $this->db->insert('marketing_source', $source); 
+		return true;
+	}
+	function delsource($deleteid) {
+		return $this->db->set('source_status', 'deleted')
+				->where('source_id',$deleteid)
+				->update('marketing_source');
+	}
+	function getsourceTrash() {
+		return $this->db->where('source_status','deleted')->get('marketing_source')->result();
+	}
+	function removeSourceFromTrash($trashid) {
+		return $this->db->set('source_status', 'restored')
+				->where('source_id',$trashid)
+				->update('marketing_source');	
+	}
+
+	function removesource($deleteid) {
+		return $this->db->where('source_id', $deleteid)
+						->delete('marketing_source');
+	}
+	function editsource($id) {
+		return $this->db->where('source_id',$id)->get('marketing_source')->result();
+	}
+	function updatesource($inp) {
+		$name = $inp['source_name'];
+		$id = $inp['source_id'];
+		return $this->db->set('source_name', $name)
+				->where('source_id',$id)
+				->update('marketing_source');
+	}
+	// source procedure end
+
+	// inquiry_Status procedure start
+	function viewinquirystatus() {
+		return $this->db->where("inquiry_status !=", 'deleted')->get('inquiry_status')->result();
+	}
+	function addinquirystatus($source) {
+		$query = $this->db->insert('inquiry_status', $source); 
+		return true;
+	}
+	function delinquirystatus($deleteid) {
+		return $this->db->set('inquiry_status', 'deleted')
+				->where('inquiry_id',$deleteid)
+				->update('inquiry_status');
+	}
+	function getinquirystatustrash() {
+		return $this->db->where('inquiry_status','deleted')->get('inquiry_status')->result();
+	}
+	function removeinquirystatusFromTrash($trashid) {
+		return $this->db->set('inquiry_status', 'restored')
+				->where('inquiry_id',$trashid)
+				->update('inquiry_status');	
+	}
+
+	function removeinquirystatus($deleteid) {
+		return $this->db->where('inquiry_id', $deleteid)
+						->delete('inquiry_status');
+	}
+	function editinquirystatus($id) {
+		return $this->db->where('inquiry_id',$id)->get('inquiry_status')->result();
+	}
+	function updateinquirystatus($inp) {
+		$id = $inp['inquiry_id'];
+		$color = $inp['inquiry_color'];
+		$name = $inp['inquiry_name'];
+		return $this->db->set(['inquiry_color'=> $color, 'inquiry_name'=>$name])
+				->where('inquiry_id',$id)
+				->update('inquiry_status');
+	}
+	// class procedure end
 }
 
 

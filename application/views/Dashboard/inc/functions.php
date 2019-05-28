@@ -3,6 +3,8 @@
   include('functions/department.php');
   include('functions/faculty.php');
   include('functions/batchdays.php');
+  include('functions/source.php');
+  include('functions/inquiry_status.php');
 
  ?>
 
