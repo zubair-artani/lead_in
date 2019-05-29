@@ -62,7 +62,7 @@ Author: Zubair Artani;
 }
 .user-panel>.image>img {
     max-width: 80px !important;
-    height: 80px !important;
+    max-height: 80px !important;
 }
 .table>tbody>tr>td{
     vertical-align: middle;
@@ -84,4 +84,13 @@ Author: Zubair Artani;
 }
 .input-group-addon{
     padding: 6px 8px !important;
+}
+.text-borders {
+    width:100%;
+    border: 1px solid #D2D2D2 !important;
+    border-radius: 10px !important;
+    padding: 10px;
+}
+.skin-red .sidebar a,.skin-red .sidebar-menu>li.header {
+    color: white;
 }

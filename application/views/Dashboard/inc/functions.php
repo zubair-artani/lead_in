@@ -591,9 +591,7 @@
   function addInquiryForm($class, $department, $faculty,$inquiry_status,$source){
 ?>    
           <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Add New Inquiry</h3>
-            </div>
+            
             <!-- /.box-header -->
             <!-- form start -->
             <?php echo form_open_multipart('Welcome/batchCode/insert', ['class'=>'form-horizontal']); ?>
@@ -714,7 +712,7 @@
                       <label for="timeend" class="col-sm-1 control-label">Remarks:</label>
                       <div class="col-sm-11">
                         <!-- <input type="number" class="form-control"  name="" id="" required=""> -->
-                        <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
+                        <textarea name="" id="" class="text-borders" cols="30" rows="10"></textarea>
                       </div>
                       <!-- /.input group -->
                     <!-- /.form group -->

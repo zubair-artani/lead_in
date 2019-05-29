@@ -15,7 +15,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('Welcome/index'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">All Inquiries</li>
+        <li class="active">Create New Inquiry</li>
       </ol>
     </section>
     <!-- Main content -->
