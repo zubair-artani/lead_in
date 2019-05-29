@@ -303,7 +303,7 @@
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo base_url('Welcome/batchCode/add') ?>" class="btn bg-black btn-flat">Add New Batch</a></h3>
+                <h3 class="box-title"><a href="<?php echo base_url('Welcome/batchCode/add') ?>" class="btn bg-black btn-flat">Add New Batch</a> <a href="<?php echo base_url('Welcome/batchCode/viewTrash') ?>" class="btn bg-red btn-flat">Trash</a></h3>
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -508,4 +508,77 @@
           </div>  <!-- /.row -->
 <?php     
   }
+  function viewTrashBatchCode($page_status,$page_data){
 ?>
+<div class="row">
+      <div class="col-xs-12">
+    <div class="box">
+              <div class="box-header">
+                <h3 class="box-title"><a href="<?php echo base_url('Welcome/batchCode/view') ?>" class="btn bg-red btn-flat">View All Batch Code</a></h3>
+
+                <div class="box-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
+
+                    <div class="input-group-btn">
+                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                  <tbody><tr>
+                    <th>ID</th>
+                    <th>Batch Code</th>
+                    <th>Batch Days</th>
+                    <th>Class</th>
+                    <th>Department</th>
+                    <th>Teacher</th>
+                    <th>Timings</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Batch Status</th>
+                    <th>Delete</th>
+                  </tr>
+                  <?php
+                  // print_r($data);
+                   foreach($page_data as $data){ 
+                      // 24-hour time to 12-hour time 
+                      // $timestart  = date("g:i a", strtotime($data[$key]->start_time));
+                      // $timeend  = date("g:i a", strtotime($data[$key]->end_time));
+                  ?>
+
+                  <tr id="d-<?php echo $data->batch_id; ?>">
+                    <td><?php echo $data->batch_id; ?></td>
+                    <td><?php echo $data->batch_code; ?></td>
+                    <td><?php echo $data->batch_days; ?></td>
+                    <td><?php echo $data->class; ?></td>
+                    <td><?php echo $data->department; ?></td>
+                    <td><?php echo $data->teacher; ?></td>
+                    <td><?php echo $data->start_time . ' to ' . $data->end_time; ?></td>
+                    <td><?php echo $data->start_date; ?></td>
+                    <td><?php echo $data->end_date; ?></td>
+                    <td><?php 
+                        if($data->batch_status == 'Open'){
+                    ?>
+                          <span class="badge bg-green"><?php echo $data->batch_status ?></span>
+                      <?php
+                        } else {
+                      ?>
+                          <span class="badge bg-red"><?php echo $data->batch_status ?></span>
+                      <?php  
+                        }
+                    ?></td>
+                    <td><a onclick="removeBatch(<?php echo $data->batch_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
+                  </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+    </div>
+  </div>
+<?php } ?>

@@ -377,7 +377,20 @@ class Welcome extends CI_Controller {
 				if($query){
 					redirect('Welcome/batchCode/view');
 				}
-
+			} else if($param1 == 'viewTrash') {
+				$data = $this->adminmodel->viewBatchCodeTrash();
+				// echo "<pre>";
+				// print_r($data);
+				$this->load->view('Dashboard/batch-code', ['page_status' =>'viewTrash','page_data'=>$data]);
+			} else if($param1 == 'remove'){
+				$deleteid = $this->input->get('batchid');
+				// print_r($deleteid);
+				$query = $this->adminmodel->removeBatchCode($deleteid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
 			}
 		}	
 	}

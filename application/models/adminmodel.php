@@ -191,6 +191,15 @@ class adminmodel extends CI_Model {
 		$insert_query = $this->db->insert('batch_code', $arr);
 		return true;		
 	}
+	function viewBatchCodeTrash() {
+		return $query = $this->db->where('batch_status_2','deleted')->get('batch_code')->result();
+		// return $this->db->get('batch_code')->result();
+	}
+	function removeBatchCode($deleteid) {
+		return $this->db->where('batch_id', $deleteid)
+						->delete('batch_code');	
+	}
+
 	// batch code procedure end
 
 	// batch days procedure start

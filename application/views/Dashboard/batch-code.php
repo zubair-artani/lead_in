@@ -22,19 +22,37 @@
     <section class="content">
       <?php if($page_status == 'view'){
         showBatchCode($data, $class);
+      } else if($page_status == 'viewTrash'){
+        viewTrashBatchCode($page_status,$page_data);
+        // echo "<pre>";
+        // print_r($data);
       } else if($page_status == 'add') {
-
         addBatchCode($class, $department, $faculty);
-      }?>
+      }
+      ?>
     </section>
     <!-- /.content -->
   </div>
 <?php include('inc/footer.php'); ?>
 <script>
   function deleteBatch(param1){
-    if(confirm('Are you sure you want to delete this Department?')){
+    if(confirm('Are you sure you want to delete this Batch Code?')){
       $.ajax({
         url: "http://[::1]/lead_in/index.php/Welcome/batchCode/delete",
+        type: 'GET',
+        data: { batchid: param1} ,
+         success: function(result){
+            if(result == "ok"){
+              $('#d-'+ param1).hide('slow');
+            }
+         }
+      });
+    }
+  }
+  function removeBatch(param1){
+    if(confirm('Are you sure you want to delete this Batch Code Parmenently?')){
+      $.ajax({
+        url: "http://[::1]/lead_in/index.php/Welcome/batchCode/remove",
         type: 'GET',
         data: { batchid: param1} ,
          success: function(result){
