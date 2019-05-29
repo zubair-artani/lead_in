@@ -91,8 +91,14 @@
           </a>
         </li>
         <li>
-          <a href="pages/mailbox/mailbox.html">
+          <a href="<?php echo base_url('Welcome/education/view'); ?>">
             <i class="fa fa-envelope"></i> <span>Education</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="<?php echo base_url('Welcome/religion/view'); ?>">
+            <i class="fa fa-envelope"></i> <span>Religion</span>
           </a>
         </li>
         <li class="treeview">
@@ -101,7 +107,7 @@
           </a>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="<?php echo base_url('Welcome/inquiry_form/view'); ?>">
             <i class="fa fa-folder"></i> <span> PIC Form</span>
           </a>
         </li>

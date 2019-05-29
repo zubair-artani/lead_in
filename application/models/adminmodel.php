@@ -199,7 +199,12 @@ class adminmodel extends CI_Model {
 		return $this->db->where('batch_id', $deleteid)
 						->delete('batch_code');	
 	}
-
+	function removeBatchFromTrash($trashid) {
+		return $this->db->set('batch_status_2', 'restored')
+				->where('batch_id',$trashid)
+				->update('batch_code');	
+	}
+	
 	// batch code procedure end
 
 	// batch days procedure start
@@ -315,6 +320,82 @@ class adminmodel extends CI_Model {
 				->update('inquiry_status');
 	}
 	// class procedure end
+
+	// religion procedure start
+	function viewreligion() {
+		return $this->db->where("religion_status !=", 'deleted')->get('religion')->result();
+	}
+	function addreligion($religion) {
+		$query = $this->db->insert('religion', $religion); 
+		return true;
+	}
+	function delreligion($deleteid) {
+		return $this->db->set('religion_status', 'deleted')
+				->where('religion_id',$deleteid)
+				->update('religion');
+	}
+	function getreligionTrash() {
+		return $this->db->where('religion_status','deleted')->get('religion')->result();
+	}
+	function removereligionFromTrash($trashid) {
+		return $this->db->set('religion_status', 'restored')
+				->where('religion_id',$trashid)
+				->update('religion');	
+	}
+
+	function removereligion($deleteid) {
+		return $this->db->where('religion_id', $deleteid)
+						->delete('religion');
+	}
+	function editreligion($id) {
+		return $this->db->where('religion_id',$id)->get('religion')->result();
+	}
+	function updatereligion($inp) {
+		$name = $inp['religion_name'];
+		$id = $inp['religion_id'];
+		return $this->db->set('religion_name', $name)
+				->where('religion_id',$id)
+				->update('religion');
+	}
+	// religion procedure end
+
+	// education procedure start
+	function vieweducation() {
+		return $this->db->where("education_status !=", 'deleted')->get('education')->result();
+	}
+	function addeducation($education) {
+		$query = $this->db->insert('education', $education); 
+		return true;
+	}
+	function deleducation($deleteid) {
+		return $this->db->set('education_status', 'deleted')
+				->where('education_id',$deleteid)
+				->update('education');
+	}
+	function geteducationTrash() {
+		return $this->db->where('education_status','deleted')->get('education')->result();
+	}
+	function removeeducationFromTrash($trashid) {
+		return $this->db->set('education_status', 'restored')
+				->where('education_id',$trashid)
+				->update('education');	
+	}
+
+	function removeeducation($deleteid) {
+		return $this->db->where('education_id', $deleteid)
+						->delete('education');
+	}
+	function editeducation($id) {
+		return $this->db->where('education_id',$id)->get('education')->result();
+	}
+	function updateeducation($inp) {
+		$name = $inp['education_name'];
+		$id = $inp['education_id'];
+		return $this->db->set('education_name', $name)
+				->where('education_id',$id)
+				->update('education');
+	}
+	// education procedure end
 }
 
 

@@ -391,7 +391,15 @@ class Welcome extends CI_Controller {
 					} else {
 						echo "not";
 					}
-			}
+			} else if($param1 == 'restore') {
+				$trashid = $this->input->get('batchid');
+				$query = $this->adminmodel->removeBatchFromTrash($trashid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} 
 		}	
 	}
 
@@ -455,6 +463,7 @@ class Welcome extends CI_Controller {
 		}
 	}
 	// end source procedure
+
 	// start inquiy_status procedure
 	public function inquiry_status($param1) {
 		if(!$this->session->userdata('name')){
@@ -515,4 +524,125 @@ class Welcome extends CI_Controller {
 			} 
 		}
 	}
+	public function religion($param1) {
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$query = $this->adminmodel->viewreligion();
+				$this->load->view('dashboard/religion', ['page_status' => 'view','page_data'=>$query]);
+		 	} else if ($param1 == 'add'){
+				if($input = $this->input->post()) {
+	                    $inputs = $this->input->post();
+	                	if($this->adminmodel->addreligion($inputs)){
+	                		redirect('Welcome/religion/view');
+	                	} else {
+	                		echo "ok";
+	                	}
+	                }
+			} else if($param1 == 'delete') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->delreligion($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
+			} else if($param1 == 'viewTrash'){
+				$page_data = $this->adminmodel->getreligiontrash();
+				$this->load->view('dashboard/religion', ['page_status' => 'viewTrash','page_data'=>$page_data]);
+			} else if($param1 == 'remove'){
+				$deleteid = $this->input->get('userid');
+				// print_r($deletedid);
+				$query = $this->adminmodel->removereligion($deleteid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'restore') {
+				$trashid = $this->input->get('userid');
+				$query = $this->adminmodel->removereligionFromTrash($trashid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'update') {
+				$input = $this->input->post();
+				$query = $this->adminmodel->updatereligion($input);
+				if($query) {
+					redirect('Welcome/religion/view');
+				} else {
+					echo "not";
+				}
+			} else {
+				$id = $param1;
+				$query = $this->adminmodel->editreligion($id);
+				$this->load->view('dashboard/religion', ['page_status' => 'edit','id'=>$id, 'query' =>$query]);
+			} 
+		}
+	}
+	// end religion procedure
+	// start education procedure
+	public function education($param1) {
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$query = $this->adminmodel->vieweducation();
+				$this->load->view('dashboard/education', ['page_status' => 'view','page_data'=>$query]);
+		 	} else if ($param1 == 'add'){
+				if($input = $this->input->post()) {
+	                    $inputs = $this->input->post();
+	                	if($this->adminmodel->addeducation($inputs)){
+	                		redirect('Welcome/education/view');
+	                	} else {
+	                		echo "ok";
+	                	}
+	                }
+			} else if($param1 == 'delete') {
+				$deleteid = $this->input->get('userid');
+				$query = $this->adminmodel->deleducation($deleteid);
+				if($query){
+					echo "ok";
+				} else {
+					echo "not";
+				}
+			} else if($param1 == 'viewTrash'){
+				$page_data = $this->adminmodel->geteducationtrash();
+				$this->load->view('dashboard/education', ['page_status' => 'viewTrash','page_data'=>$page_data]);
+			} else if($param1 == 'remove'){
+				$deleteid = $this->input->get('userid');
+				// print_r($deletedid);
+				$query = $this->adminmodel->removeeducation($deleteid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'restore') {
+				$trashid = $this->input->get('userid');
+				$query = $this->adminmodel->removeeducationFromTrash($trashid);
+					if($query) {
+						echo "ok";
+					} else {
+						echo "not";
+					}
+			} else if($param1 == 'update') {
+				$input = $this->input->post();
+				$query = $this->adminmodel->updateeducation($input);
+				if($query) {
+					redirect('Welcome/education/view');
+				} else {
+					echo "not";
+				}
+			} else {
+				$id = $param1;
+				$query = $this->adminmodel->editeducation($id);
+				$this->load->view('dashboard/education', ['page_status' => 'edit','id'=>$id, 'query' =>$query]);
+			} 
+		}
+	}
+	// end education procedure
 }

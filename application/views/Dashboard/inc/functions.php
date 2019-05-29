@@ -5,6 +5,8 @@
   include('functions/batchdays.php');
   include('functions/source.php');
   include('functions/inquiry_status.php');
+  include('functions/religion.php');
+  include('functions/education_function.php');
 
  ?>
 
@@ -540,6 +542,7 @@
                     <th>From</th>
                     <th>To</th>
                     <th>Batch Status</th>
+                    <th>Restore</th>
                     <th>Delete</th>
                   </tr>
                   <?php
@@ -571,6 +574,7 @@
                       <?php  
                         }
                     ?></td>
+                    <td><a onclick="restoreBatch(<?php echo $data->batch_id ?>)" class="btn bg-green btn-flat">Restore</a></td>
                     <td><a onclick="removeBatch(<?php echo $data->batch_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php } ?>
@@ -582,3 +586,4 @@
     </div>
   </div>
 <?php } ?>
+

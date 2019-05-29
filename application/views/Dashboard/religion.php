@@ -7,40 +7,42 @@
     <section class="content-header">
       <h1>
         <?php if($page_status == 'view'){ ?>
-          All Batches
-        <?php } else if($page_status == 'add') { ?>
-           Create New Batch
+          All Batch Days
+        <?php } elseif($page_status == 'viewTrash'){ ?>
+           View Trashes
+         <?php } elseif($page_status == 'edit'){ ?>
+           Edit Batch Days
          <?php } ?>
         <!-- <small>Dashboard Controllers</small> -->
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('Welcome/index'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">All Batches</li>
+        <li class="active">All Batch Days</li>
       </ol>
     </section>
     <!-- Main content -->
     <section class="content">
-      <?php if($page_status == 'view'){
-        showBatchCode($data, $class);
-      } else if($page_status == 'viewTrash'){
-        viewTrashBatchCode($page_status,$page_data);
-        // echo "<pre>";
-        // print_r($data);
-      } else if($page_status == 'add') {
-        addBatchCode($class, $department, $faculty);
+      <?php 
+      if($page_status == 'view') { 
+           showreligion($page_status,$page_data);
+      } else if($page_status == 'viewTrash') {
+          viewreligion($page_status,$page_data);
+      } else if($page_status == 'edit'){
+        editreligion($page_status,$query);
       }
-      ?>
+        ?>
+
     </section>
     <!-- /.content -->
   </div>
 <?php include('inc/footer.php'); ?>
 <script>
-  function deleteBatch(param1){
-    if(confirm('Are you sure you want to delete this Batch Code?')){
+  function delreligion(param1){
+    if(confirm('Are you sure you want to delete this religion Status?')){
       $.ajax({
-        url: "http://[::1]/lead_in/index.php/Welcome/batchCode/delete",
+        url: "http://[::1]/lead_in/index.php/Welcome/religion/delete",
         type: 'GET',
-        data: { batchid: param1} ,
+        data: { userid: param1} ,
          success: function(result){
             if(result == "ok"){
               $('#d-'+ param1).hide('slow');
@@ -49,11 +51,12 @@
       });
     }
   }
-  function restoreBatch(param1){
+
+  function restorereligion(param1){
     $.ajax({
-      url: "http://[::1]/lead_in/index.php/Welcome/batchCode/restore",
+      url: "http://[::1]/lead_in/index.php/Welcome/religion/restore",
       type: 'GET',
-      data: { batchid: param1} ,
+      data: { userid: param1} ,
        success: function(result){
           if(result == "ok"){
             $('#d-'+ param1).hide('slow');
@@ -61,12 +64,12 @@
        }
     });
   }
-  function removeBatch(param1){
-    if(confirm('Are you sure you want to delete this Batch Code Parmenently?')){
+  function removereligion(param1){
+    if(confirm('Are you sure you want to delete this religion Status Permanently?')){
       $.ajax({
-        url: "http://[::1]/lead_in/index.php/Welcome/batchCode/remove",
+        url: "http://[::1]/lead_in/index.php/Welcome/religion/remove",
         type: 'GET',
-        data: { batchid: param1} ,
+        data: { userid: param1} ,
          success: function(result){
             if(result == "ok"){
               $('#d-'+ param1).hide('slow');

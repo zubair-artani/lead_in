@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2019 at 12:39 PM
+-- Generation Time: May 29, 2019 at 12:54 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.5.38
 
@@ -66,7 +66,6 @@ CREATE TABLE `batch_code` (
 
 INSERT INTO `batch_code` (`batch_id`, `batch_code`, `batch_days`, `class`, `department`, `teacher`, `start_date`, `end_date`, `start_time`, `end_time`, `batch_status`, `batch_status_2`) VALUES
 (1, 'jo32o', 'Mon to Fri', 2, 3, 2, '2019-05-02', '2019-05-09', '06:00:00', '08:00:00', 'Open', 'deleted'),
-(2, 'owiejo3', 'Mon to Fri', 2, 2, 2, '0000-00-00', '0000-00-00', '00:00:00', '00:00:00', 'Open', 'deleted'),
 (3, 'retr43', 'Mon to Fri', 3, 0, 0, '2019-05-04', '2019-05-16', '15:00:00', '21:00:00', 'Open', 'restored'),
 (4, '32r32', 'MWF', 1, 2, 7, '2019-05-11', '2019-05-22', '15:00:00', '21:00:00', 'Open', 'restored');
 
@@ -89,7 +88,7 @@ CREATE TABLE `class` (
 INSERT INTO `class` (`class_id`, `class_name`, `class_status`) VALUES
 (1, 'Math', 'restored'),
 (2, 'Physics', 'restored'),
-(3, 'Urdu', 'deleted'),
+(3, 'Urdu', 'restored'),
 (4, 'Physics', 'restored'),
 (6, 'Geography', 'restored'),
 (7, 'Economics', 'restored'),
@@ -116,6 +115,26 @@ INSERT INTO `department` (`department_id`, `department_name`, `department_status
 (2, 'Medicals', 'restored'),
 (3, 'Engineer', 'deleted'),
 (5, 'IT', 'restored');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `education`
+--
+
+CREATE TABLE `education` (
+  `education_id` int(11) NOT NULL,
+  `education_name` varchar(200) NOT NULL,
+  `education_status` varchar(50) NOT NULL DEFAULT 'restored'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `education`
+--
+
+INSERT INTO `education` (`education_id`, `education_name`, `education_status`) VALUES
+(1, 'BComI', 'restored'),
+(2, 'df', 'restored');
 
 -- --------------------------------------------------------
 
@@ -201,6 +220,26 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `religion`
+--
+
+CREATE TABLE `religion` (
+  `religion_id` int(11) NOT NULL,
+  `religion_name` varchar(200) NOT NULL,
+  `religion_status` varchar(200) NOT NULL DEFAULT 'restored'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `religion`
+--
+
+INSERT INTO `religion` (`religion_id`, `religion_name`, `religion_status`) VALUES
+(1, 'Muslim', 'restored'),
+(2, 'Others', 'restored');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -256,6 +295,12 @@ ALTER TABLE `department`
   ADD PRIMARY KEY (`department_id`);
 
 --
+-- Indexes for table `education`
+--
+ALTER TABLE `education`
+  ADD PRIMARY KEY (`education_id`);
+
+--
 -- Indexes for table `faculty`
 --
 ALTER TABLE `faculty`
@@ -281,6 +326,12 @@ ALTER TABLE `messages`
   ADD KEY `fk_editorid_in_message` (`editor_id`);
 
 --
+-- Indexes for table `religion`
+--
+ALTER TABLE `religion`
+  ADD PRIMARY KEY (`religion_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -294,7 +345,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `batchdays`
 --
 ALTER TABLE `batchdays`
-  MODIFY `batchdays_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `batchdays_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `batch_code`
 --
@@ -311,6 +362,11 @@ ALTER TABLE `class`
 ALTER TABLE `department`
   MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `education`
+--
+ALTER TABLE `education`
+  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `faculty`
 --
 ALTER TABLE `faculty`
@@ -319,7 +375,7 @@ ALTER TABLE `faculty`
 -- AUTO_INCREMENT for table `inquiry_status`
 --
 ALTER TABLE `inquiry_status`
-  MODIFY `inquiry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `inquiry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `marketing_source`
 --
@@ -330,6 +386,11 @@ ALTER TABLE `marketing_source`
 --
 ALTER TABLE `messages`
   MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `religion`
+--
+ALTER TABLE `religion`
+  MODIFY `religion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
