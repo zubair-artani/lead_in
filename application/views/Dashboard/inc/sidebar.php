@@ -107,7 +107,7 @@
           </a>
         </li>
         <li class="treeview">
-          <a href="<?php echo base_url('Welcome/inquiry_form/view'); ?>">
+          <a href="<?php echo base_url('Welcome/inquiry_form/add'); ?>">
             <i class="fa fa-folder"></i> <span> PIC Form</span>
           </a>
         </li>

@@ -587,3 +587,149 @@
   </div>
 <?php } ?>
 
+<?php 
+  function addInquiryForm($class, $department, $faculty,$inquiry_status,$source){
+?>    
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Add New Inquiry</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <?php echo form_open_multipart('Welcome/batchCode/insert', ['class'=>'form-horizontal']); ?>
+              <div class="box-body">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="startdate" class="col-sm-3 control-label">Enter Date:</label>
+                    <div class="input-group date col-sm-9">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar icon1"></i>
+                      </div>
+                      <input type="text" class="form-control pull-right pad-left" id="datepicker" required="" name="startdate">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                  <div class="form-group">
+                      <label for="" class="col-sm-3 control-label">Student Name:</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control"  name="" id="" required="">
+                      </div>
+                      <!-- /.input group -->
+                    <!-- /.form group -->
+                  </div>
+                <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Father Name:</label>
+
+                  <div class="col-sm-9">
+                    <input type="text"  class="form-control" required="" >
+                  </div>
+                </div>
+                <div class="form-group">
+                      <label for="timeend" class="col-sm-3 control-label">Admission Fee:</label>
+                      <div class="col-sm-9">
+                        <input type="number" class="form-control"  name="" id="" required="">
+                      </div>
+                      <!-- /.input group -->
+                    <!-- /.form group -->
+                  </div>
+                  <div class="form-group">
+                      <label for="timeend" class="col-sm-3 control-label">Monthly Fee:</label>
+                      <div class="col-sm-9">
+                        <input type="number" class="form-control"  name="" id="" required="">
+                      </div>
+                      <!-- /.input group -->
+                    <!-- /.form group -->
+                  </div>
+                
+                  
+              </div><!-- col-6 -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="timeend" class="col-sm-3 control-label">Mobile Number:</label>
+                      <div class="col-sm-9">
+                        <input type="number" class="form-control"  name="" id="" required="">
+                      </div>
+                      <!-- /.input group -->
+                    <!-- /.form group -->
+                  </div>
+                  <div class="form-group">
+                    <label for="timeend" class="col-sm-3 control-label">Select Source:</label>
+                    <div class="col-sm-9 control-label" style="text-align: left !important;">
+                      <select class="form-control select2 select2-hidden-accessible"  style="width: 100%;" required="">
+                        <option value="">Select Source</option>
+                        <?php 
+
+                          foreach($source as $source){
+                         ?>
+                            <option value="<?php echo $source->source_id; ?>"><?php echo $source->source_name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="timeend" class="col-sm-3 control-label">Class:</label>
+                    <div class="col-sm-9 control-label" style="text-align: left !important;">
+                      <select class="form-control select2 select2-hidden-accessible" name="class" style="width: 100%;" required="">
+                        <option value="">Select Class</option>
+                        <?php 
+
+                          foreach($class as $class){
+                         ?>
+                            <option value="<?php echo $class->class_id; ?>"><?php echo $class->class_name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="timeend" class="col-sm-3 control-label">Inquiry Status:</label>
+                    <div class="col-sm-9 control-label" style="text-align: left !important;">
+                      <select class="form-control select2 select2-hidden-accessible"  style="width: 100%;" required="">
+                        <option value="">Select Inquiry Status</option>
+                        <?php 
+
+                          foreach($inquiry_status as $inquiry_status){
+                         ?>
+                            <option value="<?php echo $inquiry_status->inquiry_id; ?>"><?php echo $inquiry_status->inquiry_name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="timeend" class="col-sm-3 control-label">Department:</label>
+                    <div class="col-sm-9 control-label" style="text-align: left !important;">
+                      <select class="form-control select2 select2-hidden-accessible" required="" name="department" style="width: 100%;" >
+                        <option value="">Select Department</option>
+                        <?php 
+
+                          foreach($department as $department){
+                         ?>
+                            <option value="<?php echo $department->department_id; ?>"><?php echo $department->department_name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="timeend" class="col-sm-1 control-label">Remarks:</label>
+                      <div class="col-sm-11">
+                        <!-- <input type="number" class="form-control"  name="" id="" required=""> -->
+                        <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
+                      </div>
+                      <!-- /.input group -->
+                    <!-- /.form group -->
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <a href="<?php echo base_url('Welcome/alltask/view'); ?>" class="btn btn-default">Cancel</a>
+                <button type="reset" class="btn bg-red pull-right">Reset</button>
+                <button class="btn bg-black pull-right">Send</button>
+              </div>
+              <!-- /.box-footer -->
+            <?php echo form_close(); ?>
+          </div>  <!-- /.row -->
+<?php     
+  }
+  ?>

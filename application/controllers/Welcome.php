@@ -645,4 +645,42 @@ class Welcome extends CI_Controller {
 		}
 	}
 	// end education procedure
+
+	// start inquiry_form procedure
+	public function inquiry_form($param1){
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$getData = $this->adminmodel->viewBatchCode();
+				if(is_null($getData)){
+					$getData = Array();
+				}
+				$classarr = array();
+				for($i = 0; $i < sizeof($getData); $i++){
+					array_push($classarr, $getData[$i]->class);
+				}
+				print_r($classarr);
+				
+				$this->load->view('Dashboard/batch-code', ['page_status' => 'view', 'data' => $getData, 'class' => $classarr]);
+			} 
+			// else if($param1 == 'delete'){
+				// $deleteid = $this->input->get('batchid');
+				// $query = $this->adminmodel->delBatch($deleteid);
+				// if($query){
+					// echo "ok";
+				// } else {
+					// echo "not";
+				// }
+			// }
+			 else if($param1 == 'add'){
+				$getClass = $this->adminmodel->viewClass();
+				$getDepartment = $this->adminmodel->viewDepartment();
+				$getFaculty = $this->adminmodel->viewFaculty();
+				$getInquiryStatus = $this->adminmodel->viewinquirystatus();
+				$getsource = $this->adminmodel->viewsource();
+				$getData = '';
+				$this->load->view('Dashboard/inquiry_form', ['page_status' => 'add', 'data' => $getData, 'class' => $getClass, 'department' => $getDepartment, 'faculty' => $getFaculty,'inquiry_status' => $getInquiryStatus,'source'=>$getsource]);
+			}
+	}}
 }
