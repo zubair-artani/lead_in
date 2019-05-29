@@ -603,7 +603,7 @@
                       <div class="input-group-addon">
                         <i class="fa fa-calendar icon1"></i>
                       </div>
-                      <input type="text" class="form-control pull-right pad-left" id="datepicker" required="" name="startdate">
+                      <input type="text" class="form-control pull-right pad-left" autocomplete="off" id="datepicker" required="" name="startdate">
                     </div>
                     <!-- /.input group -->
                   </div>
