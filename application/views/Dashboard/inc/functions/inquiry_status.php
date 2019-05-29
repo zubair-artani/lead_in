@@ -49,7 +49,7 @@ function showInquiry($page_status,$page_data) {
                   <tr id="d-<?php echo $result->inquiry_id; ?>">
                   	<td><?php echo $result->inquiry_id; ?></td>
                     <td><?php echo $result->inquiry_name; ?></td>
-                  	<td><a class="btn btn-flat" style="background-color: <?php echo $result->inquiry_color; ?>"><?php echo $result->inquiry_color; ?></a></td>
+                  	<td><a class="btn btn-flat" style="background-color: <?php echo $result->inquiry_color; ?>; color: white;"><?php echo $result->inquiry_color; ?></a></td>
                     <td><a href="<?php echo base_url('Welcome/inquiry_status/'); echo $result->inquiry_id; ?>" class="btn bg-blue btn-flat">Edit</a></td>
                   	<td><a onclick="delinquiry(<?php echo $result->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
@@ -99,7 +99,7 @@ function viewTrashInquiry($page_status,$page_data) {
                   <tr id="d-<?php echo $result->inquiry_id; ?>">
                     <td><?php echo $result->inquiry_id; ?></td>
                     <td><?php echo $result->inquiry_name; ?></td>
-                    <td><a class="btn btn-flat" style="background-color: <?php echo $result->inquiry_color; ?>"><?php echo $result->inquiry_color; ?></a></td>
+                    <td><a class="btn btn-flat" style="background-color: <?php echo $result->inquiry_color; ?>; color: white;"><?php echo $result->inquiry_color; ?></a></td>
                     
                     <td><a onclick="restoreinquiry(<?php echo $result->inquiry_id; ?>)" class="btn bg-green btn-flat">Restore</a></td>
                     <td><a onclick="removeinquiry(<?php echo $result->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
