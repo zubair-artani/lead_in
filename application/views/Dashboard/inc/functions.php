@@ -7,6 +7,7 @@
   include('functions/inquiry_status.php');
   include('functions/religion.php');
   include('functions/education_function.php');
+  include('functions/registration.php');
 
  ?>
 

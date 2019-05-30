@@ -137,7 +137,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Register</a></li>
+            <li><a href="<?php echo base_url('Welcome/registration/add'); ?>"><i class="fa fa-circle-o"></i> Registeration</a></li>
             <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> Admission</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Fees Slip</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Create Markesheet</a></li>

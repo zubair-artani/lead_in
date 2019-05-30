@@ -682,5 +682,40 @@ class Welcome extends CI_Controller {
 				$getData = '';
 				$this->load->view('Dashboard/inquiry_form', ['page_status' => 'add', 'data' => $getData, 'class' => $getClass, 'department' => $getDepartment, 'faculty' => $getFaculty,'inquiry_status' => $getInquiryStatus,'source'=>$getsource]);
 			}
-	}}
+		}
+	}
+	public function registration($param1){
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view'){
+				$getData = $this->adminmodel->viewRegistration();
+				if(is_null($getData)){
+					$getData = Array();
+				}
+				$classarr = array();
+				for($i = 0; $i < sizeof($getData); $i++){
+					array_push($classarr, $getData[$i]->class);
+				}
+				print_r($classarr);
+				
+				$this->load->view('Dashboard/registration', ['page_status' => 'view', 'data' => $getData, 'class' => $classarr]);
+			} 
+			// else if($param1 == 'delete'){
+				// $deleteid = $this->input->get('batchid');
+				// $query = $this->adminmodel->delBatch($deleteid);
+				// if($query){
+					// echo "ok";
+				// } else {
+					// echo "not";
+				// }
+			// }
+			 else if($param1 == 'add'){
+				$getreligion = $this->adminmodel->viewreligion();
+				$geteducation = $this->adminmodel->vieweducation();
+				$getData = '';
+				$this->load->view('Dashboard/registration', ['page_status' => 'add', 'data' => $getData, 'religion' => $getreligion, 'education' =>$geteducation,'last_edu'=>$geteducation]);
+			}
+		}
+	}
 }
