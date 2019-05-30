@@ -69,6 +69,31 @@
                       <!-- /.input group -->
                     <!-- /.form group -->
                   </div>
+                  <div class="form-group">
+                    <label for="startdate" class="col-sm-3 control-label">Date of Birth:</label>
+                    <div class="input-group date col-sm-9">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar icon1"></i>
+                      </div>
+
+                      <input type="text" class="form-control pull-right pad-left" autocomplete="off"  required=""  name="startdate" id="datepicker2">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                  <div class="form-group">
+                      <label for="" class="col-sm-3 control-label">Religion:</label>
+                      <div class="col-sm-9">
+                        <select name="" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="">
+                          <option value="">Select Religion</option>
+                          <?php 
+                            foreach($religion as $religion){ ?>
+                              <option value=""><?php echo $religion->religion_name; ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <!-- /.input group -->
+                    <!-- /.form group -->
+                  </div>
                   
                 
                   
@@ -76,7 +101,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                       <div class="col-sm-12 text-right">
-                        <img id="blah" src="http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg" width="150" height="150" alt="">
+                        <img id="blah" src="http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg" width="150" height="125" alt="">
                       </div>
                       <!-- /.input group -->
                     <!-- /.form group -->
@@ -123,20 +148,7 @@
                       <input type="text" class="form-control">
                     </div>
                   </div>
-                  <div class="form-group">
-                      <label for="" class="col-sm-3 control-label">Religion:</label>
-                      <div class="col-sm-9">
-                        <select name="" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="">
-                          <option value="">Select Religion</option>
-                          <?php 
-                            foreach($religion as $religion){ ?>
-                              <option value=""><?php echo $religion->religion_name; ?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                      <!-- /.input group -->
-                    <!-- /.form group -->
-                  </div>
+                  
                   <div class="form-group">
                       <label for="" class="col-sm-3 control-label">Current Education:</label>
                       <div class="col-sm-9">

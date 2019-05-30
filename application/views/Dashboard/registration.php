@@ -46,7 +46,7 @@
                 $('#blah')
                     .attr('src', e.target.result)
                     .width(150)
-                    .height(150);
+                    .height(125);
             };
 
             reader.readAsDataURL(input.files[0]);
