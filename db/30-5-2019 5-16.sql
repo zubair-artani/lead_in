@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2019 at 12:54 PM
+-- Generation Time: May 30, 2019 at 02:16 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.5.38
 
@@ -67,7 +67,8 @@ CREATE TABLE `batch_code` (
 INSERT INTO `batch_code` (`batch_id`, `batch_code`, `batch_days`, `class`, `department`, `teacher`, `start_date`, `end_date`, `start_time`, `end_time`, `batch_status`, `batch_status_2`) VALUES
 (1, 'jo32o', 'Mon to Fri', 2, 3, 2, '2019-05-02', '2019-05-09', '06:00:00', '08:00:00', 'Open', 'deleted'),
 (3, 'retr43', 'Mon to Fri', 3, 0, 0, '2019-05-04', '2019-05-16', '15:00:00', '21:00:00', 'Open', 'restored'),
-(4, '32r32', 'MWF', 1, 2, 7, '2019-05-11', '2019-05-22', '15:00:00', '21:00:00', 'Open', 'restored');
+(4, '32r32', 'MWF', 1, 2, 7, '2019-05-11', '2019-05-22', '15:00:00', '21:00:00', 'Open', 'restored'),
+(5, 'ghghyu', 'MWF', 6, 2, 6, '2019-05-07', '2019-05-29', '15:00:00', '21:00:00', 'Open', 'restored');
 
 -- --------------------------------------------------------
 
@@ -350,7 +351,7 @@ ALTER TABLE `batchdays`
 -- AUTO_INCREMENT for table `batch_code`
 --
 ALTER TABLE `batch_code`
-  MODIFY `batch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `batch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `class`
 --
@@ -390,7 +391,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `religion`
 --
 ALTER TABLE `religion`
-  MODIFY `religion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `religion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --

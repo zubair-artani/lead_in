@@ -1,5 +1,5 @@
 <?php 
-  function addRegistraionForm($religion, $education,$last_edu){
+  function addRegistraionForm($religion, $education,$last_edu, $role){
 ?>    
           <div class="box box-info">
             
@@ -14,7 +14,11 @@
                       <div class="input-group-addon">
                         <i class="fa fa-calendar icon1"></i>
                       </div>
-                      <input type="text" class="form-control pull-right pad-left" autocomplete="off" id="datepicker" required="" name="startdate">
+
+                      <input type="text" class="form-control pull-right pad-left" autocomplete="off" readonly="" value="05/30/2019" required=""  name="startdate" <?php 
+                          $x = $role == 'admin';
+                          echo $x ? 'id="datepicker"' : '';
+                       ?>>
                     </div>
                     <!-- /.input group -->
                   </div>
@@ -65,22 +69,25 @@
                       <!-- /.input group -->
                     <!-- /.form group -->
                   </div>
-                  <div class="form-group">
-                      <label for="" class="col-sm-3 control-label">Date Of Birth:</label>
-                      <div class="input-group date col-sm-9">
-                      <div class="input-group-addon">
-                        <i class="fa fa-calendar icon1"></i>
-                      </div>
-                      <input type="text" class="form-control pull-right pad-left" autocomplete="off" id="datepicker2" required="" name="dateofbirth">
-                    </div>
-                      <!-- /.input group -->
-                    <!-- /.form group -->
-                  </div>
+                  
                 
                   
               </div><!-- col-6 -->
                 <div class="col-md-6">
+                  <div class="form-group">
+                      <div class="col-sm-12 text-right">
+                        <img id="blah" src="http://nrm.co.nz/wp-content/uploads/2017/08/facebook-avatar.jpg" width="150" height="150" alt="">
+                      </div>
+                      <!-- /.input group -->
+                    <!-- /.form group -->
+                  </div>
                   
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Select Image:</label>
+                    <div class="col-sm-9 control-label" style="text-align: left !important;">
+                      <input type="file" class="form-control"  onchange="readURL(this);">
+                    </div>
+                  </div>
                   <div class="form-group">
                       <label for="" class="col-sm-3 control-label">Gender:</label>
                       <div class="col-sm-9">
@@ -92,12 +99,6 @@
                       </div>
                       <!-- /.input group -->
                     <!-- /.form group -->
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-3 control-label">Select Image:</label>
-                    <div class="col-sm-9 control-label" style="text-align: left !important;">
-                      <input type="file" class="form-control">
-                    </div>
                   </div>
                   <div class="form-group">
                     <label for="" class="col-sm-3 control-label">Enter CNIC:</label>

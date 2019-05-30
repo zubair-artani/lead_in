@@ -27,54 +27,32 @@
         // echo "<pre>";
         // print_r($data);
       } else if($page_status == 'add') {
-        addRegistraionForm($religion,$education,$last_edu);
+        $role = $this->session->userdata('role');
+        addRegistraionForm($religion,$education,$last_edu, $role);
       }
       ?>
     </section>
     <!-- /.content -->
   </div>
-<?php include('inc/footer.php'); ?>
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 <script>
-  // function deleteBatch(param1){
-  //   if(confirm('Are you sure you want to delete this Batch Code?')){
-  //     $.ajax({
-  //       url: "http://[::1]/lead_in/index.php/Welcome/batchCode/delete",
-  //       type: 'GET',
-  //       data: { batchid: param1} ,
-  //        success: function(result){
-  //           if(result == "ok"){
-  //             $('#d-'+ param1).hide('slow');
-  //           }
-  //        }
-  //     });
-  //   }
-  // }
-  // function restoreBatch(param1){
-  //   $.ajax({
-  //     url: "http://[::1]/lead_in/index.php/Welcome/batchCode/restore",
-  //     type: 'GET',
-  //     data: { batchid: param1} ,
-  //      success: function(result){
-  //         if(result == "ok"){
-  //           $('#d-'+ param1).hide('slow');
-  //         }
-  //      }
-  //   });
-  // }
-  // function removeBatch(param1){
-  //   if(confirm('Are you sure you want to delete this Batch Code Parmenently?')){
-  //     $.ajax({
-  //       url: "http://[::1]/lead_in/index.php/Welcome/batchCode/remove",
-  //       type: 'GET',
-  //       data: { batchid: param1} ,
-  //        success: function(result){
-  //           if(result == "ok"){
-  //             $('#d-'+ param1).hide('slow');
-  //           }
-  //        }
-  //     });
-  //   }
-  // }
+  function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(150);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
+<?php include('inc/footer.php'); ?>
 </body>
 </html>
