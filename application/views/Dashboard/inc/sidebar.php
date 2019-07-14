@@ -35,7 +35,6 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Enquiry Status</a></li>
             <li><a href="<?php echo base_url('Welcome/department/view'); ?>"><i class="fa fa-circle-o"></i> Department</a></li>
             <li><a href="<?php echo base_url('Welcome/classes/view'); ?>"><i class="fa fa-circle-o"></i> Class/Course</a></li>
             <li><a href="<?php echo base_url('Welcome/batchdays/view'); ?>"><i class="fa fa-circle-o"></i> Batch Days</a></li>
@@ -90,7 +89,7 @@
             <i class="fa fa-folder"></i> <span> Subject</span>
           </a>
         </li> -->
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Reports</span>
             <span class="pull-right-container">
@@ -107,7 +106,7 @@
               <a href="#"><i class="fa fa-circle-o"></i> Source</a>
             </li>
           </ul>
-        </li>
+        </li> -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Students Form</span>
@@ -131,7 +130,7 @@
               <li><a href="#"><i class="fa fa-circle-o"></i> PVC Card</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Report</span>
             <span class="pull-right-container">
@@ -147,11 +146,11 @@
               <li><a href="#"><i class="fa fa-circle-o"></i> Test Report Registeration <br> Number Wise</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Student Status Report</a></li>
           </ul>
-        </li>
+        </li> -->
         <li class="header">ADMINSTRATION</li>
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#"><i class="fa fa-edit"></i> <span>Message</span></a>
-        </li>
+        </li> -->
         <li class="treeview">
           <!-- <a href="#"><i class="fa fa-edit"></i> <span>Complain Box</span></a> -->
         </li>
@@ -216,7 +215,7 @@
         <li>
           <a href="<?php echo base_url('Welcome/capital/view'); ?>"><i class="fa fa-edit"></i> <span>Capital</span></a>
         </li>
-<li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Reports</span>
             <span class="pull-right-container">
@@ -237,7 +236,7 @@
               <a href="#"><i class="fa fa-circle-o"></i> Profil Loss Report </a>
             </li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </section>
     <!-- /.sidebar -->

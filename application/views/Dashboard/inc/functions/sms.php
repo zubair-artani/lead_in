@@ -6,16 +6,6 @@
 			<div class="box clearfix">
               <div class="box-header">
                 <h3 class="box-title"><a href="<?php echo base_url('Welcome/alltask/add') ?>" class="btn bg-navy">Add New</a></h3>
-
-                <div class="box-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
-
-                    <div class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
               </div>
               <!-- /.box-header -->
               <div class="col-xs-12">
@@ -128,16 +118,6 @@
       <div class="col-xs-12">
       <div class="box clearfix">
               <div class="box-header">
-
-                <div class="box-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
-
-                    <div class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
               </div>
               <!-- /.box-header -->
               <div class="col-xs-12">
