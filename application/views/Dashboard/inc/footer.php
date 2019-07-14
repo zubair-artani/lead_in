@@ -1,4 +1,4 @@
-  <!-- /.content-wrapper -->
+    <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
@@ -13,6 +13,7 @@
 <script src="<?php echo base_url() ?>bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url() ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>/js/crop/croppie.js"></script>
 <!-- Material Design -->
 <script src="<?php echo base_url() ?>dist/js/material.min.js"></script>
 <script src="<?php echo base_url() ?>dist/js/ripples.min.js"></script>
@@ -46,6 +47,24 @@
 <script src="<?php echo base_url() ?>dist/js/demo.js"></script>
 
 <script>
+  $(document).ready(function(){
+  $("#searchbyme").click(function(){
+    $(".searchmyDiv").toggle();
+  });
+});
+</script>
+<script>
+
+$(document).ready(function(){
+  $("#search_table").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("table tbody tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
 $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -87,6 +106,12 @@ $(function () {
     $('#datepicker2').datepicker({
       autoclose: true
     })
+    $('#datepicker3').datepicker({
+      autoclose: true
+    })
+    $('#datepicker4').datepicker({
+      autoclose: true
+    })
 
     //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
@@ -118,30 +143,21 @@ $(function () {
   var excrpt = document.getElementsByClassName('excerpt')[0].innerHTML;
   if(excrpt.length > 15){
     var slc = excrpt.slice(0, 15);
-    document.getElementsByClassName('excerpt')[0].innerHTML = slc + ' ... ';
-    
-
-    // var span = document.createElement("span");
-    // var node = document.createTextNode("Read More.");
-    // span.appendChild(node);
-
-    // var span2 = document.createElement("attr");
-    // // var attr = span.addAttribute('style', 'color:red;');
-    // var node2 = document.createTextNode(excrpt);
-    // span2.appendChild(node2);
-    
-    // var element = document.getElementsByClassName("excerpt")[0];
-    // element.appendChild(span);
-    // element.appendChild(span2);
-    
-    // $('.excerpt > span').attr('onclick', 'showmore(this)');
-    // $('.excerpt > attr').attr('style', 'display:none;');
+    document.getElementsByClassName('excerpt')[0].innerHTML = slc + ' ... ';    
   } 
 
-  // function showmore(span){
-    // var sdata = $(span).parent().find('attr').html();
-    // $(span).parent().html(sdata);
-    // alert(sdata);
-    // $('.dropdown.tasks-menu').addClass('open');
-  // }
+
+var d = new Date();
+var month = d.getMonth() + 1;
+var date = d.getDate();
+if(month < 10){
+  month = "0" + month;
+}
+if(date < 10){
+  date = "0" + date;
+}
+document.getElementById("datepicker").value = month + "/" + date + "/" + d.getFullYear();
+document.getElementById("datepicker2").value = month + "/" + date + "/" + d.getFullYear();
+
+
 </script>

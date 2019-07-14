@@ -8,142 +8,18 @@
   include('functions/religion.php');
   include('functions/education_function.php');
   include('functions/registration.php');
-
+  include('functions/admission.php');
+  include('functions/fee_slip.php');
  ?>
 
-<?php 
-	function showtask(){
-?>
-	<div class="row">
-      <div class="col-xs-12">
-			<div class="box clearfix">
-              <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo base_url('Welcome/alltask/add') ?>" class="btn bg-navy">Add New</a></h3>
 
-                <div class="box-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
-
-                    <div class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-header -->
-              <div class="col-xs-12">
-              <ul class="timeline">
-
-    <!-- timeline time label -->
-			    <li class="time-label">
-			        <span class="bg-red">
-			            10 Feb. 2014
-			        </span>
-			    </li>
-			    <!-- /.timeline-label -->
-
-			    <!-- timeline item -->
-			    <li>
-	              <i class="fa fa-envelope bg-blue"></i>
-
-	              <div class="timeline-item">
-	                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-	                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-	                <div class="timeline-body">
-	                  Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-	                  weebly ning heekya handango imeem plugg dopplr jibjab, movity
-	                  jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-	                  quora plaxo ideeli hulu weebly balihoo...
-	                </div>
-	                <div class="timeline-footer">
-	                  <a class="btn btn-primary btn-xs">Read more<div class="ripple-container"></div></a>
-	                  <a class="btn btn-danger btn-xs">Delete</a>
-	                </div>
-	              </div>
-	            </li>
-
-			    <!-- END timeline item -->
-
-			    ...
-
-			</ul>
-			</div>
-              <!-- /.box-body -->
-            </div>
-		</div>
-	</div>
-<?php
-	}
-
- ?>
-
-<?php 
- 	function addtask(){
-?>		
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Add Editor</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <?php echo form_open_multipart('Welcome/addEditor', ['class'=>'form-horizontal']); ?>
-              <div class="box-body">
-                <div class="form-group is-empty">
-                  <label for="name" class="col-sm-2 control-label">User Name</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="User Name" required="">
-                  </div>
-                </div>
-                <div class="form-group is-empty">
-                  <label for="email" class="col-sm-2 control-label">Email</label>
-
-                  <div class="col-sm-10">
-                    <input type="email" name="email" class="form-control" id="email" required="" placeholder="Email">
-                  </div>
-                </div>
-                <div class="form-group is-empty">
-                  <label for="password" class="col-sm-2 control-label">Password</label>
-
-                  <div class="col-sm-10">
-                    <input type="password" name="password" class="form-control" id="password" required="" placeholder="Password">
-                  </div>
-                </div>
-                <div class="form-group is-empty">
-                  <label for="role" class="col-sm-2 control-label">User Role</label>
-
-                  <div class="col-sm-10">
-                    <input type="email" value="editor" name="role" readonly="" class="form-control" id="role" required="" placeholder="role">
-                  </div>
-                </div>
-                <div class="form-group is-empty">
-                  <label for="picture" class="col-sm-2 control-label">Picture</label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" name="userfile" id="picture" required="">
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <a href="<?php echo base_url('Welcome/alltask/view'); ?>" class="btn btn-default">Cancel</a>
-                <button type="reset" class="btn bg-red pull-right">Reset</button>
-                <button class="btn bg-black pull-right">Send</button>
-              </div>
-              <!-- /.box-footer -->
-            <?php echo form_close(); ?>
-          </div>  <!-- /.row -->
-<?php 		
- 	}
-?>
 
 <?php 
 	function addEditor(){
 ?>
 		<div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Add Editor</h3>
+              <h3 class="box-title">Account</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -232,11 +108,11 @@
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo base_url('Welcome/editor/add') ?>" class="btn bg-black btn-flat">Add New Editor</a></h3>
+                <h3 class="box-title"><a href="<?php echo base_url('Welcome/editor/add') ?>" class="btn bg-black btn-flat">Create an Account</a></h3>
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
+                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
                     <div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -247,7 +123,8 @@
               <!-- /.box-header -->
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
-                  <tbody><tr>
+                  <thead>
+                    <tr>
                     <th>ID</th>
                     <th>Time Starts</th>
                     <th>Time End</th>
@@ -258,6 +135,8 @@
                     <th>Position</th>
                     <th>Delete</th>
                   </tr>
+                  </thead>
+                  <tbody>
                   <?php
                     $inc = 0;
                    foreach($data as $data){ 
@@ -300,7 +179,7 @@
 <?php
   }
 
-  function showBatchCode($data, $class){
+  function showBatchCode($data, $class, $department, $days, $teacher){
 ?>
     <div class="row">
       <div class="col-xs-12">
@@ -310,7 +189,7 @@
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
+                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
                     <div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -321,7 +200,8 @@
               <!-- /.box-header -->
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
-                  <tbody><tr>
+                  <thead>
+                    <tr>
                     <th>ID</th>
                     <th>Batch Code</th>
                     <th>Batch Days</th>
@@ -335,20 +215,23 @@
                     <th>Edit</th>
                     <th>Delete</th>
                   </tr>
+                  </thead>
+                  <tbody>
                   <?php
                    foreach($data as $key => $value){ 
                       // 24-hour time to 12-hour time 
                       $timestart  = date("g:i a", strtotime($data[$key]->start_time));
                       $timeend  = date("g:i a", strtotime($data[$key]->end_time));
+                  if(!empty($department[$key]) && !empty($class[$key]) && !empty($days[$key]) && !empty($teacher[$key])){
                   ?>
-
+    
                   <tr id="d-<?php echo $data[$key]->batch_id ?>">
                     <td><?php echo $data[$key]->batch_id; ?></td>
                     <td><?php echo $data[$key]->batch_code; ?></td>
-                    <td><?php echo $data[$key]->batch_days; ?></td>
-                    <td><?php echo $class[$key]; ?></td>
-                    <td><?php echo $data[$key]->department; ?></td>
-                    <td><?php echo $data[$key]->teacher; ?></td>
+                    <td><?php echo $days[$key][0]->batch_days; ?></td>
+                    <td><?php echo $class[$key][0]->class_name; ?></td>
+                    <td><?php echo $department[$key][0]->department_name; ?></td>
+                    <td><?php echo $teacher[$key][0]->faculty_name; ?></td>
                     <td><?php echo $timestart . ' to ' . $timeend; ?></td>
                     <td><?php echo $data[$key]->start_date; ?></td>
                     <td><?php echo $data[$key]->end_date; ?></td>
@@ -363,10 +246,11 @@
                       <?php  
                         }
                     ?></td>
-                    <td><a class="btn bg-blue btn-flat">Edit</a></td>
+                    <td><a class="btn bg-blue btn-flat" href="<?php echo $data[$key]->batch_id ?>">Edit</a></td>
                     <td><a onclick="deleteBatch(<?php echo $data[$key]->batch_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
-                  <?php } ?>
+                  <?php }
+                  } ?>
                 </tbody>
               </table>
               </div>
@@ -378,11 +262,145 @@
 <?php
   }
 ?>
+<?php 
+  function editBatch($id,$data,$class,$department,$faculty,$batchdays) {
+    ?>
+    <br><div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Edit Batch</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <?php echo form_open_multipart('Welcome/batchCode/update', ['class'=>'form-horizontal']); ?>
+              <div class="box-body">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="startdate" class="col-sm-2 control-label">Start Date:</label>
+                    <div class="input-group date col-sm-10">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar icon1"></i>
+                      </div>
+                      <?php 
+                        $timestart  = date("m/d/Y", strtotime($data[0]->start_date));
+                        $timeend  = date("m/d/Y", strtotime($data[0]->end_date));
+                     ?>
+                      <input type="text" value="<?php echo $timestart; ?>" class="form-control pull-right pad-left" id="datepicker3" required="" name="startdate">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                  <div class="form-group">
+                    <label for="enddate" class="col-sm-2 control-label">End Date:</label>
+                    <div class="input-group date col-sm-10">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar icon1"></i>
+                      </div>
+                      <input type="text" value="<?php echo $timeend; ?>" class="form-control pull-right pad-left" id="datepicker4" required="" name="enddate">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+                <div class="form-group is-empty">
+                  <label for="batchCode" class="col-sm-2 control-label">Batch Code:-</label>
 
+                  <div class="col-sm-10">
+                    <input type="text" name="batchCode" class="form-control" value="<?php echo $data[0]->batch_code; ?>" id="batchCode" required="" placeholder="Enter Batch Code Here..">
+                    <input type="hidden" name="batch_id" value="<?php echo $data[0]->batch_id; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="timeend" class="col-sm-2 control-label">Class</label>
+                    <div class="col-sm-10 control-label" style="text-align: left !important;">
+                      <select class="form-control select2 select2-hidden-accessible"  name="class" style="width: 100%;" required="">
+                        <option value="">Select Class</option>
+                        <?php 
+                          foreach($class as $class){
+                         ?>
+                            <option value="<?php echo $class->class_id; ?>" <?php if($class->class_id == $data[0]->class){ echo "selected";} ?>><?php echo $class->class_name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="timeend" class="col-sm-2 control-label">Department</label>
+                    <div class="col-sm-10 control-label" style="text-align: left !important;">
+                      <select class="form-control select2 select2-hidden-accessible" required="" name="department" style="width: 100%;" >
+                        <option value="">Select Department</option>
+                      <?php 
+                          foreach($department as $department){
+                         ?>
+                            <option value="<?php echo $department->department_id; ?>" <?php if($department->department_id == $data[0]->department){ echo "selected";} ?>><?php echo $department->department_name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+              </div><!-- col-6 -->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="timestart" class="col-sm-2 control-label">Start Time:</label>
+
+                    <div class="col-sm-10 bootstrap-timepicker">
+                      <input type="text" class="form-control timepicker" value="<?php echo $data[0]->start_time; ?>" name="time_start" id="timestart" required="">
+
+                    </div>
+                    <!-- /.input group -->
+                  <!-- /.form group -->
+                  </div>
+                  <div class="form-group">
+                      <label for="timeend" class="col-sm-2 control-label">End Time:</label>
+
+                      <div class="col-sm-10 bootstrap-timepicker">
+                        <input type="text" class="form-control timepicker" value="09:00 PM" name="time_end" id="timeend" value="<?php echo $data[0]->start_time; ?>" required="">
+
+                      </div>
+                      <!-- /.input group -->
+                    <!-- /.form group -->
+                  </div>
+
+                  <div class="form-group">
+                    <label for="timeend" class="col-sm-2 control-label">Days</label>
+                    <div class="col-sm-10 control-label" style="text-align: left !important;">
+                      <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="days" required="" >
+                        <option value="">Select Class Days</option>
+                        <?php 
+                          foreach($batchdays as $batchdays){
+                         ?>
+                            <option value="<?php echo $batchdays->batchdays_id; ?>" <?php if($batchdays->batchdays_id == $data[0]->batch_days){ echo "selected";} ?>><?php echo $batchdays->batch_days; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="timeend" class="col-sm-2 control-label">Faculty</label>
+                    <div class="col-sm-10 control-label" style="text-align: left !important;">
+                      <select class="form-control select2 select2-hidden-accessible" required="" name="faculty" style="width: 100%;" >
+                        <option value="">Select Faculty</option>
+                        <?php 
+                          foreach($faculty as $faculty){
+                         ?>
+                            <option value="<?php echo $faculty->faculty_id; ?>" <?php if($faculty->faculty_id == $data[0]->teacher){ echo "selected";} ?>><?php echo $faculty->faculty_name; ?></option>
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div> 
+                  
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <a href="<?php echo base_url('Welcome/batchcode/view'); ?>" class="btn btn-default">Cancel</a>
+                <button type="reset" class="btn bg-red pull-right">Reset</button>
+                <button class="btn bg-black pull-right">UPDAte</button>
+              </div>
+              <!-- /.box-footer -->
+            <?php echo form_close(); ?>
+          </div>
+<?php 
+  }
+ ?>
 
 
 <?php 
-  function addBatchCode($class, $department, $faculty){
+  function addBatchCode($class, $department, $faculty, $days){
 ?>    
           <div class="box box-info">
             <div class="box-header with-border">
@@ -476,10 +494,11 @@
                     <div class="col-sm-10 control-label" style="text-align: left !important;">
                       <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="days" required="" >
                         <option value="">Select Class Days</option>
-                        <option>MWF</option>
-                        <option>TTS</option>
-                        <option>Mon to Fri</option>
-                        <option>Mon to Sat</option>
+                        <?php 
+                          foreach($days as $days){
+                         ?>
+                            <option value="<?php echo $days->batchdays_id; ?>"><?php echo $days->batch_days; ?></option>
+                        <?php } ?>
                       </select>
                     </div>
                   </div>
@@ -502,7 +521,7 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <a href="<?php echo base_url('Welcome/alltask/view'); ?>" class="btn btn-default">Cancel</a>
+                <a href="<?php echo base_url('Welcome/batchcode/view'); ?>" class="btn btn-default">Cancel</a>
                 <button type="reset" class="btn bg-red pull-right">Reset</button>
                 <button class="btn bg-black pull-right">Send</button>
               </div>
@@ -521,7 +540,7 @@
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
+                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
                     <div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -532,26 +551,26 @@
               <!-- /.box-header -->
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
-                  <tbody><tr>
-                    <th>ID</th>
-                    <th>Batch Code</th>
-                    <th>Batch Days</th>
-                    <th>Class</th>
-                    <th>Department</th>
-                    <th>Teacher</th>
-                    <th>Timings</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Batch Status</th>
-                    <th>Restore</th>
-                    <th>Delete</th>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Batch Code</th>
+                      <th>Batch Days</th>
+                      <th>Class</th>
+                      <th>Department</th>
+                      <th>Teacher</th>
+                      <th>Timings</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Batch Status</th>
+                      <th>Restore</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                   <?php
                   // print_r($data);
                    foreach($page_data as $data){ 
-                      // 24-hour time to 12-hour time 
-                      // $timestart  = date("g:i a", strtotime($data[$key]->start_time));
-                      // $timeend  = date("g:i a", strtotime($data[$key]->end_time));
                   ?>
 
                   <tr id="d-<?php echo $data->batch_id; ?>">

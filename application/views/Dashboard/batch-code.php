@@ -21,13 +21,14 @@
     <!-- Main content -->
     <section class="content">
       <?php if($page_status == 'view'){
-        showBatchCode($data, $class);
+        // print_r($department);
+        showBatchCode($data, $class, $department, $days, $teacher);
       } else if($page_status == 'viewTrash'){
         viewTrashBatchCode($page_status,$page_data);
-        // echo "<pre>";
-        // print_r($data);
       } else if($page_status == 'add') {
-        addBatchCode($class, $department, $faculty);
+        addBatchCode($class, $department, $faculty, $days);
+      } else if($page_status == 'edit'){
+        editBatch($id,$query,$class,$department,$faculty,$batchdays);
       }
       ?>
     </section>

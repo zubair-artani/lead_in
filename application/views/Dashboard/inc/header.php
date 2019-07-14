@@ -52,7 +52,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 </head>
-<body class="hold-transition skin-red sidebar-mini">
+<body onbeforeunload="return pageleave()" class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -97,7 +97,7 @@
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle btn-flat" data-toggle="dropdown">
               <i class="fa fa-comments"></i>
-              <span class="label bg-black">9</span>
+              <span class="label bg-black"><?php echo $this->session->userdata('count'); ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>

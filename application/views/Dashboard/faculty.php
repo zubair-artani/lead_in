@@ -80,5 +80,21 @@
   }
   
 </script>
+<script>
+        function VoucherSourcetoPrint(name,id) {
+            return "<html><head><script>function step1(){\n" +
+                    "setTimeout('step2()', 10);}\n" +
+                    "function step2(){window.print();window.close()}\n" +
+                    "</scri" + "pt></head><body onload='step1()'>\n" +
+                    "<div style='position: relative;text-align: center;color: white;'><img src='<?php echo base_url('Uploads/landscape.jpg'); ?>' /><div style='position: absolute;bottom: 570px;right: 27%;font-size:100px;color:black;'>12-8-2019</div><h4 style='position: absolute;bottom: 450px;left: 27%;font-size:100px;color:black;'>" + name + "</h4></div></body></html>";
+        }
+        function VoucherPrint(vname, vid) {
+            Pagelink = "about:blank";
+            var pwa = window.open(Pagelink, "_new");
+            pwa.document.open();
+            pwa.document.write(VoucherSourcetoPrint(vname, vid));
+            pwa.document.close();
+        }
+    </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php include('inc/header.php'); ?>
 <?php include('inc/sidebar.php'); ?>  
-<?php include('inc/functions.php'); ?>  
+<?php include('inc/functions/sms.php'); ?>  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -20,11 +20,15 @@
     </section>
     <!-- Main content -->
     <section class="content">
-      <?php if($page_status == 'view'){ ?>
-        <?php showtask(); ?>
-      <?php } else if($page_status == 'add'){ ?>
-        <?php addtask(); ?>
-      <?php } ?> 
+      <?php if($page_status == 'view'){
+        if($this->session->userdata('role') == 'admin'){
+          showtask($data,$user); 
+        } else {
+          showeditortask($data,$user);
+        }
+       } else if($page_status == 'add'){  
+        addtask($getUsers);
+       }  ?> 
     </section>
     <!-- /.content -->
   </div>

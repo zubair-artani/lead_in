@@ -29,7 +29,7 @@
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
+                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
                     <div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -40,7 +40,8 @@
               <!-- /.box-header -->
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
-                  <tbody><tr>
+                  <thead>
+                    <tr>
                     <th>ID</th>
                     <th>User</th>
                     <th>Time Starts</th>
@@ -48,6 +49,8 @@
                     <th>Position</th>
                     <th>Delete</th>
                   </tr>
+                  </thead>
+                  <tbody>
                   <?php foreach($data as $data){ ?>
                   <tr>
                     <td><?php echo $data->user_id ?></td>

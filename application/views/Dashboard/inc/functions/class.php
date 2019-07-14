@@ -22,7 +22,7 @@ function showclass($page_status, $page_data) {
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
+                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
                     <div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -34,13 +34,15 @@ function showclass($page_status, $page_data) {
               <!-- /.box-header -->
               <div class="box-body table-responsive padding">
                 <table class="table table-hover" >
-                  <tbody>
-                  <tr>
+                  <thead>
+                    <tr>
                     <th width="10%">ID</th>
                     <th width="60%">Class</th>
                     <th width="15%">Edit</th>
                     <th width="15%">Delete</th>
                   </tr>
+                  </thead>
+                  <tbody>
                   <?php 
                   foreach($page_data as $result) { 
                     ?>
@@ -71,7 +73,7 @@ function viewTrash($page_status, $page_data) {
               <div class="box-header">
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
+                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
                     <div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -84,13 +86,16 @@ function viewTrash($page_status, $page_data) {
                 <a href="<?php echo base_url('Welcome/classes/view'); ?>" class="btn bg-maroon btn-flat margin" >View All Classes </a>
                 
                 <table class="table table-hover" >
-                  <tbody>
-                  <tr>
+                  <thead>
+                    <tr>
                     <th width="15%">ID</th>
                     <th width="60%">Class</th>
                     <th width="25%">RESTORE</th>
                     <th width="15%">DELETE</th>
                   </tr>
+                  </thead>
+                  <tbody>
+                  
                   <?php 
                   foreach($page_data as $result) { 
                     ?>
