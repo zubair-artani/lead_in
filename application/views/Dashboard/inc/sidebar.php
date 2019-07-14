@@ -182,8 +182,8 @@
               </ul>
             </li>
         <?php } ?>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-edit"></i> <span>Backups</span></a>
+        <li>
+          <a href="<?php echo base_url('Welcome/backupdatabase/') ?>"><i class="fa fa-edit"></i> <span>Backups</span></a>
         </li>
         <li class="treeview">
           <!-- <a href="#"><i class="fa fa-edit"></i> <span>Parent Login</span></a> -->

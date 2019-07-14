@@ -1497,5 +1497,10 @@ class Welcome extends CI_Controller {
 				$this->load->view('dashboard/monthlyexpense', ['page_status' => 'view', 'page_data' => $query,'expense'=>$getexpense, 'exp_type' => $expensetypeArrData,'search_data'=>$data]);
 		}
 	}
+	function backupdatabase(){
+		if($this->load->view('dashboard/database-backup')){
+			redirect('Welcome/index');
+		}
 
+	}
 }
