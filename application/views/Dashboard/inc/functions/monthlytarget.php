@@ -1,5 +1,5 @@
 <?php 
-function showmonthlytarget($data, $class){
+function showmonthlytarget($data, $pagedata){
 ?>
     <div class="row">
       <div class="col-xs-12">
@@ -34,19 +34,19 @@ function showmonthlytarget($data, $class){
                   </thead>
                   <tbody>
                   <?php
-                   foreach($class as $key => $value){ 
+                   foreach($pagedata as $key => $value){ 
                       // 24-hour time to 12-hour time 
-                      $timestart  = date("g:i a", strtotime($class[$key]->m_target_date));
+                      $timestart  = date("g:i a", strtotime($pagedata[$key]->m_target_date));
                   ?>
 
-                  <tr id="d-<?php echo $class[$key]->m_target_id ?>">
-                    <td><?php echo $class[$key]->m_target_id; ?></td>
-                    <td><?php echo $class[$key]->m_target_date; ?></td>
-                    <td><?php echo $class[$key]->m_target; ?></td>
-                    <td><?php echo $class[$key]->m_status_complete; ?></td>
-                    <td><?php echo $class[$key]->m_remarks; ?></td>
-                    <td><a class="btn bg-blue btn-flat" href="<?php echo $class[$key]->m_target_id ?>">Edit</a></td>
-                    <td><a onclick="deleteMtarget(<?php echo $class[$key]->m_target_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
+                  <tr id="d-<?php echo $pagedata[$key]->m_target_id ?>">
+                    <td><?php echo $pagedata[$key]->m_target_id; ?></td>
+                    <td><?php echo $pagedata[$key]->m_target_date; ?></td>
+                    <td><?php echo $pagedata[$key]->m_target; ?></td>
+                    <td><?php echo $pagedata[$key]->m_status_complete; ?></td>
+                    <td><?php echo $pagedata[$key]->m_remarks; ?></td>
+                    <td><a class="btn bg-blue btn-flat" href="<?php echo $pagedata[$key]->m_target_id ?>">Edit</a></td>
+                    <td><a onclick="deleteMtarget(<?php echo $pagedata[$key]->m_target_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -137,7 +137,7 @@ function viewTrashtarget($data, $class){
               <div class="box-header">
                 <h3 class="box-title"><a href="<?php echo base_url('Welcome/monthlytarget/view') ?>" class="btn bg-red btn-flat">All Monthly Targets</a> </h3>
 
-                <div class="box-tools">
+                <!-- <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
@@ -145,7 +145,7 @@ function viewTrashtarget($data, $class){
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <!-- /.box-header -->
               <div class="box-body table-responsive no-padding">

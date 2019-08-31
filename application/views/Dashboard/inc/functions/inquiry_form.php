@@ -136,7 +136,7 @@
   }
   ?>
 <?php 
-function showInquiryForm($page_status,$page_data,$search_data) {
+function showInquiryForm($page_status,$page_data,$search_data, $class, $department, $inquiry_status,$source) {
 
  ?>
  <div class="row">
@@ -152,7 +152,7 @@ function showInquiryForm($page_status,$page_data,$search_data) {
                   </div>
                 </div>
                 <div class="col-xs-4">
-                  <a href="<?php echo base_url('Welcome/inquiry_form/add'); ?>" class="btn bg-red btn-flat margin" >Add New Inquiry Form</a>
+                  <a href="<?php echo base_url('Welcome/inquiry_form/add'); ?>" class="btn bg-black btn-flat margin" >Add New Inquiry Form</a>
                   <a href="<?php echo base_url('Welcome/inquiry_form/viewTrash'); ?>" class="btn bg-maroon btn-flat margin" >Trash <i class="fa fa-trash-o"></i></a>
                   <button id="searchbyme" class="btn bg-red btn-flat margin">Search By date </i></button>
                 </div>
@@ -208,41 +208,45 @@ function showInquiryForm($page_status,$page_data,$search_data) {
                   <?php if($search_data == '0'){
                     ?>
                         <tbody>
-                          <?php foreach($page_data as $result) { ?>
-                          <tr id="d-<?php echo $result->inquiry_id; ?>">
-                            <td><?php echo $result->inquiry_id; ?></td>
-                            <td><?php echo $result->student_name; ?></td>
-                            <td><?php echo $result->father_name; ?></td>
-                            <td><?php echo $result->mobile_no; ?></td>
-                            <td><?php echo $result->admission_fee; ?></td>
-                            <td><?php echo $result->monthly_fee; ?></td>
-                            <td><?php echo $result->source; ?></td>
-                            <td><?php echo $result->class; ?></td>
-                            <td><?php echo $result->inquiry_status; ?></td>
-                            <td><?php echo $result->department; ?></td>
-                            <td><a href="<?php echo base_url('Welcome/inquiry_form/'); echo $result->inquiry_id; ?>" class="btn bg-blue btn-flat">Edit / Call</a></td>
-                            <td><a onclick="delinquiryform(<?php echo $result->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
+                          <?php foreach($page_data as $key => $value) { ?>
+                            <?php if(!empty($department[$key]) && !empty($class[$key]) && !empty($source[$key]) && !empty($inquiry_status[$key])){ ?>
+                          <tr id="d-<?php echo $page_data[$key]->inquiry_id; ?>">
+                            <td><?php echo $page_data[$key]->inquiry_id; ?></td>
+                            <td><?php echo $page_data[$key]->student_name; ?></td>
+                            <td><?php echo $page_data[$key]->father_name; ?></td>
+                            <td><?php echo $page_data[$key]->mobile_no; ?></td>
+                            <td><?php echo $page_data[$key]->admission_fee; ?></td>
+                            <td><?php echo $page_data[$key]->monthly_fee; ?></td>
+                            <td><?php echo $source[$key][0]->source_name; ?></td>
+                            <td><?php echo $class[$key][0]->class_name; ?></td>
+                            <td><span class="btn" style="background-color:<?php echo $inquiry_status[$key][0]->inquiry_color; ?>; color: white;"> <?php echo $inquiry_status[$key][0]->inquiry_name; ?></span></td>
+                            <td><?php echo $department[$key][0]->department_name; ?></td>
+                            <td><a href="<?php echo base_url('Welcome/inquiry_form/'); echo $page_data[$key]->inquiry_id; ?>" class="btn bg-blue btn-flat">Edit / Call</a></td>
+                            <td><a onclick="delinquiryform(<?php echo $page_data[$key]->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
                           </tr>
+                          <?php } ?>
                           <?php } ?>
                         </tbody>
                   <?php }else { ?>
                         <tbody>
-                          <?php foreach($search_data as $result) { ?>
-                          <tr id="d-<?php echo $result->inquiry_id; ?>">
-                            <td><?php echo $result->inquiry_id; ?></td>
-                            <td><?php echo $result->student_name; ?></td>
-                            <td><?php echo $result->father_name; ?></td>
-                            <td><?php echo $result->mobile_no; ?></td>
-                            <td><?php echo $result->admission_fee; ?></td>
-                            <td><?php echo $result->monthly_fee; ?></td>
-                            <td><?php echo $result->source; ?></td>
-                            <td><?php echo $result->class; ?></td>
-                            <td><?php echo $result->inquiry_status; ?></td>
-                            <td><?php echo $result->department; ?></td>
-                            <td><a href="<?php echo base_url('Welcome/inquiry_form/'); echo $result->inquiry_id; ?>" class="btn bg-blue btn-flat">Edit / Call</a></td>
-                            <td><a onclick="delinquiryform(<?php echo $result->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
+                          <?php foreach($search_data as $key => $value) { ?>
+                            <?php if(!empty($department[$key]) && !empty($class[$key]) && !empty($source[$key]) && !empty($inquiry_status[$key])){ ?>
+                          <tr id="d-<?php echo $search_data[$key]->inquiry_id; ?>">
+                            <td><?php echo $search_data[$key]->inquiry_id; ?></td>
+                            <td><?php echo $search_data[$key]->student_name; ?></td>
+                            <td><?php echo $search_data[$key]->father_name; ?></td>
+                            <td><?php echo $search_data[$key]->mobile_no; ?></td>
+                            <td><?php echo $search_data[$key]->admission_fee; ?></td>
+                            <td><?php echo $search_data[$key]->monthly_fee; ?></td>
+                            <td><?php echo $source[$key][0]->source_name; ?></td>
+                            <td><?php echo $class[$key][0]->class_name; ?></td>
+                            <td><?php echo $inquiry_status[$key][0]->inquiry_name; ?></td>
+                            <td><?php echo $department[$key][0]->department_name; ?></td>
+                            <td><a href="<?php echo base_url('Welcome/inquiry_form/'); echo $search_data[$key]->inquiry_id; ?>" class="btn bg-blue btn-flat">Edit / Call</a></td>
+                            <td><a onclick="delinquiryform(<?php echo $search_data[$key]->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
                           </tr>
                           <?php } ?>
+                        <?php } ?>
                         </tbody>
                   <?php } ?>
                   
@@ -257,19 +261,14 @@ function showInquiryForm($page_status,$page_data,$search_data) {
 ?>
 
 <?php 
-function showTrashInquiryForm($page_status,$page_data) {
+function showTrashInquiryForm($page_status,$page_data, $class, $department, $inquiry_status) {
  ?>
  <div class="row">
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
                 <div class="box-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
-                    <div class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                  </div>
+                  
                 </div>
                 <a href="<?php echo base_url('Welcome/inquiry_form/view'); ?>" class="btn bg-red btn-flat margin" >View All Inquiry Form </a>
               </div>
@@ -284,7 +283,6 @@ function showTrashInquiryForm($page_status,$page_data) {
                     <th >Mobile No</th>
                     <th >Admission Fee</th>
                     <th >Monthly Fee</th>
-                    <th >Source</th>
                     <th >Class</th>
                     <th >Inquiry_Status</th>
                     <th >Department</th>
@@ -293,20 +291,19 @@ function showTrashInquiryForm($page_status,$page_data) {
                   </tr>
                   </thead>
                   <tbody>
-                  <?php foreach($page_data as $result) { ?>
-                  <tr id="d-<?php echo $result->inquiry_id; ?>">
-                    <td><?php echo $result->inquiry_id; ?></td>
-                    <td><?php echo $result->student_name; ?></td>
-                    <td><?php echo $result->father_name; ?></td>
-                    <td><?php echo $result->mobile_no; ?></td>
-                    <td><?php echo $result->admission_fee; ?></td>
-                    <td><?php echo $result->monthly_fee; ?></td>
-                    <td><?php echo $result->source; ?></td>
-                    <td><?php echo $result->class; ?></td>
-                    <td><?php echo $result->inquiry_status; ?></td>
-                    <td><?php echo $result->department; ?></td>
-                    <td><a onclick="resoreInquiryForm(<?php echo $result->inquiry_id; ?>)" class="btn bg-green btn-flat">Restore</a></td>
-                    <td><a onclick="removeinquiryform(<?php echo $result->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
+                  <?php foreach($page_data as $key => $value) { ?>
+                  <tr id="d-<?php echo $page_data[$key]->inquiry_id; ?>">
+                    <td><?php echo $page_data[$key]->inquiry_id; ?></td>
+                    <td><?php echo $page_data[$key]->student_name; ?></td>
+                    <td><?php echo $page_data[$key]->father_name; ?></td>
+                    <td><?php echo $page_data[$key]->mobile_no; ?></td>
+                    <td><?php echo $page_data[$key]->admission_fee; ?></td>
+                    <td><?php echo $page_data[$key]->monthly_fee; ?></td>
+                    <td><?php echo $class[$key][0]->class_name; ?></td>
+                    <td><?php echo $inquiry_status[$key][0]->inquiry_name; ?></td>
+                    <td><?php echo $department[$key][0]->department_name; ?></td>
+                    <td><a onclick="resoreInquiryForm(<?php echo $page_data[$key]->inquiry_id; ?>)" class="btn bg-green btn-flat">Restore</a></td>
+                    <td><a onclick="removeinquiryform(<?php echo $page_data[$key]->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -337,7 +334,7 @@ function showTrashInquiryForm($page_status,$page_data) {
                       <?php 
                         $timestart  = date("m/d/Y", strtotime($data[0]->date));
                        ?>
-                      <input type="text"  disabled="" class="form-control pull-right pad-left" autocomplete="off" id="datepicker" required=""  value="<?php echo $timestart; ?>" name="date">
+                      <input type="text"  readonly="" class="form-control pull-right pad-left" autocomplete="off"  required=""  value="<?php echo $timestart; ?>" name="date">
                     </div>
                     <!-- /.input group -->
                   </div>
@@ -347,27 +344,27 @@ function showTrashInquiryForm($page_status,$page_data) {
                       <div class="input-group-addon">
                         <i class="fa fa-calendar icon1"></i>
                       </div>
-                      <input type="text"  disabled="" class="form-control pull-right pad-left" autocomplete="off" id="datepicker1" required="" value="<?php echo date('m/d/Y'); ?>" name="call_date">
+                      <input type="text"  readonly="" class="form-control pull-right pad-left" autocomplete="off" required="" value="<?php echo date('m/d/Y'); ?>" name="call_date">
                     </div>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group">
                       <label for="" class="col-sm-3 control-label">Student Name:</label>
                       <div class="col-sm-9">
-                        <input type="text" disabled="" class="form-control" value="<?php echo $data[0]->student_name; ?>" name="student_name" id="" readonly="" required="">
+                        <input type="text" readonly="" class="form-control" value="<?php echo $data[0]->student_name; ?>" name="student_name" id="" readonly="" required="">
                       </div>
                   </div>
                 <div class="form-group">
                   <label for="" class="col-sm-3 control-label">Father Name:</label>
                   <div class="col-sm-9">
-                    <input type="text" disabled="" class="form-control" value="<?php echo $data[0]->father_name; ?>" required="" name="father_name">
+                    <input type="text" readonly="" class="form-control" value="<?php echo $data[0]->father_name; ?>" required="" name="father_name">
                     <input type="hidden" value="<?php echo $data[0]->inquiry_id; ?>" name="inquiry_id">
                   </div>
                 </div>
                 <div class="form-group">
                       <label for="timeend" class="col-sm-3 control-label">Admission Fee:</label>
                       <div class="col-sm-9">
-                        <input type="number" disabled="" class="form-control" value="<?php echo $data[0]->admission_fee; ?>" name="admission_fee" id="" required="">
+                        <input type="number" readonly="" class="form-control" value="<?php echo $data[0]->admission_fee; ?>" name="admission_fee" id="" required="">
                       </div>
                       <!-- /.input group -->
                     <!-- /.form group -->
@@ -375,7 +372,7 @@ function showTrashInquiryForm($page_status,$page_data) {
                   <div class="form-group">
                       <label for="timeend" class="col-sm-3 control-label">Monthly Fee:</label>
                       <div class="col-sm-9">
-                        <input type="number" class="form-control" value="<?php echo $data[0]->monthly_fee; ?>" name="monthly_fee"  disabled="" id="" required="">
+                        <input type="number" class="form-control" value="<?php echo $data[0]->monthly_fee; ?>" name="monthly_fee"  readonly="" id="" required="">
                       </div>
                       <!-- /.input group -->
                     <!-- /.form group -->
@@ -385,7 +382,7 @@ function showTrashInquiryForm($page_status,$page_data) {
                   <div class="form-group">
                       <label for="timeend" class="col-sm-3 control-label">Mobile Number:</label>
                       <div class="col-sm-9">
-                        <input type="number"  disabled="" class="form-control" value="<?php echo $data[0]->mobile_no; ?>" name="mobile_no" id="" required="">
+                        <input type="number"  readonly="" class="form-control" value="<?php echo $data[0]->mobile_no; ?>" name="mobile_no" id="" required="">
                       </div>
                       <!-- /.input group -->
                     <!-- /.form group -->
@@ -429,7 +426,7 @@ function showTrashInquiryForm($page_status,$page_data) {
                   <div class="form-group">
                     <label for="timeend" class="col-sm-3 control-label">Department:</label>
                     <div class="col-sm-9 control-label" style="text-align: left !important;">
-                      <select name="department"  disabled="" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="">
+                      <select name="department" disabled="" class="form-control select2 select2-hidden-accessible" style="width: 100%;" id="">
                           <option value="">Select Department</option>
                           <?php 
                             foreach($department as $exp_type){ ?>

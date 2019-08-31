@@ -14,17 +14,24 @@
          <?php } ?>
         <!-- <small>Dashboard Controllers</small> -->
       </h1>
+
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('Welcome/index'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Add New Register</li>
       </ol>
+      
+      <br>
     </section>
     <!-- Main content -->
     <section class="content">
       <?php if($page_status == 'view'){
         showRegistration($data, $currentedu,$search_data);
       } else if($page_status == 'viewTrash'){
-        viewTrashRegistration($data,$currentedu);
+        if($data == 0 || $currentedu == 0){
+          echo "No Record Found";
+        } else {
+          viewTrashRegistration($data,$currentedu);
+        }
         // echo "<pre>";
         // print_r($data);
       } else if($page_status == 'add') {

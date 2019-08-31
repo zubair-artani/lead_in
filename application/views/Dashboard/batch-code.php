@@ -15,7 +15,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('Welcome/index'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">All Batches</li>
+        <li class="active">Batch</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -24,12 +24,12 @@
         // print_r($department);
         showBatchCode($data, $class, $department, $days, $teacher);
       } else if($page_status == 'viewTrash'){
-        viewTrashBatchCode($page_status,$page_data);
+        viewTrashBatchCode($page_status,$page_data, $class, $department, $days, $teacher);
       } else if($page_status == 'add') {
         addBatchCode($class, $department, $faculty, $days);
       } else if($page_status == 'edit'){
         editBatch($id,$query,$class,$department,$faculty,$batchdays);
-      }
+      } 
       ?>
     </section>
     <!-- /.content -->

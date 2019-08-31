@@ -170,7 +170,7 @@ body .container .well-danger,
 body .container-fluid .well-danger,
 body .container .jumbotron-danger,
 body .container-fluid .jumbotron-danger {
-  background-color: #f44336;
+  background-color: red;
 }
 .btn,
 .input-group-btn .btn {
@@ -229,7 +229,7 @@ body .container-fluid .jumbotron-danger {
 }
 .btn:not(.btn-raised).btn-danger,
 .input-group-btn .btn:not(.btn-raised).btn-danger {
-  color: #f44336;
+  color: red;
 }
 .btn:not(.btn-raised):not(.btn-link):hover,
 .input-group-btn .btn:not(.btn-raised):not(.btn-link):hover,
@@ -309,7 +309,7 @@ body .container-fluid .jumbotron-danger {
 .input-group-btn .btn.btn-fab.btn-danger,
 .btn-group-raised .btn.btn-danger,
 .btn-group-raised .input-group-btn .btn.btn-danger {
-  background-color: #f44336;
+  background-color: red;
   color: rgba(255,255,255, 0.84);
 }
 .btn.btn-raised:not(.btn-link),
@@ -796,7 +796,7 @@ fieldset[disabled][disabled] .btn-group-vertical.btn-group-raised:focus:not(:act
 }
 .btn-group.open > .dropdown-toggle.btn.btn-danger,
 .btn-group-vertical.open > .dropdown-toggle.btn.btn-danger {
-  background-color: #f44336;
+  background-color: red;
 }
 .btn-group .dropdown-menu,
 .btn-group-vertical .dropdown-menu {
@@ -1678,7 +1678,7 @@ output {
   background-color: #ff5722;
 }
 .label.label-danger {
-  background-color: #f44336;
+  background-color: red;
 }
 .form-control,
 .form-group .form-control {
@@ -1800,14 +1800,14 @@ fieldset[disabled] .form-group .form-control {
           box-shadow: none;
 }
 .form-group.has-error.is-focused .form-control {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f44336), to(#f44336)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
-  background-image: -webkit-linear-gradient(#f44336, #f44336), -webkit-linear-gradient(#D2D2D2, #D2D2D2);
-  background-image: -o-linear-gradient(#f44336, #f44336), -o-linear-gradient(#D2D2D2, #D2D2D2);
-  background-image: linear-gradient(#f44336, #f44336), linear-gradient(#D2D2D2, #D2D2D2);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(red), to(red)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
+  background-image: -webkit-linear-gradient(red, red), -webkit-linear-gradient(#D2D2D2, #D2D2D2);
+  background-image: -o-linear-gradient(red, red), -o-linear-gradient(#D2D2D2, #D2D2D2);
+  background-image: linear-gradient(red, red), linear-gradient(#D2D2D2, #D2D2D2);
 }
 .form-group.has-error label.control-label,
 .form-group.has-error .help-block {
-  color: #f44336;
+  color: red;
 }
 .form-group.has-success .form-control {
   -webkit-box-shadow: none;
@@ -2660,7 +2660,7 @@ fieldset[disabled] .navbar .btn-link:focus {
   color: rgba(255,255,255, 0.84);
 }
 .navbar.navbar-danger {
-  background-color: #f44336;
+  background-color: red;
   color: rgba(255,255,255, 0.84);
 }
 .navbar.navbar-danger .navbar-form .form-group input.form-control::-moz-placeholder,
@@ -2689,11 +2689,11 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 .navbar.navbar-danger .dropdown-menu li > a:hover,
 .navbar.navbar-danger .dropdown-menu li > a:focus {
-  color: #f44336;
+  color: red;
   background-color: #eeeeee;
 }
 .navbar.navbar-danger .dropdown-menu .active > a {
-  background-color: #f44336;
+  background-color: red;
   color: rgba(255,255,255, 0.84);
 }
 .navbar.navbar-danger .dropdown-menu .active > a:hover,
@@ -2788,7 +2788,7 @@ fieldset[disabled] .navbar .btn-link:focus {
   color: rgba(255,255,255, 0.84);
 }
 .alert.alert-danger {
-  background-color: #f44336;
+  background-color: red;
   color: rgba(255,255,255, 0.84);
 }
 .alert.alert-danger a,
@@ -2836,7 +2836,7 @@ fieldset[disabled] .navbar .btn-link:focus {
   background-color: #ff5722;
 }
 .progress .progress-bar.progress-bar-danger {
-  background-color: #f44336;
+  background-color: red;
 }
 .text-warning {
   color: #ff5722;
@@ -2845,7 +2845,7 @@ fieldset[disabled] .navbar .btn-link:focus {
   color: #009688;
 }
 .text-danger {
-  color: #f44336;
+  color: red;
 }
 .text-success {
   color: #4caf50;
@@ -3027,7 +3027,7 @@ fieldset[disabled] .navbar .btn-link:focus {
   background-color: #ff5722;
 }
 .panel.panel-danger > .panel-heading {
-  background-color: #f44336;
+  background-color: red;
 }
 [class*="panel-"] > .panel-heading {
   color: rgba(255,255,255, 0.84);
@@ -3252,7 +3252,7 @@ hr.on-light {
   background-color: #ff5722;
 }
 .slider.slider-danger.noUi-connect {
-  background-color: #f44336;
+  background-color: red;
 }
 .slider .noUi-connect,
 .slider.slider-default .noUi-connect {
@@ -3274,7 +3274,7 @@ hr.on-light {
   background-color: #ff5722;
 }
 .slider.slider-danger .noUi-connect {
-  background-color: #f44336;
+  background-color: red;
 }
 .slider .noUi-handle,
 .slider.slider-default .noUi-handle {
@@ -3296,7 +3296,7 @@ hr.on-light {
   background-color: #ff5722;
 }
 .slider.slider-danger .noUi-handle {
-  background-color: #f44336;
+  background-color: red;
 }
 .slider .noUi-handle,
 .slider.slider-default .noUi-handle {
@@ -3318,7 +3318,7 @@ hr.on-light {
   border-color: #ff5722;
 }
 .slider.slider-danger .noUi-handle {
-  border-color: #f44336;
+  border-color: red;
 }
 .selectize-control.single,
 .selectize-control.multi {

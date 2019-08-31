@@ -22,9 +22,9 @@
     <!-- Main content -->
     <section class="content">
       <?php if($page_status == 'view'){
-        showInquiryForm($page_status, $data,$search_data);
+        showInquiryForm($page_status, $data,$search_data, $class, $department, $inquiry_status,$source);
       } else if($page_status == 'viewTrash'){
-        showTrashInquiryForm($page_status,$page_data);
+        showTrashInquiryForm($page_status,$page_data, $class, $department, $inquiry_status);
       } else if($page_status == 'add') {
         addInquiryForm($class, $department, $faculty,$inquiry_status,$source);
       } else if($page_status == 'edit') {

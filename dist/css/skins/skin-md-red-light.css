@@ -42,7 +42,7 @@ Then, run this script to get the list.
 /* ANIMATION */
 /* SHADOWS */
 .skin-red-light .main-header .navbar {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .main-header .navbar .nav > li > a {
   color: #fff;
@@ -82,7 +82,7 @@ Then, run this script to get the list.
   }
 }
 .skin-red-light .main-header .logo {
-  background-color: #f44336;
+  background-color: red;
   color: #fff;
   border-bottom: 0 solid transparent;
 }
@@ -90,7 +90,7 @@ Then, run this script to get the list.
   background-color: #f43e31;
 }
 .skin-red-light .main-header li.user-header {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .content-header {
   background: transparent;
@@ -126,7 +126,7 @@ Then, run this script to get the list.
   background: #f4f4f5;
 }
 .skin-red-light .sidebar-menu > li.active {
-  border-left-color: #f44336;
+  border-left-color: red;
 }
 .skin-red-light .sidebar-menu > li.active > a {
   font-weight: 600;
@@ -195,7 +195,7 @@ Then, run this script to get the list.
 .skin-red-light .sidebar-menu > li:hover > a,
 .skin-red-light .sidebar-menu > li.active > a {
   color: #FFF;
-  background: #f44336;
+  background: red;
 }
 .skin-red-light .user-panel > .info {
   color: #fff;
@@ -215,37 +215,37 @@ Then, run this script to get the list.
 .skin-red-light a,
 .skin-red-light a:hover,
 .skin-red-light a:focus {
-  color: #f44336;
+  color: red;
 }
 .skin-red-light .togglebutton label input[type=checkbox]:checked + .toggle {
   background-color: rgba(244, 67, 54, 0.5);
 }
 .skin-red-light .togglebutton label input[type=checkbox]:checked + .toggle:after {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .togglebutton label input[type=checkbox]:checked + .toggle:active:after {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(244, 67, 54, 0.1);
 }
 .skin-red-light .dropdown-menu li a:hover {
-  color: #f44336;
+  color: red;
 }
 .skin-red-light .form-control,
 .skin-red-light .form-group .form-control {
-  background-image: linear-gradient(#f44336, #f44336), linear-gradient(#D2D2D2, #D2D2D2);
+  background-image: linear-gradient(red, red), linear-gradient(#D2D2D2, #D2D2D2);
 }
 .skin-red-light .form-group.is-focused .form-control {
-  background-image: linear-gradient(#f44336, #f44336), linear-gradient(#D2D2D2, #D2D2D2);
+  background-image: linear-gradient(red, red), linear-gradient(#D2D2D2, #D2D2D2);
 }
 .skin-red-light .form-group.is-focused .form-control .material-input:after {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .form-group.is-focused label,
 .skin-red-light .form-group.is-focused label.control-label {
-  color: #f44336;
+  color: red;
 }
 .skin-red-light .progress .progress-bar,
 .skin-red-light .progress .progress-bar.progress-bar-default {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .progress .progress-bar.progress-bar-inverse {
   background-color: #3f51b5;
@@ -263,17 +263,17 @@ Then, run this script to get the list.
   background-color: #ff5722;
 }
 .skin-red-light .progress .progress-bar.progress-bar-danger {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .nav-tabs {
-  background: #f44336;
+  background: red;
 }
 .skin-red-light .text-primary {
-  color: #f44336;
+  color: red;
 }
 .skin-red-light .slider.noUi-connect,
 .skin-red-light .slider.slider-default.noUi-connect {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .slider.slider-inverse.noUi-connect {
   background-color: #3f51b5;
@@ -291,11 +291,11 @@ Then, run this script to get the list.
   background-color: #ff5722;
 }
 .skin-red-light .slider.slider-danger.noUi-connect {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .slider .noUi-connect,
 .skin-red-light .slider.slider-default .noUi-connect {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .slider.slider-inverse .noUi-connect {
   background-color: #3f51b5;
@@ -313,11 +313,11 @@ Then, run this script to get the list.
   background-color: #ff5722;
 }
 .skin-red-light .slider.slider-danger .noUi-connect {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .slider .noUi-handle,
 .skin-red-light .slider.slider-default .noUi-handle {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .slider.slider-inverse .noUi-handle {
   background-color: #3f51b5;
@@ -335,11 +335,11 @@ Then, run this script to get the list.
   background-color: #ff5722;
 }
 .skin-red-light .slider.slider-danger .noUi-handle {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-red-light .slider .noUi-handle,
 .skin-red-light .slider.slider-default .noUi-handle {
-  border-color: #f44336;
+  border-color: red;
 }
 .skin-red-light .slider.slider-inverse .noUi-handle {
   border-color: #3f51b5;
@@ -357,19 +357,19 @@ Then, run this script to get the list.
   border-color: #ff5722;
 }
 .skin-red-light .slider.slider-danger .noUi-handle {
-  border-color: #f44336;
+  border-color: red;
 }
 .skin-red-light .checkbox input[type=checkbox]:checked + .checkbox-material .check,
 .skin-red-light label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check {
-  color: #f44336;
-  border-color: #f44336;
+  color: red;
+  border-color: red;
 }
 .skin-red-light .checkbox input[type=checkbox]:checked + .checkbox-material .check:before,
 .skin-red-light label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check:before {
-  color: #f44336;
+  color: red;
 }
 .skin-red-light .radio .check,
 .skin-red-light label.radio-inline .check {
-  background-color: #f44336;
+  background-color: red;
 }
 /*# sourceMappingURL=./skin-md-red-light.css.map */

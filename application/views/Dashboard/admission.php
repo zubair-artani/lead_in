@@ -22,17 +22,23 @@
     <!-- Main content -->
     <section class="content">
       <?php if($page_status == 'view'){
-        showAdmission($page_data,$stu_data,$search_data);
+          showAdmission($page_data,$stu_data,$search_data);
       } else if($page_status == 'viewTrash'){
-        viewTrashAdmission($page_data,$data);
+        if($page_data == 0 || $data == 0){
+          echo "No Record Found";
+        } else {
+          viewTrashAdmission($page_data,$data);
+        }
         // echo "<pre>";
         // print_r($data);
       } else if($page_status == 'add') {
         $role = $this->session->userdata('role');
-        addAdmissionForm($role, $registrationData, $faculty, $department, $class);
+        addAdmissionForm($role, $registrationData, $faculty, $department, $class,$batch_code, $getClassArrData, $getDepartmentArrData, $getDaysArrData, $getTeacherArrData);
       } else if($page_status == 'edit') {
         $role = $this->session->userdata('role');
         EditAdmission($role,$query, $faculty, $department, $class);
+      } else if($page_status == 'view_student') {
+        viewStudent($data,$stdata,$search_data);
       }
       ?>
     </section>

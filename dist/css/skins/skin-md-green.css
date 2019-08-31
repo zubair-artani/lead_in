@@ -245,7 +245,7 @@ Then, run this script to get the list.
   background-color: #ff5722;
 }
 .skin-green .progress .progress-bar.progress-bar-danger {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-green .nav-tabs {
   background: #1ab394;
@@ -273,7 +273,7 @@ Then, run this script to get the list.
   background-color: #ff5722;
 }
 .skin-green .slider.slider-danger.noUi-connect {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-green .slider .noUi-connect,
 .skin-green .slider.slider-default .noUi-connect {
@@ -295,7 +295,7 @@ Then, run this script to get the list.
   background-color: #ff5722;
 }
 .skin-green .slider.slider-danger .noUi-connect {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-green .slider .noUi-handle,
 .skin-green .slider.slider-default .noUi-handle {
@@ -317,7 +317,7 @@ Then, run this script to get the list.
   background-color: #ff5722;
 }
 .skin-green .slider.slider-danger .noUi-handle {
-  background-color: #f44336;
+  background-color: red;
 }
 .skin-green .slider .noUi-handle,
 .skin-green .slider.slider-default .noUi-handle {
@@ -339,7 +339,7 @@ Then, run this script to get the list.
   border-color: #ff5722;
 }
 .skin-green .slider.slider-danger .noUi-handle {
-  border-color: #f44336;
+  border-color: red;
 }
 .skin-green .checkbox input[type=checkbox]:checked + .checkbox-material .check,
 .skin-green label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check {

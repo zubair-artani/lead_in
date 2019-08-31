@@ -37,7 +37,7 @@ function showreligion($page_status,$page_data) {
                   <thead>
                     <tr>
                     <th width="10%">ID</th>
-                    <th width="30%">religion</th>
+                    <th width="30%">Religion</th>
                     <th width="15%">Edit</th>
                     <th width="10%">Delete</th>
                   </tr>
@@ -71,7 +71,7 @@ function viewreligion($page_status,$page_data) {
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-                <div class="box-tools">
+                <!-- <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
@@ -79,8 +79,8 @@ function viewreligion($page_status,$page_data) {
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                   </div>
-                </div>
-                <a href="<?php echo base_url('Welcome/religion/view'); ?>" class="btn bg-maroon btn-flat margin" >View All Batch Days</a>
+                </div> -->
+                <a href="<?php echo base_url('Welcome/religion/view'); ?>" class="btn bg-maroon btn-flat margin" >View All Religions</a>
               </div>
               <!-- /.box-header -->
               <div class="box-body table-responsive padding">
@@ -88,7 +88,7 @@ function viewreligion($page_status,$page_data) {
                   <thead>
                     <tr>
                     <th width="15%">ID</th>
-                    <th width="30%">BATCH DAYS</th>
+                    <th width="30%">RELIGION</th>
                     <th width="10%">RESTORE</th>
                     <th width="10%">DELETE</th>
                   </tr>

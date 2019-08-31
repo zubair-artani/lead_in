@@ -7,17 +7,17 @@
     <section class="content-header">
       <h1>
         <?php if($page_status == 'view'){ ?>
-          All Batch Days
+          All Inquiry Status
         <?php } elseif($page_status == 'viewTrash'){ ?>
            View Trashes
          <?php } elseif($page_status == 'edit'){ ?>
-           Edit Batch Days
+           Edit Inquiry Status
          <?php } ?>
         <!-- <small>Dashboard Controllers</small> -->
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('Welcome/index'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">All Batch Days</li>
+        <li class="active">Inquiry Status</li>
       </ol>
     </section>
     <!-- Main content -->

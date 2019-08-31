@@ -15,21 +15,29 @@
                         <i class="fa fa-calendar icon1"></i>
                       </div>
 
-                      <input type="text" class="form-control pull-right pad-left" autocomplete="off" readonly="" required=""  name="r_student_currentdate" <?php 
+                      <input type="text" class="form-control pull-right pad-left onlydate" autocomplete="off" required=""  name="r_student_currentdate" <?php 
                           $x = $role == 'admin';
                           echo $x ? 'id="datepicker"' : 'id="currentdate"';
                        ?>>
                        <script> 
-                        var d = new Date();
-                        var month = d.getMonth() + 1;
-                        var date = d.getDate();
+                      var x = document.getElementsByClassName('onlydate')[0];
+                      var d = new Date();
+                      var month = d.getMonth() + 1;
+                      if(month > 12){
+                          month = "0" + 1;
+                        }
+                      var date = d.getDate();
                         if(month < 10){
                           month = "0" + month;
                         }
                         if(date < 10){
                           date = "0" + date;
                         }
-                        document.getElementById("currentdate").value = month + "/" + date + "/" + d.getFullYear();
+                        if(x.getAttribute('id') == 'currentdate'){
+                          document.getElementById("currentdate").value = month + "/" + date + "/" + d.getFullYear();
+                        } else {
+                          document.getElementById("datepicker").value = month + "/" + date + "/" + d.getFullYear();
+                        }
                        </script>
                     </div>
                     <!-- /.input group -->
@@ -217,6 +225,7 @@
   }
 
   function showRegistration($data, $currentedu,$search_data){
+    // print_r($search_data);
 ?>
     <div class="row">
       <div class="col-xs-12">
@@ -225,7 +234,7 @@
                 <div class="col-xs-4">
                 <h3 class="box-title">
                   <a href="<?php echo base_url('Welcome/registration/add') ?>" class="btn bg-black btn-flat">New Registration</a> 
-                  <a href="<?php echo base_url('Welcome/registration/viewTrash') ?>" class="btn bg-red btn-flat">Trash  <i class="fa fa-trash-o"></i></a>
+                  <a href="<?php echo base_url('Welcome/registration/viewTrash') ?>" class="btn bg-maroon btn-flat">Trash  <i class="fa fa-trash-o"></i></a>
                   <button id="searchbyme" class="btn bg-red btn-flat margin">Search By date </i></button>
                 </h3>
               </div>
@@ -311,17 +320,17 @@
                   <tbody>
                   <?php
                    foreach($search_data as $key => $value){
-                    $id = $data[$key]->r_student_id; 
+                    $id = $search_data[$key]->r_student_id; 
                       if(!empty($currentedu[$key])){
                   ?>
                   <tr id="d-<?php echo $id ?>">
                     <td><?php echo $id ?></td>
-                    <td><?php echo $data[$key]->r_student_currentdate ?></td>
-                    <td><?php echo $data[$key]->r_student_name ?></td>
-                    <td><?php echo $data[$key]->r_student_mobileno ?></td>
-                    <td><?php echo $data[$key]->r_student_fatherno ?></td>
-                    <td><?php echo $data[$key]->r_student_whatsappno ?></td>
-                    <td><img src="<?php echo $data[$key]->r_student_image ?>" width="100px" height="100px"></td>
+                    <td><?php echo $search_data[$key]->r_student_currentdate ?></td>
+                    <td><?php echo $search_data[$key]->r_student_name ?></td>
+                    <td><?php echo $search_data[$key]->r_student_mobileno ?></td>
+                    <td><?php echo $search_data[$key]->r_student_fatherno ?></td>
+                    <td><?php echo $search_data[$key]->r_student_whatsappno ?></td>
+                    <td><img src="<?php echo $search_data[$key]->r_student_image ?>" width="100px" height="100px"></td>
         <td><a class="btn bg-green btn-flat" href="<?php echo base_url("Welcome/viewRegistrationProfile/$id") ?>">View Profile</a></td>
                     <td><a class="btn bg-blue btn-flat" href="<?php echo $id ?>">Edit</a></td>
                     <td><a onclick="deleteregistration(<?php echo $id ?>)" class="btn bg-red btn-flat">Delete</a></td>
@@ -390,7 +399,7 @@
                                 
                 <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
 
-                <p class="text-muted"><?php echo $details[0]->r_student_address; ?></p>
+                <p class="text-muted" style="overflow-wrap: break-word; "><?php echo $details[0]->r_student_address; ?></p>
 
                 <hr>
 
@@ -451,6 +460,9 @@
                        <!-- <script> 
                         var d = new Date();
                         var month = d.getMonth() + 1;
+                        if(month > 12){
+                          month = "0" + 1;
+                        }
                         var date = d.getDate();
                         if(month < 10){
                           month = "0" + month;

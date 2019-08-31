@@ -6,7 +6,7 @@ function showsalary($data, $class){
     <div class="box">
 
               <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo base_url('Welcome/salary/add') ?>" class="btn bg-red btn-flat">Add New Salary</a> <a href="<?php echo base_url('Welcome/salary/viewTrash') ?>" class="btn bg-maroon btn-flat">Trash <i class="fa fa-trash"></i></a></h3>
+                <h3 class="box-title"><a href="<?php echo base_url('Welcome/salary/add') ?>" class="btn bg-black btn-flat">Add New Salary</a> <a href="<?php echo base_url('Welcome/salary/viewTrash') ?>" class="btn bg-maroon btn-flat">Trash <i class="fa fa-trash"></i></a></h3>
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -157,7 +157,7 @@ function viewTrashtarget($data, $class){
               <div class="box-header">
                 <h3 class="box-title"><a href="<?php echo base_url('Welcome/salary/view') ?>" class="btn bg-red btn-flat">View All Salary</a> </h3>
 
-                <div class="box-tools">
+                <!-- <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
@@ -165,7 +165,7 @@ function viewTrashtarget($data, $class){
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <!-- /.box-header -->
               <div class="box-body table-responsive no-padding">

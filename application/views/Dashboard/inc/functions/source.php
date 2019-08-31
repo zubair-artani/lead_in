@@ -71,7 +71,7 @@ function viewsource($page_status,$page_data) {
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-                <div class="box-tools">
+                <!-- <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
 
@@ -79,7 +79,7 @@ function viewsource($page_status,$page_data) {
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <a href="<?php echo base_url('Welcome/source/view'); ?>" class="btn bg-maroon btn-flat margin" >View All Batch Days</a>
               </div>
               <!-- /.box-header -->

@@ -68,7 +68,7 @@ function viewTrash($page_status, $page_data) {
 <div class="row">
       <div class="col-xs-12">
     <div class="box">
-              <div class="box-header">
+              <!-- <div class="box-header">
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <div class="form-group is-empty"><input type="text" name="table_search" class="form-control pull-right" placeholder="Search"></div>
@@ -78,7 +78,7 @@ function viewTrash($page_status, $page_data) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- /.box-header -->
               <div class="box-body table-responsive padding">
                 <a href="<?php echo base_url('Welcome/expense/view'); ?>" class="btn bg-maroon btn-flat margin" >View All expense </a>

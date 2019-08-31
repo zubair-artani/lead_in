@@ -28,7 +28,7 @@
       	              <i class="fa fa-envelope bg-blue"></i>
                             <?php 
                             // print_r($getdata);
-                              $time  = date("H:i", strtotime($getdata[$key]->time));
+                              $time  = $getdata[$key]->time;
                             ?>
       	              <div class="timeline-item">
       	                <span class="time"><i class="fa fa-clock-o"></i> <?php echo $time; ?></span>

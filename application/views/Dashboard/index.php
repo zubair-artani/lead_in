@@ -13,7 +13,6 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
@@ -21,19 +20,30 @@
         <div class="col-lg-12 col-sm-6 col-xs-12" align="center">
           <!-- small box -->
           <div class="bg-white" style="background: white;padding:20px;margin-bottom: 20px;">
+            <div>
+              <h4 class="thumb-heading">TARGET ACHIEVED </h4>
+              <div class="progress" style="height: 150px;">
+                <div id='pro' class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuemin="0" style="height: 100%;font-size: 33px;">
+                </div>
+              </div>
+            </div>
             <h4 class="thumb-heading">CURRENT MONTHLY TARGET</h4>
             <div class="widget-thumb-wrap">
             <div class="widget-thumb-body">
                 <span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644">
-                  <?php echo $currentTarget[0]->allTagets; ?>
-                  
+                  <?php if($currentTarget != 0){
+                    echo $currentTarget[0]->allTagets;
+                  } ?>
                 </span>
             <h4 class="thumb-heading">REMAINING MONTHLY TARGET</h4>
                 <span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644">
-                  <?php  $add = $currentAdmissions[0]->allAdmissions;
+                  <?php  
+                    if($currentTarget != 0){
+                      $add = $currentAdmissions[0]->allAdmissions;
                           $tar  = $currentTarget[0]->allTagets;
                           $total = $tar - $add;
                           echo $total;
+                    }
                    ?>
                 </span>
             </div>
@@ -77,7 +87,6 @@
             </div>
           </div>
         </div>
-        
       </div><!-- row -->
       <div class='row'>
         <section class="content-header">
@@ -105,9 +114,6 @@
         </a>
       <?php } 
       }?>
-        <!-- ./col -->
-        
-        <!-- ./col -->
       </div>
       <!-- /.row (main row) -->
       <div class="row">
@@ -117,14 +123,13 @@
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
                     <div class="form-group is-empty"><input type="text" name="table_search" id="search_table" class="form-control pull-right" placeholder="Search"></div>
-
                     <div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
                   </div>
                 </div>
                 <div class="col-xs-4">
-                  <a href="<?php echo base_url('Welcome/inquiry_form/add'); ?>" class="btn bg-red btn-flat margin" >Add New Inquiry Form</a>
+                  <a href="<?php echo base_url('Welcome/inquiry_form/add'); ?>" class="btn bg-black btn-flat margin" >Add New Inquiry Form</a>
                   <a href="<?php echo base_url('Welcome/inquiry_form/viewTrash'); ?>" class="btn bg-maroon btn-flat margin" >Trash <i class="fa fa-trash-o"></i></a>
                   <button id="searchbyme" class="btn bg-red btn-flat margin">Search By date </i></button>
                 </div>
@@ -157,50 +162,6 @@
                 </form>
               </div>
               <!-- /.box-header -->
-              <!-- <div class="box-body table-responsive padding">
-                <table class="table table-hover" >
-                  <thead>
-                    <tr>
-                      <th >ID</th>
-                      <th >Stu. Name</th>
-                      <th >F. Name</th>
-                      <th >Mobile No</th>
-                      <th >Admission Fee</th>
-                      <th >Monthly Fee</th>
-                      <th >Source</th>
-                      <th >Class</th>
-                      <th >Inquiry_Status</th>
-                      <th >Department</th>
-                      <th >Edit</th>
-                      <th >Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  
-                  <?php foreach($currentInquiries as $key => $value) { 
-                      if(!empty($department[$key]) && !empty($class[$key]) && !empty($source[$key]) && !empty($inqstatus[$key])){
-
-                  ?>
-
-                  <tr id="d-<?php echo $currentInquiries[$key]->inquiry_id; ?>">
-                    <td><?php echo $currentInquiries[$key]->inquiry_id; ?></td>
-                    <td><?php echo $currentInquiries[$key]->student_name; ?></td>
-                    <td><?php echo $currentInquiries[$key]->father_name; ?></td>
-                    <td><?php echo $currentInquiries[$key]->mobile_no; ?></td>
-                    <td><?php echo $currentInquiries[$key]->admission_fee; ?></td>
-                    <td><?php echo $currentInquiries[$key]->monthly_fee; ?></td>
-                    <td><?php echo $source[$key][0]->source_name; ?></td>
-                    <td><?php echo $class[$key][0]->class_name; ?></td>
-                    <td><span class="btn" style="background-color:<?php echo $inqstatus[$key][0]->inquiry_color?>; color:white;"><?php echo $inqstatus[$key][0]->inquiry_name ?></span></td>
-                    <td><?php echo $department[$key][0]->department_name; ?></td>
-                    <td><a href="<?php echo base_url('Welcome/inquiry_form/'); echo $currentInquiries[$key]->inquiry_id; ?>" class="btn bg-blue btn-flat">Edit</a></td>
-                    <td><a onclick="delinquiryform(<?php echo $currentInquiries[$key]->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
-                  </tr>
-                  <?php }
-                  } ?>
-                </tbody>
-              </table>
-              </div> -->
               <div class="box-body table-responsive padding">
                 <table class="table table-hover" >
                   <thead>
@@ -221,11 +182,9 @@
                   </thead>
                   <?php if($search_data == '0'){
                     ?>
-                        <?php foreach($currentInquiries as $key => $value) { 
+                  <?php foreach($currentInquiries as $key => $value) { 
                       if(!empty($department[$key]) && !empty($class[$key]) && !empty($source[$key]) && !empty($inqstatus[$key])){
-
                   ?>
-
                   <tr id="d-<?php echo $currentInquiries[$key]->inquiry_id; ?>">
                     <td><?php echo $currentInquiries[$key]->inquiry_id; ?></td>
                     <td><?php echo $currentInquiries[$key]->student_name; ?></td>
@@ -237,7 +196,7 @@
                     <td><?php echo $class[$key][0]->class_name; ?></td>
                     <td><span class="btn" style="background-color:<?php echo $inqstatus[$key][0]->inquiry_color?>; color:white;"><?php echo $inqstatus[$key][0]->inquiry_name ?></span></td>
                     <td><?php echo $department[$key][0]->department_name; ?></td>
-                    <td><a href="<?php echo base_url('Welcome/inquiry_form/'); echo $currentInquiries[$key]->inquiry_id; ?>" class="btn bg-blue btn-flat">Edit</a></td>
+                    <td><a href="<?php echo base_url('Welcome/inquiry_form/'); echo $currentInquiries[$key]->inquiry_id; ?>" class="btn bg-blue btn-flat">Edit / Call</a></td>
                     <td><a onclick="delinquiryform(<?php echo $currentInquiries[$key]->inquiry_id; ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php }
@@ -263,20 +222,21 @@
                           <?php } ?>
                         </tbody>
                   <?php } ?>
-                  
               </table>
               </div>
-
-              <!-- /.box-body -->
             </div>
     </div>
-    
   </div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 <?php include('inc/footer.php'); ?>
-
+<script>
+  var multiply = <?php echo $add; ?> * 100;
+  var divide = multiply / <?php echo $currentTarget[0]->allTagets; ?>;
+  var round = Math.round(divide);
+  document.getElementById('pro').style.width = round + '%';
+  document.getElementById('pro').style.padding = '58px';
+  document.getElementById('pro').innerHTML = round + '%';
+</script>
 </body>
 </html>

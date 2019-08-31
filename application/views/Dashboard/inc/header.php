@@ -93,23 +93,26 @@
               <li class="footer"><a href="#">View all</a></li>
             </ul>
           </li>
+<?php 
+          if($this->session->userdata('role') != 'admin'){
 
+ ?>
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle btn-flat" data-toggle="dropdown">
               <i class="fa fa-comments"></i>
               <span class="label bg-black"><?php echo $this->session->userdata('count'); ?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li><!-- Task item -->
                     <a href="#">
-                      <h3 class="excerpt">Design some buttons</h3>
-                      <div class="text-right">
-                        <code>Submit</code>
-                      </div>
+                      <h3 class="excerpt"><?php 
+                        $last_msg = $this->session->userdata('lastmsg');
+                        print_r($last_msg[0]->msg);
+                       ?></h3>
+                      
                     </a>
                   </li>
                 </ul>
@@ -119,6 +122,7 @@
               </li>
             </ul>
           </li>
+    <?php } ?>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

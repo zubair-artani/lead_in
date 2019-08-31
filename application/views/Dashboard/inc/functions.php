@@ -9,11 +9,7 @@
   include('functions/education_function.php');
   include('functions/registration.php');
   include('functions/admission.php');
-  include('functions/fee_slip.php');
  ?>
-
-
-
 <?php 
 	function addEditor(){
 ?>
@@ -27,28 +23,24 @@
               <div class="box-body">
                 <div class="form-group is-empty">
                   <label for="name" class="col-sm-2 control-label">User Name</label>
-
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="name" name="name" placeholder="User Name" required="">
                   </div>
                 </div>
                 <div class="form-group is-empty">
                   <label for="email" class="col-sm-2 control-label">Email</label>
-
                   <div class="col-sm-10">
                     <input type="email" name="email" class="form-control" id="email" required="" placeholder="Email">
                   </div>
                 </div>
                 <div class="form-group is-empty">
                   <label for="password" class="col-sm-2 control-label">Password</label>
-
                   <div class="col-sm-10">
                     <input type="password" name="password" class="form-control" id="password" required="" placeholder="Password">
                   </div>
                 </div>
                 <div class="form-group is-empty">
                   <label for="password" class="col-sm-2 control-label">Position</label>
-
                   <div class="col-sm-10">
                     <input type="text" name="position" class="form-control" id="position" required="" placeholder="Position">
                   </div>
@@ -80,7 +72,6 @@
                 </div>
                 <div class="form-group">
                     <label for="timeend" class="col-sm-2 control-label">End Time:</label>
-
                     <div class="col-sm-10 bootstrap-timepicker">
                       <input type="text" class="form-control timepicker" value="09:00 PM" name="timeend" id="timeend" required="">
 
@@ -185,7 +176,7 @@
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo base_url('Welcome/batchCode/add') ?>" class="btn bg-black btn-flat">Add New Batch</a> <a href="<?php echo base_url('Welcome/batchCode/viewTrash') ?>" class="btn bg-red btn-flat">Trash</a></h3>
+                <h3 class="box-title"><a href="<?php echo base_url('Welcome/batchCode/add') ?>" class="btn bg-black btn-flat">Add New Batch</a> <a href="<?php echo base_url('Welcome/batchCode/viewTrash') ?>" class="btn bg-maroon btn-flat">Trash <i class="fa fa-trash-o"></i></a></h3>
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -211,6 +202,7 @@
                     <th>Timings</th>
                     <th>From</th>
                     <th>To</th>
+                    <th>View Student</th>
                     <th>Batch Status</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -235,6 +227,7 @@
                     <td><?php echo $timestart . ' to ' . $timeend; ?></td>
                     <td><?php echo $data[$key]->start_date; ?></td>
                     <td><?php echo $data[$key]->end_date; ?></td>
+                    <td><a href="<?php echo base_url('Welcome/viewStudent/').$data[$key]->batch_code ?>" class="btn bg-green btn-flat">View</a></td>
                     <td><?php 
                         if($data[$key]->batch_status == 'Open'){
                     ?>
@@ -523,20 +516,22 @@
               <div class="box-footer">
                 <a href="<?php echo base_url('Welcome/batchcode/view'); ?>" class="btn btn-default">Cancel</a>
                 <button type="reset" class="btn bg-red pull-right">Reset</button>
-                <button class="btn bg-black pull-right">Send</button>
+                <button class="btn bg-black pull-right">Add</button>
               </div>
               <!-- /.box-footer -->
             <?php echo form_close(); ?>
           </div>  <!-- /.row -->
 <?php     
   }
-  function viewTrashBatchCode($page_status,$page_data){
+  function viewTrashBatchCode($page_status,$page_data, $class, $department, $days, $teacher){
+    // print_r($class);
 ?>
+<br>
 <div class="row">
       <div class="col-xs-12">
     <div class="box">
               <div class="box-header">
-                <h3 class="box-title"><a href="<?php echo base_url('Welcome/batchCode/view') ?>" class="btn bg-red btn-flat">View All Batch Code</a></h3>
+                <h3 class="box-title"><a href="<?php echo base_url('Welcome/batchCode/view') ?>" class="btn bg-maroon btn-flat">View All Batch Code</a></h3>
 
                 <div class="box-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -570,32 +565,32 @@
                   <tbody>
                   <?php
                   // print_r($data);
-                   foreach($page_data as $data){ 
+                   foreach($page_data as $key => $value){ 
                   ?>
 
-                  <tr id="d-<?php echo $data->batch_id; ?>">
-                    <td><?php echo $data->batch_id; ?></td>
-                    <td><?php echo $data->batch_code; ?></td>
-                    <td><?php echo $data->batch_days; ?></td>
-                    <td><?php echo $data->class; ?></td>
-                    <td><?php echo $data->department; ?></td>
-                    <td><?php echo $data->teacher; ?></td>
-                    <td><?php echo $data->start_time . ' to ' . $data->end_time; ?></td>
-                    <td><?php echo $data->start_date; ?></td>
-                    <td><?php echo $data->end_date; ?></td>
+                  <tr id="d-<?php echo $page_data[$key]->batch_id; ?>">
+                    <td><?php echo $page_data[$key]->batch_id; ?></td>
+                    <td><?php echo $page_data[$key]->batch_code; ?></td>
+                    <td><?php echo $batch_days[$key][0]->batch_days; ?></td>
+                    <td><?php echo $class[$key][0]->class_name; ?></td>
+                    <td><?php echo $department[$key][0]->department_name; ?></td>
+                    <td><?php echo $page_data[$key]->teacher; ?></td>
+                    <td><?php echo $page_data[$key]->start_time . ' to ' . $page_data[$key]->end_time; ?></td>
+                    <td><?php echo $page_data[$key]->start_date; ?></td>
+                    <td><?php echo $page_data[$key]->end_date; ?></td>
                     <td><?php 
-                        if($data->batch_status == 'Open'){
+                        if($page_data[$key]->batch_status == 'Open'){
                     ?>
-                          <span class="badge bg-green"><?php echo $data->batch_status ?></span>
+                          <span class="badge bg-green"><?php echo $page_data[$key]->batch_status ?></span>
                       <?php
                         } else {
                       ?>
-                          <span class="badge bg-red"><?php echo $data->batch_status ?></span>
+                          <span class="badge bg-red"><?php echo $page_data[$key]->batch_status ?></span>
                       <?php  
                         }
                     ?></td>
-                    <td><a onclick="restoreBatch(<?php echo $data->batch_id ?>)" class="btn bg-green btn-flat">Restore</a></td>
-                    <td><a onclick="removeBatch(<?php echo $data->batch_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
+                    <td><a onclick="restoreBatch(<?php echo $page_data[$key]->batch_id ?>)" class="btn bg-green btn-flat">Restore</a></td>
+                    <td><a onclick="removeBatch(<?php echo $page_data[$key]->batch_id ?>)" class="btn bg-red btn-flat">Delete</a></td>
                   </tr>
                   <?php } ?>
                 </tbody>

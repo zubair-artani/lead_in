@@ -16,6 +16,9 @@ class Welcome extends CI_Controller {
 			$currentMonthAdmissions = $this->monthlyModel->viewCurrentMonthAdmissions();
 			// $currentMonthInquiries = $this->monthlyModel->viewCurrentMonthInquiries();
 			$currentMonthTarget = $this->monthlyModel->viewCurrentMonthTarget();
+			if(empty($currentMonthTarget)){
+				$currentMonthTarget = 0;
+			}
 			// print_r($currentMonthTarget);
 			$getDepartment = $this->adminmodel->viewDepartment();
 				$classarr = array();
@@ -101,7 +104,9 @@ class Welcome extends CI_Controller {
 			$position = $query[0]->position;
 			$role = $query[0]->user_role;
 			$id = $query[0]->user_id;
+			$email = $query[0]->user_email;
 			$count = $this->adminmodel->msgcount($role,$id);
+			$viewmsg = $this->adminmodel->viewMsg($id,$role);
 
 			$newdata = array( 
 			   'name'  => $name, 
@@ -109,18 +114,60 @@ class Welcome extends CI_Controller {
 			   'position'     => $position, 
 			   'role'     => $role, 
 			   'id'     => $id,
+			   'email' => $email,
+			   'lastmsg' => $viewmsg,
 			   'count' =>$count,
 			);  
 			$this->session->set_userdata($newdata);
-			// print_r($this->session->userdata());
+
+			if( date('d') == 31 || (date('m') == 1 && date('d') > 28)){
+			    $date = strtotime('last day of next month');
+			} else {
+			    $date = strtotime('+1 months');
+			}
+
+			$nextmonth = date('Y-m-d', $date);
+
+			$admission = $this->db->where('trash_status !=' ,'deleted')->get('admission')->result();
+			for($i = 0; $i < sizeof($admission); $i++){
+				$due =  $admission[$i]->a_student_duedate;
+				 $date_now = date("Y-m-d"); // this format is string comparable
+				if ($date_now >= $due) {
+					$upaddmission = $this->db->set(['a_student_duedate'=> $nextmonth, 'a_payment'=>'paid but remaining'])->where('a_student_id', $admission[$i]->a_student_id)->update('admission');
+				    	$id = $admission[$i]->a_student_id;
+				    	$monthlyfee = $admission[$i]->a_student_monthly_fees;
+				    	$fee_form_record = $this->db->query("SELECT * FROM fee_form WHERE admission_id = $id LIMIT 1")->result_array();
+				    	$name = $fee_form_record[0]['student_name'];
+				    	$date = date("Y-m-d");
+						date_default_timezone_set('Asia/Karachi');
+						$time =  date("h:i:s");
+				    	$insertparams = array(
+				    		'student_name' => $name,
+				    		'admission_id' => $id,
+				    		'total_fee' => 0,
+				    		'pending_fee' => $monthlyfee,
+				    		'date' => $date,
+				    		'time' => $time,
+				    		'remarks' => '',
+				    		'other_fee' => 0,
+				    		'certification_fee' => 0,
+				    		'late_fee' => 0,
+				    		'notes_fee' => 0,
+				    	);
+				    	$this->db->insert('fee_form', $insertparams);
+				} else{
+				    // echo 'Less than';
+				}
+			}
 			redirect('Welcome/index');
 			// print_r($query);
 		}
 	} 
 
 	public function logout(){
-		$this->session->unset_userdata('name');
-		redirect('Welcome/index');
+		if($this->adminmodel->logout()){
+			redirect('Welcome/index');
+		}
 	}
 
 	public function editor($param1){
@@ -514,10 +561,27 @@ class Welcome extends CI_Controller {
 					redirect('Welcome/batchCode/view');
 				}
 			} else if($param1 == 'viewTrash') {
-				$data = $this->adminmodel->viewBatchCodeTrash();
+				$getData = $this->adminmodel->viewBatchCodeTrash();
+				if(is_null($getData)){
+					$getData = Array();
+				}
+				$classarr = array();
+				$departmentarr = array();
+				$daysarr = array();
+				$teacherarr = array();
+				for($i = 0; $i < sizeof($getData); $i++){
+					array_push($classarr, $getData[$i]->class);
+					array_push($departmentarr, $getData[$i]->department);
+					array_push($daysarr, $getData[$i]->batch_days);
+					array_push($teacherarr, $getData[$i]->teacher);
+				}
+				$getClassArrData = $this->adminmodel->viewArrays($classarr, 'class');
+				$getDepartmentArrData = $this->adminmodel->viewArrays($departmentarr, 'department');
+				$getDaysArrData = $this->adminmodel->viewArrays($daysarr, 'days');
+				$getTeacherArrData = $this->adminmodel->viewArrays($teacherarr, 'teacher');
 				// echo "<pre>";
 				// print_r($data);
-				$this->load->view('Dashboard/batch-code', ['page_status' =>'viewTrash','page_data'=>$data]);
+				$this->load->view('Dashboard/batch-code', ['page_status' =>'viewTrash','page_data'=>$getData, 'class' => $getClassArrData, 'department' => $getDepartmentArrData, 'days' => $getDaysArrData, 'teacher' => $getTeacherArrData]);
 			} else if($param1 == 'remove'){
 				$deleteid = $this->input->get('batchid');
 				// print_r($deleteid);
@@ -556,7 +620,28 @@ class Welcome extends CI_Controller {
 			}
 		}	
 	}
+	public function viewStudent($param1) {
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			$batch_code = $param1;
+			// print_r($batch_code);
+			// $query = $this->adminmodel->viewAdmission(0);
+			$batch_data = $this->adminmodel->getStudentByBatchCode($batch_code);
+			if(empty($batch_data)){
+				$batch_data = 0;
+			}
 
+			$data = $this->adminmodel->getstuadmission($batch_data);
+			if(empty($data)){
+				$data = 0;
+			}
+			$this->load->view('dashboard/admission',['page_status'=>'view_student','data'=>$batch_data,'stdata'=>$data,'search_data'=>'0']);
+			// echo "<pre>";
+			// print_r($data);
+			// echo "</pre>";
+		}
+	}
 	public function source($param1) {
 		if(!$this->session->userdata('name')){
 			$this->load->view('Dashboard/signup');
@@ -807,8 +892,23 @@ class Welcome extends CI_Controller {
 		} else {
 			if($param1 == 'view'){
 				$getData = $this->adminmodel->viewInquiryForm();
-				
-				$this->load->view('Dashboard/inquiry_form', ['page_status' => 'view', 'data' => $getData,'search_data'=>'0']);
+				$classarr = array();
+				$departmentarr = array();
+				$inquirystatusarr = array();
+				$sourcestatusarr = array();
+				// $teacherarr = array();
+				for($i = 0; $i < sizeof($getData); $i++){
+					array_push($classarr, $getData[$i]->class);
+					array_push($departmentarr, $getData[$i]->department);
+					array_push($inquirystatusarr, $getData[$i]->inquiry_status);
+					array_push($sourcestatusarr, $getData[$i]->source);
+				}
+				$getClassArrData = $this->adminmodel->viewArrays($classarr, 'class');
+				$getDepartmentArrData = $this->adminmodel->viewArrays($departmentarr, 'department');
+				$getInquiryArrData = $this->adminmodel->viewArrays($inquirystatusarr, 'inqStatus');
+				$getSourceArrData = $this->adminmodel->viewArrays($sourcestatusarr, 'source');
+
+				$this->load->view('Dashboard/inquiry_form', ['page_status' => 'view', 'data' => $getData,'search_data'=>'0', 'class' => $getClassArrData, 'department' => $getDepartmentArrData,'inquiry_status'=>$getInquiryArrData,'source'=>$getSourceArrData]);
 			} 
 			else if($param1 == 'delete'){
 				$deleteid = $this->input->get('id');
@@ -827,8 +927,20 @@ class Welcome extends CI_Controller {
 					echo "not";
 				}
 			} else if($param1 == 'viewTrash'){
-				$page_data = $this->adminmodel->viewinquirytrash();
-				$this->load->view('dashboard/inquiry_form', ['page_status' => 'viewTrash','page_data'=>$page_data]);
+				$getData = $this->adminmodel->viewinquirytrash();
+				$classarr = array();
+				$departmentarr = array();
+				$inquirystatusarr = array();
+				// $teacherarr = array();
+				for($i = 0; $i < sizeof($getData); $i++){
+					array_push($classarr, $getData[$i]->class);
+					array_push($departmentarr, $getData[$i]->department);
+					array_push($inquirystatusarr, $getData[$i]->inquiry_status);
+				}
+				$getClassArrData = $this->adminmodel->viewArrays($classarr, 'class');
+				$getDepartmentArrData = $this->adminmodel->viewArrays($departmentarr, 'department');
+				$getInquiryArrData = $this->adminmodel->viewArrays($inquirystatusarr, 'inqStatus');
+				$this->load->view('dashboard/inquiry_form', ['page_status' => 'viewTrash','page_data'=>$getData, 'class' => $getClassArrData, 'department' => $getDepartmentArrData,'inquiry_status'=>$getInquiryArrData]);
 			} else if($param1 == 'restore') {
 				$trashid = $this->input->get('id');
 				$query = $this->adminmodel->removeInquiryFromTrash($trashid);
@@ -882,13 +994,12 @@ class Welcome extends CI_Controller {
 		} else {
 			if($param1 == 'view'){
 				$getData = $this->adminmodel->viewRegistration(0);
+					$educationarr = array();
+					for($i = 0; $i < sizeof($getData); $i++){
+						array_push($educationarr, $getData[$i]->r_student_currentedu);
+					}
+					$getCurrentEducationArrData = $this->adminmodel->viewArrays($educationarr, 'education');
 
-				$educationarr = array();
-				for($i = 0; $i < sizeof($getData); $i++){
-					array_push($educationarr, $getData[$i]->r_student_currentedu);
-				}
-				$getCurrentEducationArrData = $this->adminmodel->viewArrays($educationarr, 'education');
-				
 			$this->load->view('Dashboard/registration', ['page_status' => 'view', 'data' => $getData, 'currentedu' => $getCurrentEducationArrData,'search_data'=>'0']);
 
 			} else if($param1 == 'add'){
@@ -912,7 +1023,13 @@ class Welcome extends CI_Controller {
 				}
 			} else if($param1 =='viewTrash') {
 				$getTrashData = $this->adminmodel->viewTrashRegistration();
-				$currentedu = $this->adminmodel->vieweducation($getTrashData[0]->r_student_currentedu);
+				if(!empty($getTrashData)){
+					$currentedu = $this->adminmodel->vieweducation($getTrashData[0]->r_student_currentedu);
+				} else {
+					$getTrashData = 0;
+					$currentedu = 0;
+				}
+
 				$this->load->view('Dashboard/registration',['page_status'=>'viewTrash','data'=>$getTrashData, 'currentedu' => $currentedu]);
 			} else if($param1 == 'remove') {
 				$deleteid = $this->input->get('userid');
@@ -941,7 +1058,7 @@ class Welcome extends CI_Controller {
 						'r_student_fathername' => $input['r_student_fathername'],
 						'r_student_mobileno' => $input['r_student_mobileno'],
 						'r_student_fatherno' => $input['r_student_fatherno'],
-						'r_student_emergencyno' => $input['idr_student_emergencyno'],
+						'r_student_emergencyno' => $input['r_student_emergencyno'],
 						'r_student_whatsappno' => $input['r_student_whatsappno'],
 						'r_student_dob' => $input['r_student_dob'],
 						'r_student_gender' => $input['r_student_gender'],
@@ -1044,8 +1161,22 @@ class Welcome extends CI_Controller {
 					$faculty = $this->adminmodel->viewFaculty();
 					$department = $this->adminmodel->viewDepartment();
 					$class = $this->adminmodel->viewClass();
-
-					$this->load->view('Dashboard/admission', ['page_status' => 'add', 'registrationData' => $getRegistrationData, 'faculty' => $faculty,'department' => $department, 'class' => $class]);
+					$batch_code = $this->adminmodel->viewBatchCode();
+				$classarr = array();
+				$departmentarr = array();
+				$daysarr = array();
+				$teacherarr = array();
+				for($i = 0; $i < sizeof($batch_code); $i++){
+					array_push($classarr, $batch_code[$i]->class);
+					array_push($departmentarr, $batch_code[$i]->department);
+					array_push($daysarr, $batch_code[$i]->batch_days);
+					array_push($teacherarr, $batch_code[$i]->teacher);
+				}
+				$getClassArrData = $this->adminmodel->viewArrays($classarr, 'class');
+				$getDepartmentArrData = $this->adminmodel->viewArrays($departmentarr, 'department');
+				$getDaysArrData = $this->adminmodel->viewArrays($daysarr, 'days');
+				$getTeacherArrData = $this->adminmodel->viewArrays($teacherarr, 'teacher');
+				$this->load->view('Dashboard/admission', ['page_status' => 'add', 'registrationData' => $getRegistrationData, 'faculty' => $faculty,'department' => $department, 'class' => $class,'batch_code'=>$batch_code, 'getClassArrData'=>$getClassArrData, 'getDepartmentArrData'=>$getDepartmentArrData, 'getDaysArrData'=>$getDaysArrData,'getTeacherArrData'=>$getTeacherArrData]);
 			 	}
 			} else if($param1 == 'delete') {
 				$deleteid = $this->input->get('id');
@@ -1057,9 +1188,13 @@ class Welcome extends CI_Controller {
 				}
 			} else if($param1 =='viewTrash') {
 				$page_data = $this->adminmodel->viewAdmisssionTrash();
-				$rid = $page_data[0]->a_student_registration_id;
-				$profiledetails = $this->adminmodel->getstuadmissiondel($rid);
-
+				if(!empty($page_data)){
+					$rid = $page_data[0]->a_student_registration_id;
+					$profiledetails = $this->adminmodel->getstuadmissiondel($rid);
+				} else {
+					$page_data = 0;
+					$profiledetails = 0;
+				}
 				$this->load->view('dashboard/admission', ['page_status' => 'viewTrash','page_data'=>$page_data,'data'=>$profiledetails]);
 			} else if($param1 == 'remove') {
 				$deleteid = $this->input->get('id');
@@ -1283,67 +1418,70 @@ class Welcome extends CI_Controller {
 		if(!$this->session->userdata('name')) {
 			$this->load->view('Dashboard/signup');
 		} else {
-		
-			if($param1 == 'view'){
-				$getexpense = $this->adminmodel->viewexpense();  // expense type
-				$query = $this->adminmodel->viewmexpense(); // all expenses
+			if($this->session->userdata('role') == 'admin'){
+				if($param1 == 'view'){
+					$getexpense = $this->adminmodel->viewexpense();  // expense type
+					$query = $this->adminmodel->viewmexpense(); // all expenses
 
-				$expensetypeArr = array();
-				for($i = 0; $i < sizeof($query); $i++){
-					array_push($expensetypeArr, $query[$i]->expense_type);
-				}
-				$expensetypeArrData = $this->adminmodel->viewArrays($expensetypeArr, 'exp_type');
-
-				$this->load->view('dashboard/monthlyexpense', ['page_status' => 'view', 'page_data' => $query,'expense'=>$getexpense, 'exp_type' => $expensetypeArrData,'search_data'=>'0']);
-
-			} else if ($param1 == 'add'){
-				if($input = $this->input->post()) {
-					if($this->adminmodel->addmexpense($input)) {
-						redirect('Welcome/mexpense/view');
-					} else {
-						echo "not";
+					$expensetypeArr = array();
+					for($i = 0; $i < sizeof($query); $i++){
+						array_push($expensetypeArr, $query[$i]->expense_type);
 					}
-				}
-			} else if($param1 == 'delete') {
-				$deleteid = $this->input->get('userid');
-				$query = $this->adminmodel->delmexpense($deleteid);
-				if($query){
-					echo "ok";
-				} else {
-					echo "not";
-				}
-			} else if($param1 == 'remove') {
-				$deleteid = $this->input->get('userid');
-				$query = $this->adminmodel->removeMonthlyexpense($deleteid);
-				if($query){
-					echo "ok";
-				} else {
-					echo "not";
-				}
-			} else if($param1 == 'viewTrash'){
-				$page_data = $this->adminmodel->getmexpenseTrash();
-				$this->load->view('dashboard/monthlyexpense', ['page_status' => 'viewTrash','page_data'=>$page_data]);
-			} else if($param1 == 'restore') {
-				$trashid = $this->input->get('userid');
-				$query = $this->adminmodel->removeMonthlyExpenseFromTrash($trashid);
-					if($query) {
+					$expensetypeArrData = $this->adminmodel->viewArrays($expensetypeArr, 'exp_type');
+
+					$this->load->view('dashboard/monthlyexpense', ['page_status' => 'view', 'page_data' => $query,'expense'=>$getexpense, 'exp_type' => $expensetypeArrData,'search_data'=>'0']);
+
+				} else if ($param1 == 'add'){
+					if($input = $this->input->post()) {
+						if($this->adminmodel->addmexpense($input)) {
+							redirect('Welcome/mexpense/view');
+						} else {
+							echo "not";
+						}
+					}
+				} else if($param1 == 'delete') {
+					$deleteid = $this->input->get('userid');
+					$query = $this->adminmodel->delmexpense($deleteid);
+					if($query){
 						echo "ok";
 					} else {
 						echo "not";
 					}
-			} else if($param1 == 'update') {
-				$input = $this->input->post();
-				$query = $this->adminmodel->updateMexpense($input);
-				if($query) {
-					redirect('Welcome/mexpense/view');
+				} else if($param1 == 'remove') {
+					$deleteid = $this->input->get('userid');
+					$query = $this->adminmodel->removeMonthlyexpense($deleteid);
+					if($query){
+						echo "ok";
+					} else {
+						echo "not";
+					}
+				} else if($param1 == 'viewTrash'){
+					$page_data = $this->adminmodel->getmexpenseTrash();
+					$this->load->view('dashboard/monthlyexpense', ['page_status' => 'viewTrash','page_data'=>$page_data]);
+				} else if($param1 == 'restore') {
+					$trashid = $this->input->get('userid');
+					$query = $this->adminmodel->removeMonthlyExpenseFromTrash($trashid);
+						if($query) {
+							echo "ok";
+						} else {
+							echo "not";
+						}
+				} else if($param1 == 'update') {
+					$input = $this->input->post();
+					$query = $this->adminmodel->updateMexpense($input);
+					if($query) {
+						redirect('Welcome/mexpense/view');
+					} else {
+						echo "not";
+					}
 				} else {
-					echo "not";
+					$id = $param1;
+					$query = $this->adminmodel->editmexpense($id);
+					$getexpense = $this->adminmodel->viewexpense();
+					$this->load->view('dashboard/monthlyexpense', ['page_status' => 'edit','id'=>$id, 'query' =>$query, 'expense_type' => $getexpense]);
 				}
 			} else {
-				$id = $param1;
-				$query = $this->adminmodel->editmexpense($id);
-				$getexpense = $this->adminmodel->viewexpense();
-				$this->load->view('dashboard/monthlyexpense', ['page_status' => 'edit','id'=>$id, 'query' =>$query, 'expense_type' => $getexpense]);
+				echo "You Don't Have Access to view this file.";
 			}
 		}
 	}
@@ -1423,22 +1561,42 @@ class Welcome extends CI_Controller {
 			$this->load->view('Dashboard/signup');
 		} else {
 			if($param1 == 'view') {
-			 		
 			 		// $data = $this->adminmodel->getfeedata($id);
 			 		// echo $data;	
 			 	} 
 			else if($param1 == 'delete'){
-				
 			}
 			 else if($param1 == 'add'){
-
-				$getbatchcode = $this->adminmodel->viewBatchCode();
-				$getstudentforfees = $this->adminmodel->viewStudentForFees();
-				$this->load->view('Dashboard/fee_slip', ['page_status' => 'add', 'batch_code'=> $getbatchcode,'feedetail'=> $getstudentforfees]);
-			} else {
-				$id= $_GET['uid'];
-			 		echo $id;
+				$admissiondetail = $this->adminmodel->viewStudentForFees(0);
+				$registrationdetail = $this->adminmodel->getdetail($admissiondetail);
+				$this->load->view('Dashboard/fee_slip', ['page_status' => 'add','feedetail'=> $registrationdetail]);
+			} else if($param1 == 'batch') {
+					$code = $_GET['bid'];
+					// echo $code;
+					$admissiondetail = $this->adminmodel->viewStudentForFees(0);
+					$registrationdetail = $this->adminmodel->getdetail($admissiondetail);
+					$data = $this->adminmodel->fetchdetail($code);
+					foreach($registrationdetail as $key => $value){
+                       if($registrationdetail[$key][0]->r_student_id == $data[0]->a_student_registration_id){
+                       		$check = $registrationdetail[$key][0]->r_student_name;
+                      	} 
+                    } 
+					$mega = $data[0]->a_student_adm_fees.','.$data[0]->a_student_monthly_fees.','.$check . ','.$data[0]->a_student_id;
+					print_r($mega);
+			}else if($param1 == 'insert'){
+				if($this->input->post()){
+					$inp = $this->input->post();
+					if($this->adminmodel->insert_fee($inp)) {
+						redirect('Welcome/fee_slip/add');
+					}
+				}
 			}
+			else  {
+					$id = $_GET['sid'];
+					// $detail = $this->adminmodel->viewStudentForFees($id);
+					$batch_code = $this->adminmodel->fetchbatchcode($id);
+					print_r($batch_code);
+				}
 
 		}
 	}
@@ -1452,9 +1610,33 @@ class Welcome extends CI_Controller {
 				$from = $inp['from_date'];
 			}
 			$data = $this->adminmodel->searchDate($to,$from,$param);
+			$classarr = array();
+				$departmentarr = array();
+				$inquirystatusarr = array();
+				$sourcestatusarr = array();
+				// $teacherarr = array();
+				for($i = 0; $i < sizeof($data); $i++){
+					array_push($classarr, $data[$i]->class);
+					array_push($departmentarr, $data[$i]->department);
+					array_push($inquirystatusarr, $data[$i]->inquiry_status);
+					array_push($sourcestatusarr, $data[$i]->source);
+				}
+				$getClassArrData = $this->adminmodel->viewArrays($classarr, 'class');
+				$getDepartmentArrData = $this->adminmodel->viewArrays($departmentarr, 'department');
+				$getInquiryArrData = $this->adminmodel->viewArrays($inquirystatusarr, 'inqStatus');
+				$getSourceArrData = $this->adminmodel->viewArrays($sourcestatusarr, 'source');
 			$getData = $this->adminmodel->viewInquiryForm();
-			$this->load->view('Dashboard/inquiry_form', ['page_status' => 'view', 'data' => $getData,'search_data' =>$data]);
-		} else if($param == 'registration'){
+			$this->load->view('Dashboard/inquiry_form', ['page_status' => 'view', 'data' => $getData,'search_data' =>$data, 'class' => $getClassArrData, 'department' => $getDepartmentArrData,'inquiry_status'=>$getInquiryArrData,'source'=>$getSourceArrData]);
+		}else if($param=='fee') {
+			if($this->input->post()){
+				$inp = $this->input->post();
+				$to = $inp['todate'];
+				$from = $inp['from_date'];
+			}
+			$data = $this->adminmodel->searchDate($to,$from,$param);
+			$getData = $this->adminmodel->getremainingfee();
+			$this->load->view('Dashboard/fee_remaining', ['page_status' => 'view', 'data' => $getData,'search_data' =>$data]);
+		}  else if($param == 'registration'){
 			if($this->input->post()){
 				$inp = $this->input->post();
 				$to = $inp['todate'];
@@ -1467,7 +1649,8 @@ class Welcome extends CI_Controller {
 					array_push($educationarr, $getData[$i]->r_student_currentedu);
 				}
 				$getCurrentEducationArrData = $this->adminmodel->viewArrays($educationarr, 'education');
-			$this->load->view('Dashboard/registration', ['page_status' => 'view', 'data' => $getData, 'currentedu' => $getCurrentEducationArrData,'search_data'=>$data]);
+				$this->load->view('Dashboard/registration', ['page_status' => 'view', 'data' => $getData,
+				'currentedu' => $getCurrentEducationArrData,'search_data'=>$data]);
 		} else if($param == 'admission') {
 			if($this->input->post()){
 				$inp = $this->input->post();
@@ -1487,13 +1670,11 @@ class Welcome extends CI_Controller {
 			$data = $this->adminmodel->searchDate($to,$from,$param);
 			$getexpense = $this->adminmodel->viewexpense();  // expense type
 				$query = $this->adminmodel->viewmexpense(); // all expenses
-
 				$expensetypeArr = array();
 				for($i = 0; $i < sizeof($data); $i++){
 					array_push($expensetypeArr, $data[$i]->expense_type);
 				}
 				$expensetypeArrData = $this->adminmodel->viewArrays($expensetypeArr, 'exp_type');
-
 				$this->load->view('dashboard/monthlyexpense', ['page_status' => 'view', 'page_data' => $query,'expense'=>$getexpense, 'exp_type' => $expensetypeArrData,'search_data'=>$data]);
 		}
 	}
@@ -1501,6 +1682,81 @@ class Welcome extends CI_Controller {
 		if($this->load->view('dashboard/database-backup')){
 			redirect('Welcome/index');
 		}
+	}
+	function fees_remaining($param1) {
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view') {
+				$data = $this->adminmodel->getremainingfee();
+				if(!empty($data[0])){
+					for($i = 0; $i < sizeof($data[0]); $i++){
+						$admID[] = $data[0][$i]->a_student_registration_id;
+					}
+					for($i=0;$i < sizeof($admID);$i++){
+						$registrationdata[] = $this->db->query("SELECT * FROM registration WHERE r_student_id = $admID[$i] AND r_status != 'deleted'")->result();
+					}
+				}
 
+				if(empty($registrationdata)){
+					$registrationdata = 0;
+				}
+
+				// echo "<pre>";
+				// print_r($registrationdata);
+				// $this->adminmodel->
+				// print_r($data);
+				// echo "</pre>";
+
+				$this->load->view('dashboard/fee_remaining',['page_status'=>'view','data'=>$data,'registrationData'=>$registrationdata,'search_data'=>'0']);
+			} else if($param1 == 'update'){
+				// print_r($this->input->post());
+				if($this->input->post()){
+					$inp = $this->input->post();
+					$updation = $this->adminmodel->updateFee($inp);
+					if($updation){
+						redirect('Welcome/fees_remaining/view');
+					}
+				}
+			} else {
+				$id = $param1;
+				$data = $this->adminmodel->getSingleRemaining($id);
+				$this->load->view('dashboard/fee_remaining',['page_status'=>'edit','data'=>$data]);
+			}
+		}
+	}
+
+	function fees_collected($param1) {
+		if(!$this->session->userdata('name')){
+			$this->load->view('Dashboard/signup');
+		} else {
+			if($param1 == 'view') {
+				$fee_form = $this->adminmodel->getcollectedfee();
+				if(empty($fee_form)){
+					$fee_form = 0;
+				}
+				$this->load->view('dashboard/fee_collected', ['page_status' => 'view_total_collection', 'fee_form_all_data' => $fee_form]);
+			} 
+		}
+	}
+
+	function printfee($param1){
+		$selectfeedata = $this->adminmodel->selectfeedata($param1);
+		if(!empty($selectfeedata)){
+			foreach($selectfeedata as $key => $val){
+				$feeSlipAdm[] = $this->db->where('a_student_id', $selectfeedata[$key]->admission_id)->get('admission')->result();
+			}
+			if(!empty($feeSlipAdm)){
+				foreach($feeSlipAdm as $key => $val){
+					$AdmClassName[] = $this->db->where('class_id', $feeSlipAdm[$key][0]->a_student_class)->get('class')->result();
+				}
+			}
+		} else {
+			$selectfeedata = 0;
+			$feeSlipAdm = 0;
+			$AdmClassName = 0;
+		}
+
+		$this->load->view('Dashboard/printfee', ['feedata'=>$selectfeedata, 'class'=>$AdmClassName]);
 	}
 }

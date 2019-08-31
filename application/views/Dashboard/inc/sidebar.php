@@ -151,9 +151,13 @@
         <!-- <li class="treeview">
           <a href="#"><i class="fa fa-edit"></i> <span>Message</span></a>
         </li> -->
-        <li class="treeview">
-          <!-- <a href="#"><i class="fa fa-edit"></i> <span>Complain Box</span></a> -->
+      <?php 
+          if($this->session->userdata('role') == 'admin'){
+       ?>
+        <li>
+          <a href="<?php echo base_url('Welcome/alltask/view') ?>"><i class="fa fa-edit"></i> <span>Send Message</span></a>
         </li>
+      <?php } ?>
         <li>
          <a href="<?php echo base_url('Welcome/monthlyTarget/view'); ?>"><i class="fa fa-edit"></i> <span>Monthly Target</span></a>
        </li>
@@ -188,6 +192,8 @@
         <li class="treeview">
           <!-- <a href="#"><i class="fa fa-edit"></i> <span>Parent Login</span></a> -->
         </li>
+        <?php if($this->session->userdata('role') == 'admin'){ ?>
+            
         <li class="header">ACCOUNTS</li>
 
         <li class="treeview">
@@ -207,6 +213,23 @@
            </li>    
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-money"></i>
+            <span>Fees</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+             <a href="<?php echo base_url('Welcome/fees_remaining/view') ?>"><i class="fa fa-edit"></i> <span>Remaining</span></a>
+           </li>
+            <li class="">
+             <a href="<?php echo base_url('Welcome/fees_collected/view') ?>"><i class="fa fa-edit"></i> <span>Collected</span></a>
+           </li>    
+          </ul>
+        </li>
 
         
         <li>
@@ -215,6 +238,7 @@
         <li>
           <a href="<?php echo base_url('Welcome/capital/view'); ?>"><i class="fa fa-edit"></i> <span>Capital</span></a>
         </li>
+        <?php } ?>
         <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Reports</span>

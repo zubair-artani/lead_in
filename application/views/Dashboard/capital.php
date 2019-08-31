@@ -7,13 +7,13 @@
     <section class="content-header">
       <h1>
         <?php if($page_status == 'view'){ ?>
-          CAPITAL
+          View Capital
         <?php } elseif($page_status == 'viewTrash'){ ?>
-          TRASHES
+          View Trashes
          <?php } elseif($page_status == 'edit'){ ?>
-          UPDATE CAPITAL
+          Update Capital
          <?php } elseif($page_status == 'add'){ ?>
-          ADD CAPITAL
+          Add Capital
          <?php } ?>
         <!-- <small>Dashboard Controllers</small> -->
       </h1>
